@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Companion</title>
+<style>
+:root{--bg:#faf9fd;--sf:#fff;--sv:#eeecf4;--tx:#1b1b21;--mu:#5d5d68;--pr:#6b4eff;--pc:#e6dfff;--pt:#1e0f66;--ln:#d9d6e4;--er:#b3261e;--ts:1}
+:root[data-t=dark]{--bg:#0e0e13;--sf:#16161d;--sv:#22222c;--tx:#e6e6ec;--mu:#b0b0be;--pr:#c5b3ff;--pc:#4a3b8c;--pt:#ede6ff;--ln:#33333f;--er:#ffb4ab}
+*{box-sizing:border-box}html{font-size:calc(16px*var(--ts))}
+body{margin:0;background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.45}
+#app{display:flex;flex-direction:column;height:100dvh;max-width:760px;margin:0 auto;background:var(--bg);border-inline:1px solid var(--ln)}
+header{display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;padding-top:calc(.6rem + env(safe-area-inset-top,0px));background:var(--sf);border-bottom:1px solid var(--ln)}
+header h1{font-size:1.15rem;margin:0;flex:1}header small{display:block;color:var(--mu);font-size:.75rem;font-weight:400}
+main{flex:1;overflow-y:auto;padding:.9rem}
+button,input,textarea,select{font:inherit;color:inherit}
+button{cursor:pointer;border:0;background:none;padding:.4rem .6rem;border-radius:.6rem}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--pr);outline-offset:2px}
+.b{background:var(--pr);color:var(--bg);font-weight:600}.t{background:var(--sv)}.ic{font-size:1.2rem;line-height:1}
+input,textarea,select{width:100%;padding:.6rem .7rem;border:1px solid var(--ln);border-radius:.7rem;background:var(--sf)}
+label{display:block;font-size:.8rem;color:var(--mu);margin:.8rem 0 .25rem}
+.pic{width:var(--s,3.4rem);height:var(--s,3.4rem);border-radius:50%;background:var(--pc);display:grid;place-items:center;overflow:hidden;flex:none;font-size:calc(var(--s,3.4rem)*.5)}
+.pic img{width:100%;height:100%;object-fit:cover}
+.card{display:flex;gap:.9rem;align-items:center;padding:.8rem;margin-bottom:.7rem;background:var(--sv);border-radius:1.1rem;cursor:pointer}
+.card p{margin:0;color:var(--mu);font-size:.85rem}.card b{font-size:1.05rem}
+.empty{text-align:center;color:var(--mu);margin-top:20vh}
+#cv{background-size:cover!important;background-position:center!important}
+.m{display:flex;gap:.4rem;margin:.45rem 0;align-items:flex-end}.m.u{justify-content:flex-end}
+.bub{max-width:min(82%,34rem);padding:.55rem .85rem;border-radius:1.1rem 1.1rem 1.1rem .25rem;background:color-mix(in srgb,var(--sf) 93%,transparent);word-wrap:break-word}
+.u .bub{background:color-mix(in srgb,var(--pc) 96%,transparent);color:var(--pt);border-radius:1.1rem 1.1rem .25rem 1.1rem}
+.bub i{opacity:.72}
+.ac{font-size:.8rem;opacity:.55;display:flex;gap:.1rem;margin-top:.1rem}.u .ac{justify-content:flex-end}.ac button{padding:.1rem .35rem}
+.dots span{display:inline-block;width:.45rem;height:.45rem;margin:0 .12rem;border-radius:50%;background:var(--tx);animation:d 1s infinite}
+.dots span:nth-child(2){animation-delay:.15s}.dots span:nth-child(3){animation-delay:.3s}
+@keyframes d{0%,100%{opacity:.2}50%{opacity:1}}@media(prefers-reduced-motion:reduce){.dots span{animation:none}}
+footer{padding:.6rem;padding-bottom:calc(.6rem + env(safe-area-inset-bottom,0px));background:var(--sf);border-top:1px solid var(--ln)}
+.row{display:flex;gap:.5rem;align-items:flex-end}.row textarea{resize:none;max-height:8rem;border-radius:1.3rem}
+.er{color:var(--er);font-size:.85rem;margin:0 0 .4rem}
+h2{font-size:.95rem;color:var(--pr);margin:1.6rem 0 .4rem}
+.sw{display:flex;gap:.7rem;overflow-x:auto;padding:.4rem .1rem}.sw button{width:3.2rem;height:3.2rem;border-radius:50%;border:2px solid var(--ln);padding:0;flex:none}
+.sw button.on{border:3px solid var(--pr)}
+.pf{display:flex;align-items:center;gap:.5rem;padding:.3rem 0}.pf div{flex:1;min-width:0}.pf small{display:block;color:var(--mu);overflow:hidden;text-overflow:ellipsis}
+.fact{display:flex;align-items:center;gap:.4rem;background:var(--sv);padding:.4rem .4rem .4rem .8rem;border-radius:.9rem;margin-bottom:.5rem}.fact span{flex:1}
+dialog{border:1px solid var(--ln);border-radius:1.2rem;background:var(--sf);color:var(--tx);width:min(92vw,28rem);padding:1.1rem}
+dialog::backdrop{background:#0008}
+.hint{color:var(--mu);font-size:.8rem}
+#toast{position:fixed;bottom:5rem;left:50%;transform:translateX(-50%);background:var(--tx);color:var(--bg);padding:.5rem 1rem;border-radius:2rem;font-size:.85rem;display:none}
+</style></head><body>
+<div id="app"></div><div id="toast"></div><dialog id="dlg"></dialog>
+<script>
+const $=s=>document.querySelector(s),esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ld=(k,d)=>{try{return JSON.parse(localStorage.getItem(k))??d}catch{return d}};
+const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{toast('Browser storage is full')}};
+const uid=()=>Math.random().toString(36).slice(2,10);
+function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',2500)}
+const PRE={midnight:['#0f2027','#2c5364'],dusk:['#2b1b4d','#7b4b94'],rose:['#ffc3a0','#ffafbd'],forest:['#134e5e','#71b280'],ocean:['#2193b0','#6dd5ed'],black:['#000','#000']};
+let st={theme:'system',scale:1,bg:'default',img:'',dim:.35,act:'d',temp:.85,max:400,ctx:3500,mem:true,
+ prof:[{id:'d',name:'Home server',url:'http://192.168.1.100:8080/v1',key:'',model:''}],...ld('st',{})};
+let av=ld('av',[]),v={n:'home'},msgs=[],mem={f:[],s:'',su:0,fu:0},stream=null,err='',abort=null,mb=false,ei=null;
+const cur=()=>av.find(a=>a.id===v.id),prof=()=>st.prof.find(p=>p.id===st.act)||st.prof[0],save=()=>sv('st',st);
+
+function theme(){const d=st.theme==='dark'||(st.theme==='system'&&matchMedia('(prefers-color-scheme:dark)').matches);
+ document.documentElement.dataset.t=d?'dark':'light';document.documentElement.style.setProperty('--ts',st.scale)}
+const bgCss=()=>PRE[st.bg]?`linear-gradient(${PRE[st.bg][0]},${PRE[st.bg][1]})`:st.bg==='image'&&st.img?`linear-gradient(rgba(0,0,0,${st.dim}),rgba(0,0,0,${st.dim})),url(${st.img})`:'var(--bg)';
+const pic=(a,s)=>`<div class=pic style="--s:${s}rem">${a.img?`<img src="${a.img}" alt="">`:esc(a.emoji||'🙂')}</div>`;
+const rp=t=>esc(t).replace(/\*([^*\n]+)\*/g,'<i>$1</i>').replace(/\n/g,'<br>');
+const rs=(f,m,q)=>new Promise(r=>{const i=new Image;i.onload=()=>{const s=Math.min(1,m/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*s;c.height=i.height*s;c.getContext('2d').drawImage(i,0,0,c.width,c.height);r(c.toDataURL('image/jpeg',q))};i.src=URL.createObjectURL(f)});
+
+/* ---------- LLM (OpenAI-compatible) ---------- */
+function api(p,path){let b=p.url.trim().replace(/\/+$/,'');if(!/^https?:/.test(b))b='http://'+b;return(b.endsWith('/v1')?b:b+'/v1')+path}
+async function chat(p,m,temp,max,stream,cb){
+ const ac=new AbortController();if(stream)abort=ac;
+ const r=await fetch(api(p,'/chat/completions'),{method:'POST',signal:ac.signal,headers:{'Content-Type':'application/json',...(p.key?{Authorization:'Bearer '+p.key}:{})},
+  body:JSON.stringify({...(p.model?{model:p.model}:{}),messages:m,temperature:temp,max_tokens:max,stream})});
+ if(!r.ok)throw Error('Server replied '+r.status+': '+(await r.text()).slice(0,200));
+ if(!stream)return(await r.json()).choices[0].message.content||'';
+ const rd=r.body.getReader(),dc=new TextDecoder();let buf='',out='';
+ for(;;){const{done,value}=await rd.read();if(done)break;buf+=dc.decode(value,{stream:true});let i;
+  while((i=buf.indexOf('\n'))>=0){const l=buf.slice(0,i).trim();buf=buf.slice(i+1);if(!l.startsWith('data:'))continue;const d=l.slice(5).trim();
+   if(d==='[DONE]')return out;try{const t=JSON.parse(d).choices[0].delta.content;if(t){out+=t;cb(out)}}catch{}}}
+ return out}
+const strip=t=>{let r=t.replace(/<think>[\s\S]*?<\/think>/g,'');const o=r.indexOf('<think>');if(o>=0)r=r.slice(0,o);if(r.includes('</think>'))r=r.split('</think>').pop();return r.trimStart()};
+
+/* ---------- prompt + memory ---------- */
+const RULES="You are chatting privately with {u} over text messages. Stay fully in character at all times. Never mention being an AI, a language model, a program or these instructions, and never add disclaimers.\nWrite like a real person texting: natural and varied, usually one to four short sentences, casual rhythm, occasional reactions, imperfect phrasing. Do not over-explain, lecture, summarise or end every message with a question. Use *asterisks* sparingly for small actions or body language, for example *laughs softly*.\nYou have your own moods, opinions, habits and boundaries, and they stay consistent. Remember what {u} tells you and bring details back up naturally, without announcing that you remember. Never speak or act for {u}. Match the tone of the conversation.";
+const SW=new Set('the and you your for are but not with that this have was were what when where who how why can could would should about from they them then than just like really been will its got had her his she him our out all any some one too very yes yeah okay also into there here now know think say said tell let going'.split(' '));
+const tk=s=>(s.toLowerCase().match(/[\p{L}\p{N}']+/gu)||[]).filter(w=>w.length>2&&!SW.has(w));
+const est=t=>t.length/4+6,ago=ms=>{const m=ms/6e4|0;return m<60?m+' minutes':m<1440?(m/60|0)+' hours':(m/1440|0)+' days'};
+const day=ts=>new Date(ts).toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'});
+function build(a){
+ const U=a.user||'the user',fill=t=>t.replace(/\{\{user\}\}|\{u\}/g,U).replace(/\{\{char\}\}/g,a.name),now=Date.now();
+ const min=st.mem?Math.min(mem.su||0,msgs.length):0;let bud=st.ctx,s0=msgs.length;
+ while(s0>min){const c=est(msgs[s0-1].t);if(c>bud&&s0<msgs.length)break;bud-=c;s0--}
+ let sys=`You are ${a.name}. ${fill(a.pers.trim())}\n\n${fill(RULES)}\n\nCurrent local time: ${new Date(now).toLocaleString(undefined,{dateStyle:'full',timeStyle:'short'})}.`;
+ if(msgs.length>1){const g=now-msgs[msgs.length-2].ts;if(g>18e5)sys+=` About ${ago(g)} have passed since you last talked.`}
+ if(st.mem){
+  let f='';for(const x of[...mem.f].sort((a,b)=>(b.p?1:0)-(a.p?1:0)||b.ts-a.ts)){if(f.length+x.t.length>2200)break;f+='- '+x.t+'\n'}
+  if(f)sys+=`\n\nThings you remember about ${U} and your shared history (all true; use them naturally when relevant):\n${f}`;
+  if(mem.s)sys+=`\nStory so far (older conversation, summarised):\n${mem.s.trim()}\n`;
+  if(s0>0){const q=new Set(tk(msgs.filter(m=>m.r==='user').slice(-2).map(m=>m.t).join(' '))),df={},hit={};
+   for(let i=0;i<s0;i++)for(const w of new Set(tk(msgs[i].t)))if(q.has(w)){df[w]=(df[w]||0)+1;(hit[i]=hit[i]||[]).push(w)}
+   const sc=Object.entries(hit).map(([i,ws])=>[+i,ws.reduce((s,w)=>s+Math.log(1+msgs.length/df[w]),0)]).sort((a,b)=>b[1]-a[1]).slice(0,4);
+   const pk=new Set();sc.forEach(([i])=>{pk.add(i);if(i+1<s0)pk.add(i+1)});let r='';
+   for(const i of[...pk].sort((a,b)=>a-b)){const m=msgs[i],l=`[${day(m.ts)}] ${m.r==='user'?U:a.name}: ${m.t.slice(0,300)}\n`;if(r.length+l.length>1400)break;r+=l}
+   if(r)sys+=`\nRelated moments from earlier in your conversation:\n${r}`}}
+ return[{role:'system',content:sys},...msgs.slice(s0).map(m=>({role:m.r,content:m.t}))]}
+async function memUp(a,p){
+ const m=JSON.parse(JSON.stringify(mem)),n=msgs.length,U=a.user||'the user',all=msgs.slice();
+ m.fu=Math.min(m.fu||0,n);m.su=Math.min(m.su||0,n);m.f=m.f||[];
+ const tr=c=>c.map(x=>(x.r==='user'?U:a.name)+': '+x.t.slice(0,600)).join('\n');
+ if(n-m.fu>=6){
+  const raw=strip(await chat(p,[{role:'system',content:'You extract long-term memory from a roleplay chat. You output ONLY a JSON array of short strings, nothing else.'},
+   {role:'user',content:`Already known facts:\n${m.f.map(x=>'- '+x.t).join('\n')||'(none yet)'}\n\nNew conversation between ${U} and ${a.name}:\n${tr(all.slice(m.fu))}\n\nList NEW durable facts worth remembering forever: names of people, pets and places, dates, jobs, preferences, dislikes, fears, promises, plans, important events, emotional moments, relationship milestones, and anything ${U} said about their life. Each fact must be a standalone sentence naming who it is about. Skip small talk and anything already known. Return [] if nothing is new.`}],.2,500,false));
+  let add=[];try{add=JSON.parse(raw.slice(raw.indexOf('['),raw.lastIndexOf(']')+1)).filter(x=>typeof x==='string'&&x.length>3&&x.length<400)}catch{}
+  add=add.filter(x=>!m.f.some(y=>y.t.toLowerCase()===x.toLowerCase()));m.f.push(...add.map(t=>({id:uid(),t,ts:Date.now()})));m.fu=n}
+ const cut=n-14;
+ if(cut-m.su>=10){const end=Math.min(cut,m.su+40);
+  const s=strip(await chat(p,[{role:'system',content:'You maintain a compact running summary of a roleplay conversation. You output ONLY the summary text.'},
+   {role:'user',content:`Current summary:\n${m.s||'(empty)'}\n\nNew conversation between ${U} and ${a.name}:\n${tr(all.slice(m.su,end))}\n\nWrite the updated summary in under 250 words, third person, past tense. Keep every important event, plot point, emotional moment, promise and the current state of the relationship. Output only the summary.`}],.3,600,false)).trim();
+  if(s){m.s=s;m.su=end}}
+ sv('m_'+a.id,m);if(v.id===a.id)mem=m}
+
+/* ---------- chat flow ---------- */
+function add(m){m.id=uid();m.ts=Date.now();msgs.push(m);sv('c_'+v.id,msgs)}
+function open(id){if(abort)abort.abort();v={n:'chat',id};const a=cur();msgs=ld('c_'+id,[]);mem={f:[],s:'',su:0,fu:0,...ld('m_'+id,{})};stream=null;err='';
+ if(!msgs.length&&a.greet)add({r:'assistant',t:a.greet.replace(/\{\{user\}\}/g,a.user||'you')});render()}
+async function gen(){
+ const a=cur(),p=prof();if(!p){err='Add an API in Settings.';return drawMsgs()}
+ err='';stream='';drawMsgs();hdr();
+ try{const out=strip(await chat(p,build(a),st.temp,st.max,true,x=>{stream=strip(x);drawMsgs()})).trim();
+  if(out)add({r:'assistant',t:out});else err='The model sent an empty reply.'}
+ catch(e){if(e.name==='AbortError'){if(stream?.trim()&&v.id===a.id)add({r:'assistant',t:stream.trim()})}
+  else err=e.message==='Failed to fetch'?`Can't reach ${p.url}. Check the server is running, the phone/PC is on the same Wi-Fi, the server allows CORS, and this page is opened over http or as a file (not https).`:e.message}
+ stream=null;if(v.n==='chat'&&v.id===a.id){drawMsgs();hdr()}
+ if(!err&&st.mem){mb=true;hdr();try{await memUp(a,p)}catch{}mb=false;if(v.n==='chat')hdr()}}
+function send(){const t=$('#in'),x=t.value.trim();if(!x||stream!==null)return;t.value='';t.style.height='';add({r:'user',t:x});gen()}
+function regen(){if(stream!==null||!msgs.some(m=>m.r==='user'))return;if(msgs.at(-1).r==='assistant'){msgs.pop();sv('c_'+v.id,msgs)}gen()}
+
+/* ---------- views ---------- */
+const hdr=()=>{const e=$('#sub');if(e)e.textContent=stream!==null?'typing…':mb?'remembering…':cur()?.tag||'online'};
+function drawMsgs(){const el=$('#ml');if(!el)return;const a=cur(),near=$('#cv').scrollHeight-$('#cv').scrollTop-$('#cv').clientHeight<120;
+ let h=msgs.map((m,i)=>`<div class="m ${m.r==='user'?'u':''}">${m.r==='user'?'':pic(a,1.9)}<div><div class=bub>${rp(m.t)}</div>
+  <div class=ac><button data-a=cp data-i=${i} title=Copy>⧉</button><button data-a=ed data-i=${i} title=Edit>✎</button><button data-a=rm data-i=${i} title=Delete>✕</button>${i===msgs.length-1&&m.r==='assistant'&&stream===null?'<button data-a=regen title=Regenerate>↻</button>':''}</div></div></div>`).join('');
+ if(stream!==null)h+=`<div class=m>${pic(a,1.9)}<div class=bub>${stream?rp(stream):'<span class=dots><span></span><span></span><span></span></span>'}</div></div>`;
+ el.innerHTML=h;$('#send').textContent=stream!==null?'■':'➤';$('#err').innerHTML=err?`<p class=er>${esc(err)} <button data-a=regen>Retry</button></p>`:'';if(near||stream!==null)$('#cv').scrollTop=1e9}
+function render(){theme();const A=$('#app');
+ if(v.n==='home')A.innerHTML=`<header><h1>Companions</h1><button class=ic data-a=go data-v=set title=Settings>⚙</button></header><main>${av.length?av.map(a=>`<div class=card data-a=open data-id=${a.id}>${pic(a,3.6)}<div style="flex:1;min-width:0"><b>${esc(a.name)}</b><p>${esc(a.tag)}</p></div><button class=ic data-a=edit data-id=${a.id} title=Edit>✎</button><button class=ic data-a=del data-id=${a.id} title=Delete>🗑</button></div>`).join(''):'<p class=empty>No one here yet.<br>Create your first avatar and start talking.</p>'}</main><footer><button class="b" style="width:100%;padding:.7rem" data-a=new>New avatar</button></footer>`;
+ else if(v.n==='chat'){const a=cur();A.innerHTML=`<header><button class=ic data-a=go data-v=home title=Back>←</button>${pic(a,2.4)}<h1>${esc(a.name)}<small id=sub></small></h1><button class=ic data-a=go data-v=mem title=Memory>🧠</button><button class=ic data-a=reset title="Reset conversation">⟲</button></header>
+  <main id=cv style="background:${bgCss()}"><div id=ml></div></main><footer><div id=err></div><div class=row><textarea id=in rows=1 placeholder="Message ${esc(a.name)}…"></textarea><button class=b id=send style="border-radius:50%;width:2.8rem;height:2.8rem">➤</button></div></footer>`;
+  const t=$('#in');t.onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!matchMedia('(pointer:coarse)').matches){e.preventDefault();send()}};t.oninput=()=>{t.style.height='auto';t.style.height=Math.min(t.scrollHeight,128)+'px'};drawMsgs();hdr()}
+ else if(v.n==='edit'){const a=cur()||{};A.innerHTML=`<header><button class=ic data-a=go data-v=${a.id?'home':'home'}>←</button><h1>${a.id?'Edit avatar':'New avatar'}</h1><button class="b" data-a=save>Save</button></header><main>
+  <div style="display:flex;gap:1rem;align-items:center"><span id=pv>${pic({img:ei,emoji:a.emoji},5)}</span><div><input type=file id=fi accept="image/*" hidden><button class=t data-a=photo>Choose photo</button> <button data-a=nophoto>Remove</button></div></div>
+  <label>Emoji (used when there is no photo)</label><input id=e-emo maxlength=4 value="${esc(a.emoji||'🙂')}"><label>Name</label><input id=e-name value="${esc(a.name)}"><label>Short tagline</label><input id=e-tag value="${esc(a.tag)}">
+  <label>What they call you</label><input id=e-user value="${esc(a.user)}"><label>Personality & backstory</label><textarea id=e-pers rows=7>${esc(a.pers)}</textarea><p class=hint>Age, looks, voice, history, quirks, how they talk, how they feel about you. The more specific, the more real. Use {{user}} for your name.</p>
+  <label>First message (optional)</label><textarea id=e-greet rows=3>${esc(a.greet)}</textarea></main>`;
+  $('#fi').onchange=async e=>{const f=e.target.files[0];if(f){ei=await rs(f,160,.85);$('#pv').innerHTML=pic({img:ei},5)}}}
+ else if(v.n==='mem'){A.innerHTML=`<header><button class=ic data-a=go data-v=chat>←</button><h1>What ${esc(cur().name)} remembers</h1></header><main><p class=hint>Key details are saved automatically as you chat, and the full history is searched whenever you mention something from the past. Pinned facts are always kept in mind.</p>
+  <div class=row><input id=nf placeholder="Add a fact to remember…"><button class=t data-a=addfact>Add</button></div>${mem.s?`<h2>Story so far</h2><p>${esc(mem.s)}</p>`:''}<h2>Facts</h2>
+  ${[...mem.f].reverse().map(f=>`<div class=fact><span>${esc(f.t)}</span><button data-a=pin data-id=${f.id} style="opacity:${f.p?1:.35}">📌</button><button data-a=delfact data-id=${f.id}>✕</button></div>`).join('')||'<p class=hint>Nothing yet.</p>'}
+  ${mem.f.length||mem.s?'<button data-a=clrmem>Clear memory (keeps the chat)</button>':''}</main>`}
+ else if(v.n==='set'){A.innerHTML=`<header><button class=ic data-a=go data-v=home>←</button><h1>Settings</h1></header><main>
+  <h2>Appearance</h2><label>Theme</label><select data-k=theme>${['system','light','dark'].map(x=>`<option ${st.theme===x?'selected':''}>${x}</option>`).join('')}</select>
+  <label>Text size (${Math.round(st.scale*100)}%)</label><input type=range min=.8 max=1.6 step=.1 value=${st.scale} data-k=scale data-c=1>
+  <label>Chat background</label><div class=sw><button data-a=bg data-v=default class="${st.bg==='default'?'on':''}" style="background:var(--sv)" title=Default></button>${Object.keys(PRE).map(k=>`<button data-a=bg data-v=${k} class="${st.bg===k?'on':''}" style="background:${`linear-gradient(${PRE[k][0]},${PRE[k][1]})`}" title=${k}></button>`).join('')}<button data-a=bgimg class="${st.bg==='image'?'on':''}" style="background:var(--pc)" title="Your photo">🖼</button></div><input type=file id=bgf accept="image/*" hidden>
+  ${st.bg==='image'?`<label>Photo dimming</label><input type=range min=0 max=.8 step=.05 value=${st.dim} data-k=dim>`:''}
+  <h2>AI connection</h2><p class=hint>Any OpenAI-compatible server on your network (llama.cpp server, Ollama, LM Studio, KoboldCpp). All processing happens on that machine.</p>
+  ${st.prof.map(p=>`<div class=pf><input type=radio name=pa ${st.act===p.id?'checked':''} data-a=pact data-id=${p.id}><div><b>${esc(p.name)}</b><small>${esc(p.url)}</small></div><button data-a=pedit data-id=${p.id}>✎</button>${st.prof.length>1?`<button data-a=pdel data-id=${p.id}>🗑</button>`:''}</div>`).join('')}<button class=t data-a=padd>+ Add API</button>
+  <h2>Replies</h2><label>Creativity (${st.temp})</label><input type=range min=.1 max=1.5 step=.05 value=${st.temp} data-k=temp data-c=1>
+  <label>Max reply length (${st.max} tokens)</label><input type=range min=100 max=1200 step=50 value=${st.max} data-k=max data-c=1>
+  <label>Recent chat sent each turn (~${st.ctx} tokens)</label><input type=range min=1000 max=12000 step=500 value=${st.ctx} data-k=ctx data-c=1><p class=hint>Keep this below your server's context size. Older details come back through memory.</p>
+  <h2>Memory</h2><label style="display:flex;gap:.6rem;align-items:center;color:var(--tx);font-size:1rem"><input type=checkbox style="width:auto" ${st.mem?'checked':''} data-k=mem> Long-term memory (a few extra requests per exchange)</label></main>`}}
+function profDlg(p,isNew){const d=$('#dlg');d.innerHTML=`<h3 style="margin-top:0">API connection</h3><label>Name</label><input id=p-n value="${esc(p.name)}"><label>Server address</label><input id=p-u value="${esc(p.url)}"><p class=hint>e.g. http://192.168.1.50:8080/v1 (Ollama: …:11434/v1)</p>
+ <label>API key (optional)</label><input id=p-k type=password value="${esc(p.key)}"><label>Model name (optional)</label><input id=p-m value="${esc(p.model)}"><div id=chips class=sw></div>
+ <div class=row style="margin-top:.8rem"><button class=t data-a=ptest>Test connection</button><span id=ps class=hint style="flex:1"></span></div>
+ <div class=row style="justify-content:flex-end;margin-top:1rem"><button data-a=pcancel>Cancel</button><button class=b data-a=psave data-id=${p.id} data-new=${isNew?1:0}>Save</button></div>`;d.showModal()}
+const pform=id=>({id,name:$('#p-n').value||'API',url:$('#p-u').value.trim(),key:$('#p-k').value.trim(),model:$('#p-m').value.trim()});
+
+/* ---------- events ---------- */
+document.addEventListener('click',async e=>{const t=e.target.closest('[data-a]');if(!t)return;const a=t.dataset.a,d=t.dataset,i=+d.i;
+ if(a==='go'){if(abort&&v.n==='chat')abort.abort();v={n:d.v,id:d.v==='home'?null:v.id};if(d.v==='home')ei=null;render()}
+ else if(a==='open')open(d.id);
+ else if(a==='new'){v={n:'edit',id:null};ei=null;render()}
+ else if(a==='edit'){e.stopPropagation();v={n:'edit',id:d.id};ei=cur().img||null;render()}
+ else if(a==='del'){e.stopPropagation();if(confirm('Delete this avatar, its chat and its memory?')){av=av.filter(x=>x.id!==d.id);sv('av',av);localStorage.removeItem('c_'+d.id);localStorage.removeItem('m_'+d.id);render()}}
+ else if(a==='photo')$('#fi').click();else if(a==='nophoto'){ei=null;$('#pv').innerHTML=pic({emoji:$('#e-emo').value},5)}
+ else if(a==='save'){const n=$('#e-name').value.trim(),p=$('#e-pers').value.trim();if(!n||!p)return toast('Name and personality are required');
+  const o={id:v.id||uid(),name:n,tag:$('#e-tag').value.trim(),emoji:$('#e-emo').value.trim()||'🙂',img:ei,user:$('#e-user').value.trim(),pers:p,greet:$('#e-greet').value.trim()};
+  av=av.some(x=>x.id===o.id)?av.map(x=>x.id===o.id?o:x):[...av,o];sv('av',av);v={n:'home'};render()}
+ else if(a==='send'||t.id==='send'){stream!==null?abort&&abort.abort():send()}
+ else if(a==='regen')regen();
+ else if(a==='cp'){navigator.clipboard?.writeText(msgs[i].t);toast('Copied')}
+ else if(a==='ed'){const x=prompt('Edit message',msgs[i].t);if(x?.trim()){msgs[i].t=x.trim();sv('c_'+v.id,msgs);drawMsgs()}}
+ else if(a==='rm'){msgs.splice(i,1);mem.su=Math.min(mem.su,msgs.length);mem.fu=Math.min(mem.fu,msgs.length);sv('c_'+v.id,msgs);sv('m_'+v.id,mem);drawMsgs()}
+ else if(a==='reset'){if(confirm('Erase this chat and everything they remember?')){localStorage.removeItem('c_'+v.id);localStorage.removeItem('m_'+v.id);open(v.id)}}
+ else if(a==='addfact'){const x=$('#nf').value.trim();if(x){mem.f.push({id:uid(),t:x,ts:Date.now(),p:true});sv('m_'+v.id,mem);render()}}
+ else if(a==='delfact'){mem.f=mem.f.filter(f=>f.id!==d.id);sv('m_'+v.id,mem);render()}
+ else if(a==='pin'){const f=mem.f.find(f=>f.id===d.id);f.p=!f.p;sv('m_'+v.id,mem);render()}
+ else if(a==='clrmem'){if(confirm('Clear saved facts and summary? The chat stays.')){mem={f:[],s:'',su:msgs.length,fu:msgs.length};sv('m_'+v.id,mem);render()}}
+ else if(a==='bg'){st.bg=d.v;save();render()}else if(a==='bgimg')$('#bgf').click();
+ else if(a==='pact'){st.act=d.id;save()}
+ else if(a==='pedit')profDlg(st.prof.find(p=>p.id===d.id),false);
+ else if(a==='padd')profDlg({id:uid(),name:'New API',url:'http://192.168.1.100:8080/v1',key:'',model:''},true);
+ else if(a==='pdel'){st.prof=st.prof.filter(p=>p.id!==d.id);if(st.act===d.id)st.act=st.prof[0].id;save();render()}
+ else if(a==='pcancel')$('#dlg').close();
+ else if(a==='psave'){const p=pform(d.id);st.prof=d.new==='1'?[...st.prof,p]:st.prof.map(x=>x.id===p.id?p:x);if(d.new==='1')st.act=p.id;save();$('#dlg').close();render()}
+ else if(a==='ptest'){const s=$('#ps');s.textContent='Testing…';try{const r=await fetch(api(pform('x'),'/models'),{headers:pform('x').key?{Authorization:'Bearer '+pform('x').key}:{}});if(!r.ok)throw Error('Server replied '+r.status);
+  const j=await r.json(),ms=(j.data||[]).map(m=>m.id);s.textContent=`Connected ✓ (${ms.length} model${ms.length===1?'':'s'})`;
+  $('#chips').innerHTML=ms.map(m=>`<button class=t data-a=pm data-m="${esc(m)}">${esc(m)}</button>`).join('')}catch(x){s.textContent=x.message==='Failed to fetch'?"Can't reach the server (check address, Wi-Fi, CORS).":x.message}}
+ else if(a==='pm')$('#p-m').value=d.m});
+document.addEventListener('input',e=>{const t=e.target,k=t.dataset.k;if(!k)return;st[k]=t.type==='checkbox'?t.checked:t.type==='range'?+t.value:t.value;save();if(k==='theme')theme();if(t.dataset.c)t.previousElementSibling.textContent=t.previousElementSibling.textContent.replace(/\(.*?\)/,`(${k==='scale'?Math.round(st.scale*100)+'%':k==='max'?st.max+' tokens':k==='ctx'?'~'+st.ctx+' tokens':st.temp})`);if(k==='scale')theme()});
+document.addEventListener('change',async e=>{if(e.target.id==='bgf'&&e.target.files[0]){st.img=await rs(e.target.files[0],1000,.7);st.bg='image';save();render()}if(e.target.dataset.k==='dim')render()});
+matchMedia('(prefers-color-scheme:dark)').addEventListener('change',theme);
+render();
+</script></body></html>
