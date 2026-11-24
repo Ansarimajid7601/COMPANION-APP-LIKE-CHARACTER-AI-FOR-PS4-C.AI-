@@ -2,14 +2,16 @@
 <html lang="en"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <title>Companion</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20xmlns=%22http://www.w3.org/2000/svg%22%20viewBox=%2280%20-68.5%20767%20767%22%3E%3Cdefs%3E%3Cmask%20id=%22cut%22%20maskUnits=%22userSpaceOnUse%22%20x=%22-37%22%20y=%22-185%22%20width=%221000%22%20height=%221000%22%3E%3Crect%20x=%22-37%22%20y=%22-185%22%20width=%221000%22%20height=%221000%22%20fill=%22%23fff%22/%3E%3Cpolygon%20points=%22271,-20%201100,-20%201100,700%20796,700%22%20fill=%22%23000%22/%3E%3Cpolygon%20points=%22448,398%201100,398%201100,1000%201002,1000%22%20fill=%22%23000%22/%3E%3C/mask%3E%3Cmask%20id=%22counter%22%20maskUnits=%22userSpaceOnUse%22%20x=%22-37%22%20y=%22-185%22%20width=%221000%22%20height=%221000%22%3E%3Crect%20x=%22-37%22%20y=%22-185%22%20width=%221000%22%20height=%221000%22%20fill=%22%23fff%22/%3E%3Ccircle%20cx=%22340%22%20cy=%22315%22%20r=%22160%22%20fill=%22%23000%22/%3E%3C/mask%3E%3C/defs%3E%3Cstyle%3E.f%7Bfill:%23000%7D.s%7Bstroke:%23000;fill:none%7D%40media%20(prefers-color-scheme:dark)%7B.f%7Bfill:%23fff%7D.s%7Bstroke:%23fff%7D%7D%3C/style%3E%3Ccircle%20class=%22s%22%20cx=%22340%22%20cy=%22315%22%20r=%22207.5%22%20stroke-width=%2295%22%20mask=%22url(%23cut)%22/%3E%3Cpolygon%20class=%22f%22%20mask=%22url(%23counter)%22%20points=%22336,62%20462,62%20605,268%20738,62%20842,62%20842,568%20755,568%20755,222%20605,420%20524,468%20456,396%20402,160%22/%3E%3C/svg%3E">
 <style>
-:root{--bg:#f4f4f6;--sf:#fff;--sv:#e9e9ee;--tx:#18181b;--mu:#60606a;--pr:#2f6bf0;--pc:#dbe6ff;--pt:#10285c;--ln:#dcdce2;--er:#b3261e;--ts:1}
-:root[data-t=dark]{--bg:#151517;--sf:#1b1b1e;--sv:#26272b;--tx:#e9e9ec;--mu:#97979f;--pr:#3d78f5;--pc:#244a96;--pt:#f3f6ff;--ln:#2c2c31;--er:#ffb4ab}
+:root{--logo:#000;--bg:#f4f4f6;--sf:#fff;--sv:#e9e9ee;--tx:#18181b;--mu:#60606a;--pr:#2f6bf0;--pc:#dbe6ff;--pt:#10285c;--ln:#dcdce2;--er:#b3261e;--ts:1}
+:root[data-t=dark]{--logo:#fff;--bg:#151517;--sf:#1b1b1e;--sv:#26272b;--tx:#e9e9ec;--mu:#97979f;--pr:#3d78f5;--pc:#244a96;--pt:#f3f6ff;--ln:#2c2c31;--er:#ffb4ab}
 *{box-sizing:border-box}html{font-size:calc(16px*var(--ts))}
 body{margin:0;background:var(--bg);color:var(--tx);font-family:Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;line-height:1.45}
 #app{display:flex;height:100dvh}
 #sb{width:17rem;flex:none;background:var(--sf);border-right:1px solid var(--ln);display:flex;flex-direction:column;gap:.7rem;padding:1rem .8rem;padding-top:calc(1rem + env(safe-area-inset-top,0px));overflow:hidden}
-.brand{font-size:1.4rem;font-weight:600;padding:.2rem .5rem;letter-spacing:-.02em}
+.brand{font-size:1.4rem;font-weight:600;padding:.2rem .5rem;letter-spacing:-.02em;display:flex;align-items:center;gap:.55rem}
+.logo{display:block;height:1.7rem;width:auto;aspect-ratio:767/520;flex:none;color:var(--logo)}
 .pill{background:var(--sv);font-weight:600;padding:.8rem 1.2rem;border-radius:2rem;text-align:left;font-size:1rem}
 #sb nav{display:flex;flex-direction:column}#sb nav button{text-align:left;padding:.65rem .7rem;border-radius:.7rem;font-weight:500}
 #sb nav button.on,.si.on{background:var(--sv)}
@@ -47,7 +49,7 @@ label{display:block;font-size:.8rem;color:var(--mu);margin:.8rem 0 .25rem}
 .tm{font-weight:400;color:var(--mu);font-size:.72rem}
 .bub{padding:.8rem 1rem;border-radius:1.1rem;background:var(--sv);overflow-wrap:anywhere}
 .u .bub{background:var(--pc);color:var(--pt)}.bub i{opacity:.75}
-.ac{display:flex;gap:.1rem;margin-top:.2rem;opacity:.55;font-size:.85rem}.ac button{padding:.15rem .4rem}.ac .lk{color:var(--pr);opacity:1}
+.ac{display:flex;gap:.1rem;margin-top:.2rem;opacity:.55;font-size:.85rem}.ac button{padding:.15rem .4rem}.ac .lk{color:var(--pr);opacity:1}.ac .sc{font-size:.75rem;align-self:center;color:var(--mu)}
 .dots span{display:inline-block;width:.45rem;height:.45rem;margin:0 .12rem;border-radius:50%;background:var(--tx);animation:d 1s infinite}
 .dots span:nth-child(2){animation-delay:.15s}.dots span:nth-child(3){animation-delay:.3s}
 @keyframes d{0%,100%{opacity:.2}50%{opacity:1}}@media(prefers-reduced-motion:reduce){.dots span{animation:none}#sb{transition:none!important}}
@@ -55,7 +57,7 @@ footer{padding:.6rem .8rem;padding-bottom:calc(.5rem + env(safe-area-inset-botto
 footer>*{max-width:44rem;margin-inline:auto}
 .row{display:flex;gap:.5rem;align-items:flex-end}.row textarea{resize:none;max-height:8rem;border-radius:1.6rem;background:var(--sv);border:0;padding:.85rem 1.1rem}
 #send{border-radius:50%;width:2.8rem;height:2.8rem;flex:none;background:var(--tx);color:var(--bg)}
-.disc{text-align:center;color:var(--mu);font-size:.72rem;margin:.5rem auto 0}
+.vo{background:var(--pc);border-radius:50%}#vs{display:block;width:100%;margin:0 0 .5rem;padding:.55rem;border-radius:1.4rem;background:var(--pc);color:var(--pt);font-weight:600;font-size:.9rem;text-align:center}#vs[hidden]{display:none}.disc{text-align:center;color:var(--mu);font-size:.72rem;margin:.5rem auto 0}
 .er{color:var(--er);font-size:.85rem;margin:0 0 .4rem}
 h2{font-size:.95rem;color:var(--pr);margin:1.6rem 0 .4rem}
 .sw{display:flex;gap:.7rem;overflow-x:auto;padding:.4rem .1rem}.sw button{width:3.2rem;height:3.2rem;border-radius:50%;border:2px solid var(--ln);padding:0;flex:none}.sw button.on{border:3px solid var(--pr)}
@@ -85,12 +87,49 @@ dialog{max-height:90dvh;overflow-y:auto}
 .lc p{margin:.4rem 0;font-size:.92rem}.lh{display:flex;gap:.4rem;align-items:center;flex-wrap:wrap}
 .la{display:flex;gap:.3rem;margin-top:.5rem}.la button{background:var(--sv);font-size:.82rem}
 .tag.au{background:var(--pc);color:var(--pt)}
+/* ---------- depth layer: elevation only, palette untouched ---------- */
+:root{--e1:0 1px 2px rgba(20,24,40,.07),0 1px 3px rgba(20,24,40,.10);--e2:0 2px 4px rgba(20,24,40,.07),0 6px 16px rgba(20,24,40,.12);--e3:0 6px 12px rgba(20,24,40,.10),0 18px 40px rgba(20,24,40,.20);--hl:inset 0 1px 0 rgba(255,255,255,.75);--ins:inset 0 1px 2px rgba(20,24,40,.08);--glow:0 4px 14px color-mix(in srgb,var(--pr) 38%,transparent);--ring:0 0 0 3px color-mix(in srgb,var(--pr) 28%,transparent);--es:4px 0 20px rgba(20,24,40,.08);--fs:rgba(20,24,40,.07)}
+:root[data-t=dark]{--e1:0 1px 2px rgba(0,0,0,.55),0 1px 3px rgba(0,0,0,.45);--e2:0 2px 4px rgba(0,0,0,.5),0 8px 20px rgba(0,0,0,.5);--e3:0 8px 16px rgba(0,0,0,.55),0 22px 48px rgba(0,0,0,.65);--hl:inset 0 1px 0 rgba(255,255,255,.07);--ins:inset 0 1px 3px rgba(0,0,0,.45);--es:4px 0 24px rgba(0,0,0,.45);--fs:rgba(0,0,0,.35)}
+button,.card,.pill,#send{transition:transform .15s ease,box-shadow .15s ease,background-color .15s ease}
+@media(min-width:761px){#sb{position:relative;z-index:3;box-shadow:var(--es)}}
+body.sbo #sb{box-shadow:var(--es)}
+header{position:relative;z-index:2;box-shadow:var(--e1)}
+footer{position:relative;z-index:2;box-shadow:0 -4px 16px var(--fs)}
+.pill{box-shadow:var(--hl),var(--e2)}
+.b{box-shadow:inset 0 1px 0 rgba(255,255,255,.25),var(--glow)}
+.t,.chips button,.la button{box-shadow:var(--hl),var(--e1)}
+#sb nav button.on,.si.on{box-shadow:var(--hl),var(--e1)}
+#send{box-shadow:var(--e2)}
+.card,.pb section,.lc,.fact,.chip{box-shadow:var(--hl),var(--e1)}
+.bub{box-shadow:var(--hl),var(--e1)}
+.pic{box-shadow:0 0 0 2px var(--sf),var(--e2)}
+.sw button{box-shadow:var(--e1)}
+.sw button.on{box-shadow:var(--e1),var(--ring)}
+dialog{box-shadow:var(--e3)}
+dialog::backdrop{backdrop-filter:blur(3px)}
+#toast{box-shadow:var(--e3)}
+input:not([type=range],[type=radio],[type=checkbox]),select,textarea{box-shadow:var(--ins)}
+input:not([type=range],[type=radio],[type=checkbox]):focus-visible,select:focus-visible,textarea:focus-visible{box-shadow:var(--ins),var(--ring)}
+.row textarea{box-shadow:var(--hl),var(--e1)}
+.row textarea:focus-visible{box-shadow:var(--hl),var(--e1),var(--ring)}
+@media(hover:hover){
+ .pill:hover{transform:translateY(-1px);box-shadow:var(--hl),var(--e3)}
+ .b:hover{transform:translateY(-1px);box-shadow:inset 0 1px 0 rgba(255,255,255,.25),0 6px 18px color-mix(in srgb,var(--pr) 48%,transparent)}
+ .t:hover,.chips button:hover,.la button:hover{transform:translateY(-1px);box-shadow:var(--hl),var(--e2)}
+ #send:hover{transform:translateY(-1px);box-shadow:var(--e3)}
+ .card:hover{transform:translateY(-3px);box-shadow:var(--hl),var(--e3)}
+ #sb nav button:hover,.si:hover,.ac button:hover{background:var(--sv)}
+}
+.pill:active,.b:active,.t:active,#send:active{transform:translateY(0) scale(.97);box-shadow:var(--e1)}
+.card:active{transform:translateY(-1px)}
+@media(prefers-reduced-motion:reduce){button,.card,.pill,#send{transition:none}.pill:hover,.b:hover,.t:hover,#send:hover,.card:hover,.pill:active,.b:active,.t:active,#send:active,.card:active{transform:none}}
 @media(max-width:760px){
  .mb{display:block}.pr{grid-template-columns:1fr}
  #sb{position:fixed;inset:0 auto 0 0;z-index:20;transform:translateX(-100%);transition:transform .2s;width:min(18rem,85vw)}
  body.sbo #sb{transform:none}body.sbo #bk{display:block;position:fixed;inset:0;background:#0007;z-index:10}
  .mc{max-width:90%}}
 </style></head><body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><mask id="cm-cut" maskUnits="userSpaceOnUse" x="-37" y="-185" width="1000" height="1000"><rect x="-37" y="-185" width="1000" height="1000" fill="#fff"/><polygon points="271,-20 1100,-20 1100,700 796,700" fill="#000"/><polygon points="448,398 1100,398 1100,1000 1002,1000" fill="#000"/></mask><mask id="cm-counter" maskUnits="userSpaceOnUse" x="-37" y="-185" width="1000" height="1000"><rect x="-37" y="-185" width="1000" height="1000" fill="#fff"/><circle cx="340" cy="315" r="160" fill="#000"/></mask></defs><symbol id="cm-logo" viewBox="80 55 767 520"><circle cx="340" cy="315" r="207.5" fill="none" stroke="currentColor" stroke-width="95" mask="url(#cm-cut)"/><polygon fill="currentColor" mask="url(#cm-counter)" points="336,62 462,62 605,268 738,62 842,62 842,568 755,568 755,222 605,420 524,468 456,396 402,160"/></symbol></svg>
 <div id="app"><aside id="sb"></aside><div id="pane"></div></div><div id="bk" data-a="sb"></div><div id="toast"></div><dialog id="dlg"></dialog>
 <script>
 const $=s=>document.querySelector(s),esc=t=>String(t??'').replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
@@ -99,7 +138,7 @@ const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{toast('Brow
 const uid=()=>Math.random().toString(36).slice(2,10);
 function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',2500)}
 const PRE={midnight:['#0f2027','#2c5364'],dusk:['#2b1b4d','#7b4b94'],rose:['#ffc3a0','#ffafbd'],forest:['#134e5e','#71b280'],ocean:['#2193b0','#6dd5ed'],black:['#000','#000']};
-let st={theme:'dark',scale:1,bg:'default',img:'',dim:.35,act:'d',temp:.85,max:400,ctx:3500,mem:true,bgp:true,bgl:true,
+let st={vr:1,vv:'',theme:'dark',scale:1,bg:'default',img:'',dim:.35,act:'d',temp:.85,max:400,ctx:3500,mem:true,bgp:true,bgl:true,
  prof:[{id:'d',name:'Home server',url:'http://192.168.1.100:8080/v1',key:'',model:'',pre:'local',type:'openai'}],...ld('st',{})};
 let av=ld('av',[]),v={n:'home'},msgs=[],mem={f:[],s:'',su:0,fu:0},stream=null,err='',abort=null,mb=false,ei=null;
 const cur=()=>av.find(a=>a.id===v.id),prof=()=>st.prof.find(p=>p.id===st.act)||st.prof[0],save=()=>sv('st',st);
@@ -109,7 +148,7 @@ const rel=ts=>{const m=(Date.now()-ts)/6e4|0;return m<1?'just now':m<60?m+' min 
 const grp=ts=>{const d=Math.round((new Date().setHours(0,0,0,0)-new Date(ts).setHours(0,0,0,0))/864e5);return d<=0?'Today':d===1?'Yesterday':d<=7?'Previous 7 days':'Older'};
 const snip=(t,n=60)=>{const x=t.replace(/\*[^*]*\*/g,' ').replace(/\s+/g,' ').trim()||t.replace(/\*/g,'');return x.length>n?x.slice(0,n-1)+'…':x};
 const P=()=>mem.p||(mem.p={});
-function sb(){const q=$('#sq')?.value||'';$('#sb').innerHTML=`<div class=brand>companion</div><button class=pill data-a=new>＋ Create</button><nav><button data-a=go data-v=home class="${v.n==='home'?'on':''}">Characters</button><button data-a=go data-v=set class="${v.n==='set'?'on':''}">Settings</button></nav><input id=sq placeholder="Search chats" value="${esc(q)}"><div id=sl></div>`;sl()}
+function sb(){const q=$('#sq')?.value||'';$('#sb').innerHTML=`<div class=brand><svg class=logo role=img aria-label="CM logo"><use href="#cm-logo"/></svg><span>companion</span></div><button class=pill data-a=new>＋ Create</button><nav><button data-a=go data-v=home class="${v.n==='home'?'on':''}">Characters</button><button data-a=go data-v=set class="${v.n==='set'?'on':''}">Settings</button></nav><input id=sq placeholder="Search chats" value="${esc(q)}"><div id=sl></div>`;sl()}
 function sl(){const e=$('#sl');if(!e)return;const q=($('#sq')?.value||'').toLowerCase();let g='',h='';
  for(const{a,l}of av.map(a=>({a,l:lastOf(a.id)})).filter(x=>x.l&&x.a.name.toLowerCase().includes(q)).sort((x,y)=>y.l.ts-x.l.ts)){const k=grp(l.ts);if(k!==g){h+=`<h3>${k}</h3>`;g=k}
   h+=`<button class="si ${v.id===a.id&&(v.n==='chat'||v.n==='prof')?'on':''}" data-a=open data-id=${a.id}>${pic(a,2.4)}<div><b>${esc(a.name)}</b><small>${esc(snip(l.t,40))}</small></div></button>`}
@@ -243,30 +282,72 @@ async function memUp(a,p){
 function add(m){m.id=uid();m.ts=Date.now();msgs.push(m);sv('c_'+v.id,msgs);if(m.r==='user')learn(m.t);sl()}
 function open(id,n='chat'){if(abort)abort.abort();v={n,id};const a=cur();msgs=ld('c_'+id,[]);lore=ld('l_'+id,[]);mem={f:[],s:'',su:0,fu:0,...ld('m_'+id,{})};stream=null;err='';
  if(n==='chat'&&!msgs.length&&a.greet)add({r:'assistant',t:a.greet.replace(/\{\{user\}\}/g,a.user||'you')});render()}
-async function gen(){
+const CONT="(Continue. Say something new in your own voice; do not wait for me.)";
+function addA(t,S){const m={r:'assistant',t};if(S){m.alts=[...(S.alts||[S.t]),t];m.si=m.alts.length-1;S.used=1}add(m)}
+async function gen(cont,S){
  const a=cur(),p=prof();if(!p){err='Add an API in Settings.';return drawMsgs()}
- err='';stream='';drawMsgs();hdr();
- try{const out=strip(await chat(p,build(a),st.temp,st.max,true,x=>{stream=strip(x);drawMsgs()})).trim();
-  if(out)add({r:'assistant',t:out});else err='The model sent an empty reply.'}
- catch(e){if(e.name==='AbortError'){if(stream?.trim()&&v.id===a.id)add({r:'assistant',t:stream.trim()})}
+ err='';stream='';VC.n=0;VC.mute=false;vs('Thinking…');drawMsgs();hdr();
+ try{const out=strip(await chat(p,cont&&msgs.at(-1)?.r==='assistant'?[...build(a),{role:'user',content:CONT}]:build(a),st.temp,st.max,true,x=>{stream=strip(x);drawMsgs();vfeed(stream,false)})).trim();
+  if(out){addA(out,S);vfeed(out,true)}else err='The model sent an empty reply.'}
+ catch(e){if(e.name==='AbortError'){if(stream?.trim()&&v.id===a.id)addA(stream.trim(),S)}
   else err=e.message==='Failed to fetch'&&/^https:/.test(p.url)?`Can't reach ${p.name}. Check your internet connection and API key. Some providers block requests from web pages; OpenRouter works from any page.`:e.message==='Failed to fetch'?`Can't reach ${p.url}. Check the server is running, the phone/PC is on the same Wi-Fi, the server allows CORS, and this page is opened over http or as a file (not https).`:e.message}
- stream=null;if(v.n==='chat'&&v.id===a.id){drawMsgs();hdr()}
+ if(S&&!S.used){if(v.id===a.id)msgs.push(S);else{const o=ld('c_'+a.id,[]);o.push(S);sv('c_'+a.id,o)}if(v.id===a.id)sv('c_'+a.id,msgs)}
+ stream=null;vdone();if(v.n==='chat'&&v.id===a.id){drawMsgs();hdr()}
  if(!err&&st.mem){mb=true;hdr();try{await memUp(a,p)}catch{}mb=false;if(v.n==='chat')hdr()}
  if(!err){try{await profUp(a,p)}catch{}try{await loreUp(a,p)}catch{}if(v.n==='chat')hdr();else if(v.n==='prof'||v.n==='lore')render()}}
-function send(){const t=$('#in'),x=t.value.trim();if(!x||stream!==null)return;t.value='';t.style.height='';add({r:'user',t:x});gen()}
-function regen(){if(stream!==null||!msgs.some(m=>m.r==='user'))return;if(msgs.at(-1).r==='assistant'){msgs.pop();sv('c_'+v.id,msgs)}gen()}
+function send(){const t=$('#in'),x=t.value.trim();if(stream!==null)return;if(!x){const l=msgs.at(-1);if(l)gen(l.r==='assistant');return}t.value='';t.style.height='';add({r:'user',t:x});gen()}
+function regen(){if(stream!==null||!msgs.some(m=>m.r==='user'))return;let S=null;if(msgs.at(-1).r==='assistant'){S=msgs.pop();sv('c_'+v.id,msgs)}gen(false,S)}
+function branch(i){if(stream!==null)return;const a=cur(),m=msgs[i],n=i+1,id=uid(),M=JSON.parse(JSON.stringify(mem)),old=M.su>n;
+ const nm={...M,f:M.f.filter(f=>f.ts<=m.ts),s:old?'':M.s,su:old?0:M.su,fu:Math.min(M.fu||0,n),pu:Math.min(M.pu||0,n),lu:Math.min(M.lu||0,n)};
+ av.push({...a,id,tag:'⎇ Branch · '+day(m.ts)+(a.tag?' · '+a.tag.replace(/^⎇ Branch · [^·]*(· )?/,''):'')});sv('av',av);
+ sv('c_'+id,msgs.slice(0,n));sv('m_'+id,nm);sv('l_'+id,lore.filter(e=>!e.auto));open(id);toast('Branched: this is a separate copy of the chat')}
+function exportData(){const inc=confirm('Include your API keys in the backup?\n\nOK = include them (keep the file private)\nCancel = leave them out');const o={};
+ for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k==='st'||k==='av'||/^[cml]_/.test(k))o[k]=ld(k,null)}
+ if(o.st&&!inc)o.st={...o.st,prof:(o.st.prof||[]).map(p=>({...p,key:''}))};
+ const u=URL.createObjectURL(new Blob([JSON.stringify({app:'companion',v:1,at:Date.now(),data:o})],{type:'application/json'})),l=document.createElement('a');
+ l.href=u;l.download='companion-backup-'+new Date().toISOString().slice(0,10)+'.json';document.body.append(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);toast('Backup downloaded')}
+async function importData(f){let j;try{j=JSON.parse(await f.text())}catch{return toast('That file is not a valid backup')}
+ const d=j&&j.app==='companion'&&j.data;if(!d||typeof d!=='object')return toast('That file is not a Companion backup');
+ const ks=Object.keys(d).filter(k=>k==='st'||k==='av'||/^[cml]_/.test(k)),n=(d.av||[]).length;
+ if(!ks.length||!confirm(`Restore ${n} character${n===1?'':'s'} from this backup?\n\nThis overwrites matching data on this device.`))return;
+ for(const k of ks){let x=d[k];
+  if(k==='st')x={...x,prof:(x.prof?.length?x.prof:st.prof).map(p=>({...p,key:p.key||st.prof.find(o=>o.id===p.id)?.key||''}))};
+  if(k==='av')x=[...av.filter(a=>!x.some(b=>b.id===a.id)),...x];
+  try{localStorage.setItem(k,JSON.stringify(x))}catch{return toast('Browser storage is full; restore stopped')}}
+ location.reload()}
+
+/* ---------- voice chat ---------- */
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition,VC={on:false,rec:null,q:0,n:0,mute:false};
+const vclean=t=>t.replace(/\*[^*]*\*/g,' ').replace(/[*_`#>~]/g,'').replace(/\p{Extended_Pictographic}|\uFE0F/gu,'').replace(/\s+/g,' ').trim();
+function vs(t){const e=$('#vs');if(e&&t)e.textContent=t}
+function vui(){$('[data-a=voice]')?.classList.toggle('vo',VC.on);const e=$('#vs');if(e){e.hidden=!VC.on;if(VC.on)e.textContent='Starting…'}}
+function speak(t){if(!t)return;const u=new SpeechSynthesisUtterance(t),x=speechSynthesis.getVoices().find(y=>y.name===st.vv);if(x){u.voice=x;u.lang=x.lang}u.rate=st.vr||1;
+ VC.q++;const end=()=>{VC.q=Math.max(0,VC.q-1);vdone()};u.onend=end;u.onerror=end;vs('Speaking… tap to skip');speechSynthesis.speak(u)}
+function vfeed(t,fin){if(!VC.on||VC.mute)return;const r=t.slice(VC.n);let cut=0;
+ if(fin)cut=r.length;else for(const m of r.matchAll(/[.!?…\n]+(?=\s|$)/g)){const e=m.index+m[0].length;if((r.slice(0,e).match(/\*/g)||[]).length%2===0)cut=e}
+ if(cut){VC.n+=cut;speak(vclean(r.slice(0,cut)))}}
+function vdone(){if(VC.on&&VC.q<=0&&stream===null)setTimeout(listen,250)}
+function listen(){if(!VC.on||VC.rec||!SR||stream!==null||VC.q>0||v.n!=='chat')return;
+ const r=new SR();let fin='';r.lang=navigator.language||'en-US';r.interimResults=true;r.continuous=false;
+ r.onresult=e=>{let f='',t='';for(const x of e.results)x.isFinal?f+=x[0].transcript:t+=x[0].transcript;fin=f;const i=$('#in');if(i)i.value=f+t;vs('Listening… '+(f+t).slice(-40))};
+ r.onerror=e=>{if(/not-allowed|service-not-allowed/.test(e.error)){voiceOff();toast('Microphone access is blocked for this page')}};
+ r.onend=()=>{if(VC.rec===r)VC.rec=null;if(!VC.on)return;const x=fin.trim();if(x&&stream===null&&v.n==='chat'){$('#in').value=x;send()}else setTimeout(listen,300)};
+ VC.rec=r;try{r.start();vs('Listening…')}catch{VC.rec=null}}
+function voiceOn(){if(!SR||!('speechSynthesis' in window))return toast('Voice chat needs Chrome, Edge or Safari');VC.on=true;VC.mute=false;speechSynthesis.cancel();vui();listen()}
+function voiceOff(){VC.on=false;const r=VC.rec;VC.rec=null;try{r?.abort()}catch{}speechSynthesis.cancel();VC.q=0;vui()}
+speechSynthesis.onvoiceschanged=()=>{if(v.n==='set')render()};
 
 /* ---------- views ---------- */
 const hdr=()=>{const e=$('#sub');if(e)e.textContent=stream!==null?'typing…'+(recalled.length?' (recalling '+recalled.slice(0,2).join(', ')+')':''):mb?'remembering…':P().mood||cur()?.tag||'online'};
 function drawMsgs(){const el=$('#ml');if(!el)return;const a=cur(),near=$('#cv').scrollHeight-$('#cv').scrollTop-$('#cv').clientHeight<120;
  let h=msgs.map((m,i)=>{const u=m.r==='user';return `<div class="m ${u?'u':''}">${u?'':pic(a,2.2)}<div class=mc>${u?'':`<div class=nm>${esc(a.name)} <span class=tag>AI</span> <span class=tm>${rel(m.ts)}</span></div>`}<div class=bub>${rp(m.t)}</div>
-  <div class=ac>${u?'':`<button data-a=lk data-i=${i} class="${m.l?'lk':''}" title=Like>${m.l?'♥':'♡'}</button>`}<button data-a=tolore data-i=${i} title="Save to lorebook">📖</button><button data-a=cp data-i=${i} title=Copy>⧉</button><button data-a=ed data-i=${i} title=Edit>✎</button><button data-a=rm data-i=${i} title=Delete>✕</button>${i===msgs.length-1&&m.r==='assistant'&&stream===null?'<button data-a=regen title=Regenerate>↻</button>':''}</div></div></div>`}).join('');
+  <div class=ac>${u?'':`<button data-a=lk data-i=${i} class="${m.l?'lk':''}" title=Like>${m.l?'♥':'♡'}</button>`}<button data-a=tolore data-i=${i} title="Save to lorebook">📖</button>${!u&&m.alts?.length>1?`<button data-a=sw data-d=-1 data-i=${i} title="Previous reply">‹</button><span class=sc>${m.si+1}/${m.alts.length}</span><button data-a=sw data-d=1 data-i=${i} title="${i===msgs.length-1?'Next reply (or generate a new one)':'Next reply'}">›</button>`:''}<button data-a=cp data-i=${i} title=Copy>⧉</button><button data-a=br data-i=${i} title="Branch from here">⎇</button><button data-a=ed data-i=${i} title=Edit>✎</button><button data-a=rm data-i=${i} title=Delete>✕</button>${i===msgs.length-1&&m.r==='assistant'&&stream===null?'<button data-a=regen title=Regenerate>↻</button><button data-a=cont title="Continue (no message from you)">⏭</button>':''}</div></div></div>`}).join('');
  if(stream!==null)h+=`<div class=m>${pic(a,2.2)}<div class=mc><div class=nm>${esc(a.name)} <span class=tag>AI</span></div><div class=bub>${stream?rp(stream):'<span class=dots><span></span><span></span><span></span></span>'}</div></div></div>`;
  el.innerHTML=h;$('#send').textContent=stream!==null?'■':'➤';$('#err').innerHTML=err?`<p class=er>${esc(err)} <button data-a=regen>Retry</button></p>`:'';if(near||stream!==null)$('#cv').scrollTop=1e9}
-function render(){theme();document.body.classList.remove('sbo');const A=$('#pane');sb();
+function render(){if(v.n!=='chat'&&VC.on)voiceOff();theme();document.body.classList.remove('sbo');const A=$('#pane');sb();
  if(v.n==='home')A.innerHTML=`<header><button class="ic mb" data-a=sb title=Menu>☰</button><h1>Characters<small>Pick someone to talk to</small></h1><button class=b data-a=new>＋ Create</button></header><main>${av.length?`<div class=grid>${av.map(a=>{const l=lastOf(a.id);return `<div class=card data-a=open data-n=prof data-id=${a.id}>${pic(a,4)}<div class=ci><b>${esc(a.name)}</b><p>${esc(a.tag)}</p><small>${l?esc(snip(l.t,50))+' ('+rel(l.ts)+')':'No chats yet'}</small></div></div>`}).join('')}</div>`:'<p class=empty>No one here yet.<br>Create your first character and start talking.</p>'}</main>`;
- else if(v.n==='chat'){const a=cur();A.innerHTML=`<header><button class=ic data-a=go data-v=home title=Back>←</button><div class=hp data-a=go data-v=prof>${pic(a,2.6)}<h1>${esc(a.name)}<small id=sub></small></h1></div><button class=ic data-a=go data-v=lore title=Lorebook>📖</button><button class=ic data-a=go data-v=mem title=Memory>🧠</button><button class=ic data-a=reset title="Reset conversation">⟲</button></header>
-  <main id=cv style="background:${bgCss()}"><div id=ml></div></main><footer><div id=err></div><div class=row><textarea id=in rows=1 placeholder="Message ${esc(a.name)}…"></textarea><button class=b id=send data-a=send title=Send>➤</button></div><p class=disc>This is AI and not a real person. Treat everything it says as fiction.</p></footer>`;
+ else if(v.n==='chat'){const a=cur();A.innerHTML=`<header><button class=ic data-a=go data-v=home title=Back>←</button><div class=hp data-a=go data-v=prof>${pic(a,2.6)}<h1>${esc(a.name)}<small id=sub></small></h1></div><button class="ic ${VC.on?'vo':''}" data-a=voice title="Voice chat">🎙</button><button class=ic data-a=go data-v=lore title=Lorebook>📖</button><button class=ic data-a=go data-v=mem title=Memory>🧠</button><button class=ic data-a=reset title="Reset conversation">⟲</button></header>
+  <main id=cv style="background:${bgCss()}"><div id=ml></div></main><footer><button id=vs data-a=vskip ${VC.on?'':'hidden'}>Listening…</button><div id=err></div><div class=row><textarea id=in rows=1 placeholder="Message ${esc(a.name)}…"></textarea><button class=b id=send data-a=send title="Send (leave empty to let them continue)">➤</button></div><p class=disc>This is AI and not a real person. Treat everything it says as fiction.</p></footer>`;
   const t=$('#in');t.onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!matchMedia('(pointer:coarse)').matches){e.preventDefault();send()}};t.oninput=()=>{t.style.height='auto';t.style.height=Math.min(t.scrollHeight,128)+'px'};drawMsgs();hdr()}
  else if(v.n==='prof'){const a=cur(),p=P(),us=msgs.filter(m=>m.r==='user').length,lk=msgs.filter(m=>m.l).length,f=msgs[0],U=a.user||'You',
   ch=(x,e)=>x&&x.length?x.map(t=>`<span class=chip>${esc(t)}</span>`).join(''):`<span class=hint>${e}</span>`;
@@ -306,7 +387,10 @@ function render(){theme();document.body.classList.remove('sbo');const A=$('#pane
   <h2>Memory</h2><label style="display:flex;gap:.6rem;align-items:center;color:var(--tx);font-size:1rem"><input type=checkbox style="width:auto" ${st.mem?'checked':''} data-k=mem> Long-term memory (a few extra requests per exchange)</label>
   <h2>Background updates</h2><p class=hint>Each one sends an extra request to your AI every few messages. Turn them off if your server is slow or handles one request at a time.</p>
   <label style="display:flex;gap:.6rem;align-items:center;color:var(--tx);font-size:1rem"><input type=checkbox style="width:auto" ${st.bgp?'checked':''} data-k=bgp> Profile: mood, likes and dislikes</label>
-  <label style="display:flex;gap:.6rem;align-items:center;color:var(--tx);font-size:1rem"><input type=checkbox style="width:auto" ${st.bgl?'checked':''} data-k=bgl> Lorebook: learn new entries from chat</label></main>`}}
+  <label style="display:flex;gap:.6rem;align-items:center;color:var(--tx);font-size:1rem"><input type=checkbox style="width:auto" ${st.bgl?'checked':''} data-k=bgl> Lorebook: learn new entries from chat</label>
+  <h2>Voice chat</h2><p class=hint>Tap 🎙 in a chat to talk back and forth hands-free. It uses your browser's built-in speech tools (Chrome, Edge or Safari); some browsers send the audio to their speech service.</p><label>Voice</label><select data-k=vv><option value="">Default</option>${(window.speechSynthesis?speechSynthesis.getVoices():[]).map(x=>`<option value="${esc(x.name)}" ${st.vv===x.name?'selected':''}>${esc(x.name)} (${esc(x.lang)})</option>`).join('')}</select>
+  <label>Speaking speed (${st.vr})</label><input type=range min=.7 max=1.5 step=.05 value=${st.vr} data-k=vr data-c=1>
+  <h2>Backup</h2><p class=hint>Save every character, chat, memory and lorebook to a file, or restore them here or on another device.</p><div class=row><button class=t data-a=exp>Download backup</button><button class=t data-a=imp>Restore from file</button></div><input type=file id=bkf accept="application/json,.json" hidden></main>`}}
 function profDlg(p,isNew){const d=$('#dlg'),k=p.pre||'local',loc=k==='local'?' (optional)':'';
  d.innerHTML=`<h3 style="margin-top:0">AI connection</h3><label>Provider</label><select id=p-pt>${Object.entries(PV).map(([x,o])=>`<option value=${x} ${x===k?'selected':''}>${o.n}</option>`).join('')}</select><p class=hint id=p-h>${esc(PV[k].h)}</p>
  <label>Name</label><input id=p-n value="${esc(p.name)}"><label>Server address</label><input id=p-u value="${esc(p.url)}"><label>API key${loc}</label><input id=p-k type=password value="${esc(p.key)}" autocomplete=off><label>Model name${loc}</label><input id=p-m value="${esc(p.model)}"><div id=chips class=chips></div>
@@ -338,8 +422,14 @@ document.addEventListener('click',async e=>{const t=e.target.closest('[data-a]')
   av=av.some(x=>x.id===o.id)?av.map(x=>x.id===o.id?o:x):[...av,o];sv('av',av);v={n:'home'};render()}
  else if(a==='send'||t.id==='send'){stream!==null?abort&&abort.abort():send()}
  else if(a==='regen')regen();
+ else if(a==='voice')VC.on?voiceOff():voiceOn();
+ else if(a==='vskip'){if(VC.q>0){VC.mute=true;speechSynthesis.cancel()}}
+ else if(a==='cont'){if(stream===null)gen(true)}
+ else if(a==='br')branch(i);
+ else if(a==='sw'){if(stream!==null)return;const m=msgs[i],k=m.si+ +d.d;if(k>=m.alts.length&&i===msgs.length-1)return regen();if(k<0||k>=m.alts.length)return;m.si=k;m.t=m.alts[k];sv('c_'+v.id,msgs);drawMsgs()}
+ else if(a==='exp')exportData();else if(a==='imp')$('#bkf').click();
  else if(a==='cp'){navigator.clipboard?.writeText(msgs[i].t);toast('Copied')}
- else if(a==='ed'){const x=prompt('Edit message',msgs[i].t);if(x?.trim()){msgs[i].t=x.trim();sv('c_'+v.id,msgs);drawMsgs()}}
+ else if(a==='ed'){const x=prompt('Edit message',msgs[i].t);if(x?.trim()){msgs[i].t=x.trim();if(msgs[i].alts)msgs[i].alts[msgs[i].si]=msgs[i].t;sv('c_'+v.id,msgs);drawMsgs()}}
  else if(a==='rm'){msgs.splice(i,1);mem.su=Math.min(mem.su,msgs.length);mem.fu=Math.min(mem.fu,msgs.length);sv('c_'+v.id,msgs);sv('m_'+v.id,mem);drawMsgs()}
  else if(a==='reset'){if(confirm('Erase this chat and everything they remember?')){localStorage.removeItem('c_'+v.id);localStorage.removeItem('m_'+v.id);sv('l_'+v.id,ld('l_'+v.id,[]).filter(e=>!e.auto));open(v.id)}}
  else if(a==='addfact'){const x=$('#nf').value.trim();if(x){mem.f.push({id:uid(),t:x,ts:Date.now(),p:true});sv('m_'+v.id,mem);render()}}
@@ -357,8 +447,8 @@ document.addEventListener('click',async e=>{const t=e.target.closest('[data-a]')
   $('#chips').innerHTML=ms.slice(0,40).map(m=>`<button class=t data-a=pm data-m="${esc(m)}">${esc(m)}</button>`).join('')}catch(x){if(x.message==='Failed to fetch'||x.name==='TypeError'){const f=pform('x'),u=/^https?:/.test(f.url)?f.url:'http://'+f.url;q.textContent='Checking…';
   q.textContent=await probe(u)?'The server is there, but it blocks web pages (CORS). Run companion_proxy.py, then use its address here.':`Cannot reach ${u}. Check the IP, port, Wi-Fi and that the server is running.`}else q.textContent=x.message}}
  else if(a==='pm')$('#p-m').value=d.m});
-document.addEventListener('input',e=>{const t=e.target,k=t.dataset.k;if(!k)return;st[k]=t.type==='checkbox'?t.checked:t.type==='range'?+t.value:t.value;save();if(k==='theme')theme();if(t.dataset.c)t.previousElementSibling.textContent=t.previousElementSibling.textContent.replace(/\(.*?\)/,`(${k==='scale'?Math.round(st.scale*100)+'%':k==='max'?st.max+' tokens':k==='ctx'?'~'+st.ctx+' tokens':st.temp})`);if(k==='scale')theme()});
-document.addEventListener('change',async e=>{if(e.target.id==='bgf'&&e.target.files[0]){st.img=await rs(e.target.files[0],1000,.7);st.bg='image';save();render()}if(e.target.dataset.k==='dim')render()});
+document.addEventListener('input',e=>{const t=e.target,k=t.dataset.k;if(!k)return;st[k]=t.type==='checkbox'?t.checked:t.type==='range'?+t.value:t.value;save();if(k==='theme')theme();if(t.dataset.c)t.previousElementSibling.textContent=t.previousElementSibling.textContent.replace(/\(.*?\)/,`(${k==='scale'?Math.round(st.scale*100)+'%':k==='max'?st.max+' tokens':k==='ctx'?'~'+st.ctx+' tokens':k==='vr'?st.vr:st.temp})`);if(k==='scale')theme()});
+document.addEventListener('change',async e=>{if(e.target.id==='bkf'&&e.target.files[0]){await importData(e.target.files[0]);e.target.value=''}if(e.target.id==='bgf'&&e.target.files[0]){st.img=await rs(e.target.files[0],1000,.7);st.bg='image';save();render()}if(e.target.dataset.k==='dim')render()});
 document.addEventListener('input',e=>{if(e.target.id==='sq')sl()});
 document.addEventListener('change',e=>{if(e.target.id!=='p-pt')return;const o=PV[e.target.value];$('#p-n').value=o.n;$('#p-u').value=o.u;$('#p-m').value=o.m;$('#p-h').textContent=o.h});
 matchMedia('(prefers-color-scheme:dark)').addEventListener('change',theme);
