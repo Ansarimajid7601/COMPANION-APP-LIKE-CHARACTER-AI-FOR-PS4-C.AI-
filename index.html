@@ -99,7 +99,7 @@ const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{toast('Brow
 const uid=()=>Math.random().toString(36).slice(2,10);
 function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',2500)}
 const PRE={midnight:['#0f2027','#2c5364'],dusk:['#2b1b4d','#7b4b94'],rose:['#ffc3a0','#ffafbd'],forest:['#134e5e','#71b280'],ocean:['#2193b0','#6dd5ed'],black:['#000','#000']};
-let st={theme:'dark',scale:1,bg:'default',img:'',dim:.35,act:'d',temp:.85,max:400,ctx:3500,mem:true,
+let st={theme:'dark',scale:1,bg:'default',img:'',dim:.35,act:'d',temp:.85,max:400,ctx:3500,mem:true,bgp:true,bgl:true,
  prof:[{id:'d',name:'Home server',url:'http://192.168.1.100:8080/v1',key:'',model:'',pre:'local',type:'openai'}],...ld('st',{})};
 let av=ld('av',[]),v={n:'home'},msgs=[],mem={f:[],s:'',su:0,fu:0},stream=null,err='',abort=null,mb=false,ei=null;
 const cur=()=>av.find(a=>a.id===v.id),prof=()=>st.prof.find(p=>p.id===st.act)||st.prof[0],save=()=>sv('st',st);
@@ -119,7 +119,7 @@ function learn(t){const p=P();let ch=0;
   const x=m[2].trim().replace(/\s+(and|but|so|because|too)\b.*$/i,'');if(x.length<2||/^(you|u|it|that|this|how|when|what)\b/i.test(x))continue;
   const k=/hate|dislike|stand|afraid|fear/i.test(m[1])?'ud':'ul';p[k]=[x,...(p[k]||[]).filter(y=>y.toLowerCase()!==x.toLowerCase())].slice(0,12);ch=1}
  if(ch)sv('m_'+v.id,mem)}
-async function profUp(a,p){const n=msgs.length;if(n-(mem.pu||0)<8)return;const U=a.user||'the user';
+async function profUp(a,p){const n=msgs.length;if(!st.bgp||n-(mem.pu||0)<8)return;const U=a.user||'the user';
  const raw=strip(await chat(p,[{role:'system',content:'You analyse a roleplay chat and output ONLY a JSON object, nothing else.'},
   {role:'user',content:`Character: ${a.name}. Current profile: ${JSON.stringify(P())}\n\nRecent conversation:\n${msgs.slice(-16).map(x=>(x.r==='user'?U:a.name)+': '+x.t.slice(0,400)).join('\n')}\n\nReturn JSON with keys: "mood" (${a.name}'s mood right now, 1-4 words), "rel" (${a.name}'s relationship with ${U} right now, max 8 words), "likes" (things ${a.name} clearly likes, 1-4 words each), "dislikes" (things ${a.name} dislikes), "ul" (things ${U} likes), "ud" (things ${U} dislikes). Keep existing items that are still true, add new ones, max 8 per array. Use only what the chat or profile supports.`}],.2,400,false));
  let j;try{j=JSON.parse(raw.slice(raw.indexOf('{'),raw.lastIndexOf('}')+1))}catch{return}
@@ -134,7 +134,7 @@ function loreTxt(){recalled=[];if(!lore.length)return'';const rc=msgs.slice(-4).
  let o='';const n=[];for(const e of hit){const l=`- ${e.title}: ${e.text}\n`;if(o.length+l.length>1600)break;o+=l;n.push(e)}
  if(!o)return'';n.forEach(e=>{e.hits=(e.hits||0)+1;e.last=Date.now()});recalled=n.map(e=>e.title);sv('l_'+v.id,lore);
  return`\n\nLorebook (established facts about your world and shared history; they are true, so use them naturally and consistently when relevant):\n${o}`}
-async function loreUp(a,p){const n=msgs.length;if(n-(mem.lu||0)<6)return;const U=a.user||'the user',ex=lore.map(e=>`- ${e.title} (${e.auto?'auto':'written by user'}): ${e.text}`).join('\n').slice(0,2500)||'(none)';
+async function loreUp(a,p){const n=msgs.length;if(!st.bgl||n-(mem.lu||0)<6)return;const U=a.user||'the user',ex=lore.map(e=>`- ${e.title} (${e.auto?'auto':'written by user'}): ${e.text}`).join('\n').slice(0,2500)||'(none)';
  const raw=strip(await chat(p,[{role:'system',content:'You maintain a lorebook for a roleplay. Output ONLY a JSON array, nothing else.'},
   {role:'user',content:`Existing lorebook:\n${ex}\n\nRecent conversation between ${U} and ${a.name}:\n${msgs.slice(-14).map(x=>(x.r==='user'?U:a.name)+': '+x.t.slice(0,500)).join('\n')}\n\nList NEW or CHANGED lore worth recalling later: named people, places, objects, organisations, events, promises, secrets, rules of the world, shared history. Each item: {"title": short name, "keys": [2-5 trigger words or names], "text": 1-3 standalone sentences}. To update an entry marked auto, reuse its exact title. Never touch entries written by the user. Max 4 items. Return [] if nothing is new.`}],.2,600,false));
  let j;try{j=JSON.parse(raw.slice(raw.indexOf('['),raw.lastIndexOf(']')+1))}catch{return}
@@ -146,7 +146,8 @@ async function loreUp(a,p){const n=msgs.length;if(n-(mem.lu||0)<6)return;const U
  const au=lore.filter(e=>e.auto);if(au.length>60){const dr=new Set(au.sort((x,y)=>(x.hits||0)-(y.hits||0)||x.ts-y.ts).slice(0,au.length-60).map(e=>e.id));lore=lore.filter(e=>!dr.has(e.id))}
  mem.lu=n;sv('m_'+a.id,mem);sv('l_'+a.id,lore)}
 function loreDlg(e,n){const d=$('#dlg');d.innerHTML=`<h3 style="margin-top:0">${n?'New lore entry':'Edit entry'}</h3><label>Title</label><input id=l-t value="${esc(e.title)}" placeholder="e.g. Lin International Group"><label>Lore</label><textarea id=l-x rows=5 placeholder="What ${esc(cur().name)} should know or recall">${esc(e.text)}</textarea><label>Trigger words, separated by commas</label><input id=l-k value="${esc((e.keys||[]).join(', '))}" placeholder="Leave empty to use the title"><label style="display:flex;gap:.6rem;align-items:center;color:var(--tx);font-size:.95rem"><input type=checkbox id=l-a style="width:auto" ${e.always?'checked':''}> Always include</label><p class=hint>Saved entries count as written by you, so the AI will not change them.</p><div class=row style="justify-content:flex-end;margin-top:1rem"><button data-a=pcancel>Cancel</button><button class=b data-a=lsave data-id=${e.id} data-new=${n?1:0}>Save</button></div>`;d.showModal()}
-const PV={local:{n:'Local server',t:'openai',u:'http://192.168.1.100:8080/v1',m:'',h:'llama.cpp, Ollama, LM Studio or KoboldCpp on your network. No key needed.'},
+const PV={garlic:{n:'Garlic LLM (PS4)',t:'openai',u:'http://192.168.0.100:8080',m:'',h:'On the PS4 chat screen press L3 to turn the API on; the address shows at the top. It handles one request at a time, so in Settings you can switch off the profile and lorebook background updates to keep replies quick. If you made a key file on the console, paste that key below.'},
+ local:{n:'Local server',t:'openai',u:'http://192.168.1.100:8080/v1',m:'',h:'llama.cpp, Ollama, LM Studio or KoboldCpp on your network. No key needed.'},
  gemini:{n:'Google Gemini',t:'gemini',u:'https://generativelanguage.googleapis.com/v1beta',m:'gemini-3.8-flash',h:'Get a free key at aistudio.google.com/apikey. Press Test connection to list your models.'},
  openai:{n:'OpenAI',t:'openai',u:'https://api.openai.com/v1',m:'gpt-4o-mini',h:'Key from platform.openai.com/api-keys.'},
  anthropic:{n:'Anthropic Claude',t:'anthropic',u:'https://api.anthropic.com/v1',m:'claude-haiku-5-5',h:'Key from console.anthropic.com.'},
@@ -170,7 +171,9 @@ async function sse(r,pick,cb){const rd=r.body.getReader(),dc=new TextDecoder();l
   while((i=buf.indexOf('\n'))>=0){const l=buf.slice(0,i).trim();buf=buf.slice(i+1);if(!l.startsWith('data:'))continue;const d=l.slice(5).trim();
    if(d==='[DONE]')return out;try{const t=pick(JSON.parse(d));if(t){out+=t;cb(out)}}catch{}}}
  return out}
-async function chat(p,m,temp,max,stream,cb){
+let chain=Promise.resolve();
+function chat(p,m,temp,max,stream,cb){if(p.pre!=='garlic')return chat0(p,m,temp,max,stream,cb);const r=chain.then(()=>chat0(p,m,temp,max,stream,cb));chain=r.catch(()=>{});return r}
+async function chat0(p,m,temp,max,stream,cb){
  const ac=new AbortController();if(stream)abort=ac;const T=p.type||'openai',b=p.url.trim().replace(/\/+$/,''),h={'Content-Type':'application/json'};let url,body,pick;
  if(T==='gemini'){const{sys,ms}=norm(m),sf=['HARASSMENT','HATE_SPEECH','SEXUALLY_EXPLICIT','DANGEROUS_CONTENT'].map(c=>({category:'HARM_CATEGORY_'+c,threshold:'BLOCK_ONLY_HIGH'}));
   url=`${b}/models/${p.model}:${stream?'streamGenerateContent?alt=sse':'generateContent'}`;h['x-goog-api-key']=p.key;
@@ -187,6 +190,7 @@ async function chat(p,m,temp,max,stream,cb){
  if(!r.ok){const tx=await r.text();let em=tx;try{em=JSON.parse(tx).error?.message||tx}catch{}throw Error((p.name||'Server')+' replied '+r.status+': '+em.slice(0,300))}
  if(!stream)return pick(await r.json())||'';
  return sse(r,pick,cb)}
+async function probe(u){try{await fetch(u,{mode:'no-cors',signal:AbortSignal.timeout(6000)});return true}catch{return false}}
 async function listModels(p){const T=p.type||'openai',b=p.url.trim().replace(/\/+$/,'');let r,j;
  if(T==='gemini'){r=await fetch(b+'/models?pageSize=200',{headers:{'x-goog-api-key':p.key}});if(!r.ok)throw Error('Server replied '+r.status);j=await r.json();
   return(j.models||[]).filter(m=>(m.supportedGenerationMethods||[]).includes('generateContent')).map(m=>m.name.replace('models/',''))}
@@ -299,7 +303,10 @@ function render(){theme();document.body.classList.remove('sbo');const A=$('#pane
   <h2>Replies</h2><label>Creativity (${st.temp})</label><input type=range min=.1 max=1.5 step=.05 value=${st.temp} data-k=temp data-c=1>
   <label>Max reply length (${st.max} tokens)</label><input type=range min=100 max=1200 step=50 value=${st.max} data-k=max data-c=1>
   <label>Recent chat sent each turn (~${st.ctx} tokens)</label><input type=range min=1000 max=12000 step=500 value=${st.ctx} data-k=ctx data-c=1><p class=hint>Keep this below your server's context size. Older details come back through memory.</p>
-  <h2>Memory</h2><label style="display:flex;gap:.6rem;align-items:center;color:var(--tx);font-size:1rem"><input type=checkbox style="width:auto" ${st.mem?'checked':''} data-k=mem> Long-term memory (a few extra requests per exchange)</label></main>`}}
+  <h2>Memory</h2><label style="display:flex;gap:.6rem;align-items:center;color:var(--tx);font-size:1rem"><input type=checkbox style="width:auto" ${st.mem?'checked':''} data-k=mem> Long-term memory (a few extra requests per exchange)</label>
+  <h2>Background updates</h2><p class=hint>Each one sends an extra request to your AI every few messages. Turn them off if your server is slow or handles one request at a time.</p>
+  <label style="display:flex;gap:.6rem;align-items:center;color:var(--tx);font-size:1rem"><input type=checkbox style="width:auto" ${st.bgp?'checked':''} data-k=bgp> Profile: mood, likes and dislikes</label>
+  <label style="display:flex;gap:.6rem;align-items:center;color:var(--tx);font-size:1rem"><input type=checkbox style="width:auto" ${st.bgl?'checked':''} data-k=bgl> Lorebook: learn new entries from chat</label></main>`}}
 function profDlg(p,isNew){const d=$('#dlg'),k=p.pre||'local',loc=k==='local'?' (optional)':'';
  d.innerHTML=`<h3 style="margin-top:0">AI connection</h3><label>Provider</label><select id=p-pt>${Object.entries(PV).map(([x,o])=>`<option value=${x} ${x===k?'selected':''}>${o.n}</option>`).join('')}</select><p class=hint id=p-h>${esc(PV[k].h)}</p>
  <label>Name</label><input id=p-n value="${esc(p.name)}"><label>Server address</label><input id=p-u value="${esc(p.url)}"><label>API key${loc}</label><input id=p-k type=password value="${esc(p.key)}" autocomplete=off><label>Model name${loc}</label><input id=p-m value="${esc(p.model)}"><div id=chips class=chips></div>
@@ -347,7 +354,8 @@ document.addEventListener('click',async e=>{const t=e.target.closest('[data-a]')
  else if(a==='pcancel')$('#dlg').close();
  else if(a==='psave'){const p=pform(d.id);st.prof=d.new==='1'?[...st.prof,p]:st.prof.map(x=>x.id===p.id?p:x);if(d.new==='1')st.act=p.id;save();$('#dlg').close();render()}
  else if(a==='ptest'){const q=$('#ps');q.textContent='Testing…';try{const ms=await listModels(pform('x'));q.textContent=`Connected ✓ (${ms.length} model${ms.length===1?'':'s'})`;
-  $('#chips').innerHTML=ms.slice(0,40).map(m=>`<button class=t data-a=pm data-m="${esc(m)}">${esc(m)}</button>`).join('')}catch(x){q.textContent=x.message==='Failed to fetch'?"Can't reach the server (check address, internet, key, CORS).":x.message}}
+  $('#chips').innerHTML=ms.slice(0,40).map(m=>`<button class=t data-a=pm data-m="${esc(m)}">${esc(m)}</button>`).join('')}catch(x){if(x.message==='Failed to fetch'||x.name==='TypeError'){const f=pform('x'),u=/^https?:/.test(f.url)?f.url:'http://'+f.url;q.textContent='Checking…';
+  q.textContent=await probe(u)?'The server is there, but it blocks web pages (CORS). Run companion_proxy.py, then use its address here.':`Cannot reach ${u}. Check the IP, port, Wi-Fi and that the server is running.`}else q.textContent=x.message}}
  else if(a==='pm')$('#p-m').value=d.m});
 document.addEventListener('input',e=>{const t=e.target,k=t.dataset.k;if(!k)return;st[k]=t.type==='checkbox'?t.checked:t.type==='range'?+t.value:t.value;save();if(k==='theme')theme();if(t.dataset.c)t.previousElementSibling.textContent=t.previousElementSibling.textContent.replace(/\(.*?\)/,`(${k==='scale'?Math.round(st.scale*100)+'%':k==='max'?st.max+' tokens':k==='ctx'?'~'+st.ctx+' tokens':st.temp})`);if(k==='scale')theme()});
 document.addEventListener('change',async e=>{if(e.target.id==='bgf'&&e.target.files[0]){st.img=await rs(e.target.files[0],1000,.7);st.bg='image';save();render()}if(e.target.dataset.k==='dim')render()});
