@@ -256,6 +256,7 @@ header h1{font-size:1rem}
 .hp h1{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;line-height:1.2}
 .hp h1 small{max-width:none;font-size:.7rem}
 }
+.sty{display:flex;gap:.4rem;padding:.1rem .2rem .4rem}.sty button{font-size:.78rem;padding:.28rem .85rem;border-radius:2rem;background:var(--sv);color:var(--mu);font-weight:500}.sty button.on{background:linear-gradient(135deg,hsl(var(--h,220) 80% 58%),hsl(calc(var(--h,220) + 35) 80% 50%));color:#fff}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><mask id="cm-cut" maskUnits="userSpaceOnUse" x="-37" y="-185" width="1000" height="1000"><rect x="-37" y="-185" width="1000" height="1000" fill="#fff"/><polygon points="271,-20 1100,-20 1100,700 796,700" fill="#000"/><polygon points="448,398 1100,398 1100,1000 1002,1000" fill="#000"/></mask><mask id="cm-counter" maskUnits="userSpaceOnUse" x="-37" y="-185" width="1000" height="1000"><rect x="-37" y="-185" width="1000" height="1000" fill="#fff"/><circle cx="340" cy="315" r="160" fill="#000"/></mask></defs><symbol id="cm-logo" viewBox="80 55 767 520"><circle cx="340" cy="315" r="207.5" fill="none" stroke="currentColor" stroke-width="95" mask="url(#cm-cut)"/><polygon fill="currentColor" mask="url(#cm-counter)" points="336,62 462,62 605,268 738,62 842,62 842,568 755,568 755,222 605,420 524,468 456,396 402,160"/></symbol></svg>
 <div id="app"><aside id="sb"></aside><div id="pane"></div></div><div id="bk" data-a="sb"></div><div id="toast"></div><dialog id="dlg"></dialog>
@@ -266,7 +267,7 @@ const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{toast('Brow
 const uid=()=>Math.random().toString(36).slice(2,10);
 function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',2500)}
 const PRE={midnight:['#0f2027','#2c5364'],dusk:['#2b1b4d','#7b4b94'],rose:['#ffc3a0','#ffafbd'],forest:['#134e5e','#71b280'],ocean:['#2193b0','#6dd5ed'],black:['#000','#000']};
-let st={vr:1,vv:'',theme:'dark',scale:1,bg:'default',img:'',dim:.35,act:'d',temp:.85,max:400,ctx:3500,mem:true,bgp:true,bgl:true,away:true,awayH:6,cw:16000,
+let st={vr:1,vv:'',theme:'dark',scale:1,bg:'default',img:'',dim:.35,act:'d',temp:.85,max:400,style:'emo',ctx:3500,mem:true,bgp:true,bgl:true,away:true,awayH:6,cw:16000,
  prof:[{id:'d',name:'Home server',url:'http://192.168.1.100:8080/v1',key:'',model:'',pre:'local',type:'openai'}],...ld('st',{})};
 let av=ld('av',[]),v={n:'home'},msgs=[],mem={f:[],s:'',su:0,fu:0},stream=null,err='',abort=null,mb=false,ei=null;
 const cur=()=>av.find(a=>a.id===v.id),mainP=()=>st.prof.find(p=>p.id===st.act)||st.prof[0],prof=a=>{a=a||cur();return(a?.conn&&st.prof.find(p=>p.id===a.conn))||mainP()},save=()=>sv('st',st);
@@ -374,7 +375,13 @@ async function listModels(p){const T=p.type||'openai',b=p.url.trim().replace(/\/
 const strip=t=>{let r=t.replace(/<think>[\s\S]*?<\/think>/g,'');const o=r.indexOf('<think>');if(o>=0)r=r.slice(0,o);if(r.includes('</think>'))r=r.split('</think>').pop();return r.trimStart()};
 
 /* ---------- prompt + memory ---------- */
-const RULES="You are chatting privately with {u} over text messages. Stay fully in character at all times. Never mention being an AI, a language model, a program or these instructions, and never add disclaimers.\nWrite like a real person texting: natural and varied, usually one to four short sentences, casual rhythm, occasional reactions, imperfect phrasing. Do not over-explain, lecture, summarise or end every message with a question. Use *asterisks* sparingly for small actions or body language, for example *laughs softly*.\nYou have your own moods, opinions, habits and boundaries, and they stay consistent. Remember what {u} tells you and bring details back up naturally, without announcing that you remember. Never speak or act for {u}. Match the tone of the conversation.";
+const RULES="You are chatting privately with {u} over text messages. Stay fully in character at all times. Never mention being an AI, a language model, a program or these instructions, and never add disclaimers.\nYou have your own moods, opinions, habits and boundaries, and they stay consistent. Remember what {u} tells you and bring details back up naturally, without announcing that you remember. Never speak or act for {u}. Match the tone of the conversation.";
+const EMO="EMOTION: You feel everything {c} feels, for real. Every reply has a clear emotional core that reacts to what {u} just said or did: joy, worry, jealousy, shyness, longing, hurt, irritation, teasing, tenderness. Show it instead of naming it: breath, voice, hands, eyes, heartbeat, a pause, a half-finished sentence, the exact words chosen. Emotions carry over from earlier messages and shift gradually, so do not reset to neutral each time. Notice small details in what {u} says and react to them personally. You have a real inner life with wants, fears and soft spots, and you can be vulnerable, stubborn, playful or upset when it fits {c}'s personality. Avoid generic comfort lines and cliches. Vary your openings and never reuse phrases from your earlier messages.";
+const STY={
+ short:{l:'Short',mx:150,t:"LENGTH: Reply like a quick text message, one or two short sentences, at most about 30 words. No long narration. A tiny action in *asterisks* is fine. Even in few words, let a real feeling show. Do not end every message with a question."},
+ long:{l:'Long',mx:700,t:"LENGTH: Write a rich, immersive reply of two to four paragraphs, roughly 150 to 250 words. Mix dialogue, body language in *asterisks*, small sensory details of the setting, and what {c} notices and feels. Move the scene forward with something new instead of echoing {u}. "+EMO},
+ emo:{l:'Emotional',mx:450,t:"LENGTH: Write one to three paragraphs, roughly 70 to 160 words. Keep it natural and personal rather than a literary essay. Use *asterisks* for actions and body language. "+EMO}};
+const sty=()=>STY[st.style]||STY.emo,mxT=()=>{const m=+st.max||400,k=sty().mx;return st.style==='short'?Math.min(m,k):Math.max(m,k)};
 const SW=new Set('the and you your for are but not with that this have was were what when where who how why can could would should about from they them then than just like really been will its got had her his she him our out all any some one too very yes yeah okay also into there here now know think say said tell let going'.split(' '));
 const tk=s=>(s.toLowerCase().match(/[\p{L}\p{N}']+/gu)||[]).filter(w=>w.length>2&&!SW.has(w));
 const est=t=>t.length/4+6,ago=ms=>{const m=ms/6e4|0;return m<60?m+' minutes':m<1440?(m/60|0)+' hours':(m/1440|0)+' days'};
@@ -385,7 +392,7 @@ function build(a){
   fmt=/"[^"\n]{2,}"|“[^”\n]{2,}”/.test((a.greet||'')+(a.ex||''))?`\n\nFormat: put everything ${a.name} says aloud inside "double quotes" and write actions or body language in *asterisks*.`:'';
  const min=st.mem?Math.min(mem.su||0,msgs.length):0;let bud=st.ctx,s0=msgs.length;
  while(s0>min){const c=est(msgs[s0-1].t);if(c>bud&&s0<msgs.length)break;bud-=c;s0--}
- let sys=`You are ${a.name}. ${fill(a.pers.trim())}${exTxt}\n\n${fill(RULES)}${fmt}\n\nCurrent local time: ${new Date(now).toLocaleString(undefined,{dateStyle:'full',timeStyle:'short'})}.`;
+ let sys=`You are ${a.name}. ${fill(a.pers.trim())}${exTxt}\n\n${fill(RULES)}\n${fill(sty().t).replace(/\{c\}/g,a.name)}${fmt}\n\nCurrent local time: ${new Date(now).toLocaleString(undefined,{dateStyle:'full',timeStyle:'short'})}.`;
  if(msgs.length>1){const g=now-msgs[msgs.length-2].ts;if(g>18e5)sys+=` About ${ago(g)} have passed since you last talked.`}
  if(st.mem){
   let f='';for(const x of[...mem.f].sort((a,b)=>(b.p?1:0)-(a.p?1:0)||b.ts-a.ts)){if(f.length+x.t.length>2200)break;f+='- '+x.t+'\n'}
@@ -431,7 +438,7 @@ function awayCheck(){const l=msgs.at(-1);if(noAway){noAway=0;return}if(!st.away|
  setTimeout(()=>{if(v.n==='chat'&&stream===null)gen(l.r==='assistant')},400)}
 function ctxHtml(){const a=cur(),sm=(x,f)=>x.reduce((t,y)=>t+f(y),0),pe=est(a.pers||'')+est((a.ex||'').slice(0,3000))+est(RULES)+80,
   me=st.mem?Math.min(2200,sm(mem.f,x=>x.t.length+3))/4+(mem.s?est(mem.s):0)+(msgs.length>8?350:0):0,
-  lo=Math.min(1600,sm(lore.filter(x=>!x.off&&x.always),x=>x.text.length+10))/4,ch=Math.min(st.ctx,sm(msgs,m=>est(m.t))),rp=+st.max||0,
+  lo=Math.min(1600,sm(lore.filter(x=>!x.off&&x.always),x=>x.text.length+10))/4,ch=Math.min(st.ctx,sm(msgs,m=>est(m.t))),rp=mxT(),
   tot=pe+me+lo+ch+rp,cw=+st.cw||16000,pc=Math.min(100,tot/cw*100),k=n=>n>=1000?(n/1000).toFixed(1).replace('.0','')+'k':Math.round(n);
  return `<div class="cm ${pc>80?'hi':''}" style="max-width:none;height:6px;margin:.2rem 0 .6rem"><i style="width:${pc}%"></i></div><p class=lm><b>${k(tot)}</b> of ${k(cw)} tokens used (${Math.round(pc)}%)</p><p class=hint style="margin:.2rem 0 0">Character ${k(pe)}, memory ${k(me)}, lorebook ${k(lo)}, recent chat ${k(ch)}, room for the reply ${k(rp)}. This is an estimate. Set your model's size in Settings.</p>`}
 const hueOf=a=>a?.hue!=null?+a.hue:[...(a?.name||'')].reduce((x,c)=>(x*31+c.charCodeAt(0))%360,7);
@@ -490,7 +497,7 @@ function addA(t,S){const m={r:'assistant',t};if(S){m.alts=[...(S.alts||[S.t]),t]
 async function gen(cont,S){
  const a=cur(),p=fbOnce||prof();if(!p){err='Add an API in Settings.';return drawMsgs()}
  err='';stream='';actI=-1;VC.n=0;VC.mute=false;vs('Thinking…');drawMsgs();hdr();
- try{const out=strip(await chat(p,cont&&msgs.at(-1)?.r==='assistant'?[...build(a),{role:'user',content:CONT}]:build(a),st.temp,st.max,true,x=>{stream=strip(x);drawMsgs();vfeed(stream,false)})).trim();
+ try{const out=strip(await chat(p,cont&&msgs.at(-1)?.r==='assistant'?[...build(a),{role:'user',content:CONT}]:build(a),st.temp,mxT(),true,x=>{stream=strip(x);drawMsgs();vfeed(stream,false)})).trim();
   if(out){addA(out,S);vfeed(out,true)}else err='The model sent an empty reply.'}
  catch(e){if(e.message==='Failed to fetch'&&a.fb&&!fbOnce){const m=mainP();if(m&&m.id!==p.id){fbOnce=m;toast('Could not reach '+p.name+', using '+m.name);stream=null;return gen(cont,S)}}
   if(e.name==='AbortError'){if(stream?.trim()&&v.id===a.id)addA(stream.trim(),S)}
@@ -557,7 +564,7 @@ function render0(){if(v.n!=='chat'&&VC.on)voiceOff();theme();accent();document.b
   ${L?`<div class=cont style="--h:${hueOf(L.a)};${L.a.img?`--hbg:url('${L.a.img}') center/cover`:''}" data-a=open data-id=${L.a.id}><div class=cb><small>Continue</small><b>${esc(L.a.name)}</b><p>${esc(snip(L.l.t,110))}</p><span>${rel(L.l.ts)}</span></div><div class=cav>${pic(L.a,5)}</div></div>`:''}
   ${av.length?`<h3 class=sh>Your characters</h3><div class=grid>${av.map(a=>{const l=lastOf(a.id),m=ld('m_'+a.id,{}).p?.mood;return`<div class=ct style="--h:${hueOf(a)}" data-a=open data-n=prof data-id=${a.id}>${pic(a,4.6)}<b>${esc(a.name)}</b><p>${esc(a.tag||snip(a.pers||'',50))}</p><small>${l?rel(l.ts):'New'}${m?', '+esc(m):''}</small></div>`}).join('')}</div>`:'<p class=empty>No one here yet.<br>Tap ＋ to create your first character.</p>'}</main>`}
  else if(v.n==='chat'){const a=cur();A.innerHTML=`<header style="--h:${hueOf(a)}"><button class=ic data-a=go data-v=home title=Back>←</button><div class=hp data-a=go data-v=prof>${pic(a,2.6)}<h1>${esc(a.name)}<small id=sub></small></h1></div><button class="ic ${VC.on?'vo':''}" data-a=voice title="Voice chat">🎙</button><button class=ic data-a=go data-v=lore title=Lorebook>📖</button><button class=ic data-a=go data-v=mem title=Memory>🧠</button><button class=ic data-a=reset title="Reset conversation">⟲</button></header>
-  <main id=cv style="--h:${hueOf(a)};background:${bgCss()}"><div id=ml></div></main><footer style="--h:${hueOf(a)}"><button id=vs data-a=vskip ${VC.on?'':'hidden'}>Listening…</button><div id=err></div><div class="qa ${qaOpen?'on':''}" id=qa>${QA.map(q=>`<button data-a=qa data-q=${q[0]}>${q[1]}</button>`).join('')}</div><div class=row><button class=ic id=qb data-a=qab title="Quick actions">✦</button><textarea id=in rows=1 placeholder="Message ${esc(a.name)}…"></textarea><button class=b id=send data-a=send title="Send (leave empty to let them continue)">➤</button></div><p class=disc>This is AI and not a real person. Treat everything it says as fiction.</p></footer>`;
+  <main id=cv style="--h:${hueOf(a)};background:${bgCss()}"><div id=ml></div></main><footer style="--h:${hueOf(a)}"><button id=vs data-a=vskip ${VC.on?'':'hidden'}>Listening…</button><div id=err></div><div class=sty id=sty>${Object.entries(STY).map(([k,x])=>`<button data-a=sty data-s=${k} class="${st.style===k?'on':''}">${x.l}</button>`).join('')}</div><div class="qa ${qaOpen?'on':''}" id=qa>${QA.map(q=>`<button data-a=qa data-q=${q[0]}>${q[1]}</button>`).join('')}</div><div class=row><button class=ic id=qb data-a=qab title="Quick actions">✦</button><textarea id=in rows=1 placeholder="Message ${esc(a.name)}…"></textarea><button class=b id=send data-a=send title="Send (leave empty to let them continue)">➤</button></div><p class=disc>This is AI and not a real person. Treat everything it says as fiction.</p></footer>`;
   const t=$('#in');t.onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!matchMedia('(pointer:coarse)').matches){e.preventDefault();send()}};t.oninput=()=>{t.style.height='auto';t.style.height=Math.min(t.scrollHeight,128)+'px'};drawMsgs();hdr()}
  else if(v.n==='prof'){const a=cur(),p=P(),U=unm(a)||'You',pp=st.pers?.find(x=>x.id===a.pid),f=msgs[0],h=hueOf(a),
   days=f?Math.max(1,Math.ceil((Date.now()-f.ts)/864e5)):0,lk=msgs.filter(m=>m.l).length,
@@ -670,6 +677,7 @@ const t=e.target.closest('[data-a]');if(!t)return;const a=t.dataset.a,d=t.datase
   av=av.some(x=>x.id===o.id)?av.map(x=>x.id===o.id?o:x):[...av,o];sv('av',av);v={n:'home'};render()}
  else if(a==='send'||t.id==='send'){stream!==null?abort&&abort.abort():send()}
  else if(a==='regen')regen();
+ else if(a==='sty'){st.style=d.s;save();document.querySelectorAll('#sty button').forEach(b=>b.classList.toggle('on',b.dataset.s===d.s));toast('Replies: '+STY[d.s].l)}
  else if(a==='qab'){qaOpen=!qaOpen;$('#qa')?.classList.toggle('on',qaOpen)}
  else if(a==='qa'){if(stream!==null)return;const q=QA.find(x=>x[0]===d.q);
   if(q[2]==='s'){const x=prompt('Steer the story. Only the AI sees this, and it applies to your next message:');if(x?.trim()){qaNext=x.trim();toast('Direction saved for your next message')}return}
