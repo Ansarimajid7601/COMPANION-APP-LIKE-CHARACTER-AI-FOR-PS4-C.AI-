@@ -78,6 +78,53 @@ dialog::backdrop{background:#0008}
 .lm{margin:.25rem 0;font-size:.92rem}.lm b{font-weight:600}
 .ab{margin:0;color:var(--mu);font-size:.9rem;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden}
 #bk{display:none}
+main.pg{padding:0}main.pg>.pgw{max-width:none;margin:0;--ac:hsl(var(--h) 75% 64%)}
+.hero{position:relative;overflow:hidden;isolation:isolate;padding:2.2rem 1rem 1.4rem}
+.hero::before{content:"";position:absolute;inset:-3rem;z-index:-2;background:var(--hbg,linear-gradient(135deg,hsl(var(--h) 60% 40%),hsl(calc(var(--h) + 45) 55% 22%)));filter:blur(32px) saturate(1.3);opacity:.7}
+.hero::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(to bottom,transparent 15%,var(--bg) 100%)}
+.hin,.sx,.tb,.tp{max-width:46rem;margin-inline:auto}
+.hin{display:flex;gap:1.4rem;align-items:flex-end}.hx{min-width:0;flex:1}
+.hav{flex:none;border-radius:50%;border:3px solid var(--ac);box-shadow:0 10px 34px #0007;line-height:0}
+.hn{font-size:2.1rem;font-weight:700;letter-spacing:-.03em;line-height:1.05;margin:0;color:var(--tx)}
+.ht{margin:.35rem 0 0;color:var(--tx);opacity:.75}
+.hs{display:flex;gap:.45rem;flex-wrap:wrap;margin:.7rem 0 .9rem}
+.hc{background:hsl(var(--h) 60% 50%/.25);border:1px solid hsl(var(--h) 60% 62%/.45);padding:.2rem .75rem;border-radius:2rem;font-size:.8rem}
+.cta{background:linear-gradient(135deg,hsl(var(--h) 80% 58%),hsl(calc(var(--h) + 35) 80% 50%));color:#fff;font-weight:700;font-size:1.02rem;padding:.8rem 2.2rem;border-radius:2rem;box-shadow:0 8px 24px hsl(var(--h) 80% 50%/.4)}
+.sx{display:grid;grid-template-columns:repeat(4,1fr);padding:.9rem 1rem;border-bottom:1px solid var(--ln)}
+.sx div{text-align:center}.sx b{display:block;font-size:1.3rem;font-weight:700}.sx small{color:var(--mu);font-size:.68rem;text-transform:uppercase;letter-spacing:.07em}
+.tb{display:flex;gap:.2rem;padding:0 .6rem;position:sticky;top:0;z-index:5;background:var(--bg);overflow-x:auto;border-bottom:1px solid var(--ln)}
+.tb button{flex:none;padding:.85rem 1rem;border-radius:0;color:var(--mu);font-weight:500;border-bottom:2px solid transparent}
+.tb button.on{color:var(--tx);border-color:var(--ac)}
+.tp{padding:.4rem 1rem 3rem}.tp[hidden]{display:none}
+.sh{font-size:.72rem;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--mu);margin:1.6rem 0 .6rem}
+.prev{display:flex;flex-direction:column;gap:.4rem}
+.mini{align-self:flex-start;max-width:88%;background:var(--sv);padding:.55rem .85rem;border-radius:1rem;font-size:.9rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.mini.u{align-self:flex-end;background:var(--pc);color:var(--pt)}
+.tiles{display:grid;grid-template-columns:1fr 1fr;gap:.6rem}
+.tile{background:var(--sf);border:1px solid var(--ln);border-radius:1rem;padding:.8rem 1rem}
+.tile small{display:block;color:var(--mu);font-size:.68rem;text-transform:uppercase;letter-spacing:.07em;margin-bottom:.15rem}.tile b{font-weight:600}
+.chip.lv{background:hsl(var(--h) 60% 50%/.2)}.chip.dl{background:none;border:1px solid var(--ln);color:var(--mu)}
+.pgw .ab{-webkit-line-clamp:5;color:var(--tx);opacity:.85}.pgw .ab.open{display:block}
+.lk2{color:var(--ac);padding:.3rem 0;font-size:.85rem}
+.mt{display:grid;grid-template-columns:5.5rem 1fr 2.2rem;gap:.7rem;align-items:center;margin:.8rem 0;font-size:.92rem}
+.mt div{height:10px;background:var(--sv);border-radius:6px;overflow:hidden}.mt i{display:block;height:100%;border-radius:6px}.mt b{text-align:right;font-weight:600}
+.tl p{position:relative}.tl p::before{content:"";position:absolute;left:calc(-.8rem - 5.5px);top:.55rem;width:9px;height:9px;border-radius:50%;background:var(--ac)}
+.fl{padding:.55rem .85rem;background:var(--sf);border-radius:.8rem;margin:.35rem 0;font-size:.9rem}
+.dgr{border:1px solid var(--er);color:var(--er);padding:.55rem 1.1rem;border-radius:2rem}
+@media(max-width:560px){.hin{flex-direction:column;align-items:center;text-align:center}.hs{justify-content:center}.hn{font-size:1.8rem}.tiles{grid-template-columns:1fr}}
+.rb{display:flex;align-items:center;gap:.6rem;margin:.35rem 0;font-size:.85rem}.rb span{width:5.2rem;flex:none}
+.rb div{flex:1;height:7px;background:var(--sv);border-radius:4px;overflow:hidden}.rb i{display:block;height:100%}.rb b{width:2rem;text-align:right;font-weight:500}
+.tl{border-left:2px solid var(--ln);margin:.6rem 0 0 .3rem;padding-left:.8rem}.tl p{margin:.4rem 0;font-size:.88rem}.tl small{display:block;color:var(--mu)}
+.th{font-size:.85rem;color:var(--mu);font-style:italic;border-left:2px solid var(--pr);padding:.1rem .6rem;margin-top:.4rem}
+.bn{display:flex;gap:.5rem;align-items:center;flex-wrap:wrap;background:var(--pc);color:var(--pt);padding:.7rem .9rem;border-radius:1rem;margin-bottom:.8rem;font-size:.9rem}.bn span{flex:1;min-width:12rem}
+#lock{position:fixed;inset:0;z-index:100;background:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.8rem;padding:1rem}
+#lock input{max-width:14rem;text-align:center;font-size:1.4rem;letter-spacing:.4rem}body.locked #app{visibility:hidden}
+.dv{text-align:center;color:var(--mu);font-size:.75rem;margin:1.2rem 0 .4rem}
+.qa{display:none;gap:.4rem;overflow-x:auto;padding:0 0 .5rem}.qa.on{display:flex}
+.qa button{flex:none;background:var(--sv);border-radius:2rem;padding:.35rem .8rem;font-size:.82rem}
+.cm{height:3px;background:var(--sv);border-radius:2px;margin:.5rem auto 0;max-width:12rem;overflow:hidden}
+.cm i{display:block;height:100%;width:0;background:var(--pr)}.cm.hi i{background:var(--er)}
+#ct{display:block;text-align:center;color:var(--mu);font-size:.72rem;margin-top:.25rem}
 :root{color-scheme:light}:root[data-t=dark]{color-scheme:dark}
 input[type=radio],input[type=checkbox]{width:auto;padding:0;flex:none}
 .chips{display:flex;flex-wrap:wrap;gap:.4rem;max-height:9rem;overflow-y:auto;margin-top:.6rem}
@@ -138,10 +185,10 @@ const sv=(k,v)=>{try{localStorage.setItem(k,JSON.stringify(v))}catch{toast('Brow
 const uid=()=>Math.random().toString(36).slice(2,10);
 function toast(t){const e=$('#toast');e.textContent=t;e.style.display='block';setTimeout(()=>e.style.display='none',2500)}
 const PRE={midnight:['#0f2027','#2c5364'],dusk:['#2b1b4d','#7b4b94'],rose:['#ffc3a0','#ffafbd'],forest:['#134e5e','#71b280'],ocean:['#2193b0','#6dd5ed'],black:['#000','#000']};
-let st={vr:1,vv:'',theme:'dark',scale:1,bg:'default',img:'',dim:.35,act:'d',temp:.85,max:400,ctx:3500,mem:true,bgp:true,bgl:true,
+let st={vr:1,vv:'',theme:'dark',scale:1,bg:'default',img:'',dim:.35,act:'d',temp:.85,max:400,ctx:3500,mem:true,bgp:true,bgl:true,away:true,awayH:6,cw:16000,
  prof:[{id:'d',name:'Home server',url:'http://192.168.1.100:8080/v1',key:'',model:'',pre:'local',type:'openai'}],...ld('st',{})};
 let av=ld('av',[]),v={n:'home'},msgs=[],mem={f:[],s:'',su:0,fu:0},stream=null,err='',abort=null,mb=false,ei=null;
-const cur=()=>av.find(a=>a.id===v.id),prof=()=>st.prof.find(p=>p.id===st.act)||st.prof[0],save=()=>sv('st',st);
+const cur=()=>av.find(a=>a.id===v.id),mainP=()=>st.prof.find(p=>p.id===st.act)||st.prof[0],prof=a=>{a=a||cur();return(a?.conn&&st.prof.find(p=>p.id===a.conn))||mainP()},save=()=>sv('st',st);
 
 const lastOf=id=>ld('c_'+id,[]).at(-1);
 const rel=ts=>{const m=(Date.now()-ts)/6e4|0;return m<1?'just now':m<60?m+' min ago':m<1440?(m/60|0)+' h ago':(m/1440|0)+' d ago'};
@@ -158,13 +205,15 @@ function learn(t){const p=P();let ch=0;
   const x=m[2].trim().replace(/\s+(and|but|so|because|too)\b.*$/i,'');if(x.length<2||/^(you|u|it|that|this|how|when|what)\b/i.test(x))continue;
   const k=/hate|dislike|stand|afraid|fear/i.test(m[1])?'ud':'ul';p[k]=[x,...(p[k]||[]).filter(y=>y.toLowerCase()!==x.toLowerCase())].slice(0,12);ch=1}
  if(ch)sv('m_'+v.id,mem)}
-async function profUp(a,p){const n=msgs.length;if(!st.bgp||n-(mem.pu||0)<8)return;const U=a.user||'the user';
+async function profUp(a,p){const n=msgs.length;if(!st.bgp||n-(mem.pu||0)<8)return;const U=unm(a)||'the user';
  const raw=strip(await chat(p,[{role:'system',content:'You analyse a roleplay chat and output ONLY a JSON object, nothing else.'},
-  {role:'user',content:`Character: ${a.name}. Current profile: ${JSON.stringify(P())}\n\nRecent conversation:\n${msgs.slice(-16).map(x=>(x.r==='user'?U:a.name)+': '+x.t.slice(0,400)).join('\n')}\n\nReturn JSON with keys: "mood" (${a.name}'s mood right now, 1-4 words), "rel" (${a.name}'s relationship with ${U} right now, max 8 words), "likes" (things ${a.name} clearly likes, 1-4 words each), "dislikes" (things ${a.name} dislikes), "ul" (things ${U} likes), "ud" (things ${U} dislikes). Keep existing items that are still true, add new ones, max 8 per array. Use only what the chat or profile supports.`}],.2,400,false));
+  {role:'user',content:`Character: ${a.name}. Current profile: ${JSON.stringify(P())}\n\nRecent conversation:\n${msgs.slice(-16).map(x=>(x.r==='user'?U:a.name)+': '+x.t.slice(0,400)).join('\n')}\n\nReturn JSON with keys: "mood" (${a.name}'s mood right now, 1-4 words), "rel" (${a.name}'s relationship with ${U} right now, max 8 words), "likes" (things ${a.name} clearly likes, 1-4 words each), "dislikes" (things ${a.name} dislikes), "ul" (things ${U} likes), "ud" (things ${U} dislikes), "trust", "affection" and "jealousy" (whole numbers 0 to 100 for how ${a.name} currently feels toward ${U}), and "moment" (one short sentence only if a significant relationship event just happened, such as a first kiss, a fight, a confession, a promise or a betrayal; otherwise an empty string). Keep existing items that are still true, add new ones, max 8 per array. Use only what the chat or profile supports.`}],.2,400,false));
  let j;try{j=JSON.parse(raw.slice(raw.indexOf('{'),raw.lastIndexOf('}')+1))}catch{return}
  if(v.id!==a.id)return;const pr=P(),cl=x=>Array.isArray(x)?x.filter(y=>typeof y==='string'&&y.length<50).slice(0,8):null;
  for(const k of['likes','dislikes','ul','ud']){const c=cl(j[k]);if(c)pr[k]=c}
  for(const k of['mood','rel'])if(typeof j[k]==='string'&&j[k].length<80)pr[k]=j[k];
+ const r0=pr.rs||{trust:50,aff:50,jel:20},nv=x=>x!=null&&x!==''&&Number.isFinite(+x)?Math.max(0,Math.min(100,Math.round(+x))):null;pr.rs={trust:nv(j.trust)??r0.trust,aff:nv(j.affection)??r0.aff,jel:nv(j.jealousy)??r0.jel};
+ if(typeof j.moment==='string'&&j.moment.trim().length>5&&j.moment.length<200){pr.tl=pr.tl||[];const mt=j.moment.trim();if(!pr.tl.some(x=>x.t.toLowerCase()===mt.toLowerCase())){pr.tl.push({t:mt,ts:Date.now()});pr.tl=pr.tl.slice(-30)}}
  mem.pu=n;sv('m_'+a.id,mem)}
 let lore=[],recalled=[];
 function loreTxt(){recalled=[];if(!lore.length)return'';const rc=msgs.slice(-4).map(m=>m.t).join(' ').toLowerCase(),last=(msgs.at(-1)?.t||'').toLowerCase(),
@@ -173,7 +222,7 @@ function loreTxt(){recalled=[];if(!lore.length)return'';const rc=msgs.slice(-4).
  let o='';const n=[];for(const e of hit){const l=`- ${e.title}: ${e.text}\n`;if(o.length+l.length>1600)break;o+=l;n.push(e)}
  if(!o)return'';n.forEach(e=>{e.hits=(e.hits||0)+1;e.last=Date.now()});recalled=n.map(e=>e.title);sv('l_'+v.id,lore);
  return`\n\nLorebook (established facts about your world and shared history; they are true, so use them naturally and consistently when relevant):\n${o}`}
-async function loreUp(a,p){const n=msgs.length;if(!st.bgl||n-(mem.lu||0)<6)return;const U=a.user||'the user',ex=lore.map(e=>`- ${e.title} (${e.auto?'auto':'written by user'}): ${e.text}`).join('\n').slice(0,2500)||'(none)';
+async function loreUp(a,p){const n=msgs.length;if(!st.bgl||n-(mem.lu||0)<6)return;const U=unm(a)||'the user',ex=lore.map(e=>`- ${e.title} (${e.auto?'auto':'written by user'}): ${e.text}`).join('\n').slice(0,2500)||'(none)';
  const raw=strip(await chat(p,[{role:'system',content:'You maintain a lorebook for a roleplay. Output ONLY a JSON array, nothing else.'},
   {role:'user',content:`Existing lorebook:\n${ex}\n\nRecent conversation between ${U} and ${a.name}:\n${msgs.slice(-14).map(x=>(x.r==='user'?U:a.name)+': '+x.t.slice(0,500)).join('\n')}\n\nList NEW or CHANGED lore worth recalling later: named people, places, objects, organisations, events, promises, secrets, rules of the world, shared history. Each item: {"title": short name, "keys": [2-5 trigger words or names], "text": 1-3 standalone sentences}. To update an entry marked auto, reuse its exact title. Never touch entries written by the user. Max 4 items. Return [] if nothing is new.`}],.2,600,false));
  let j;try{j=JSON.parse(raw.slice(raw.indexOf('['),raw.lastIndexOf(']')+1))}catch{return}
@@ -245,7 +294,7 @@ const tk=s=>(s.toLowerCase().match(/[\p{L}\p{N}']+/gu)||[]).filter(w=>w.length>2
 const est=t=>t.length/4+6,ago=ms=>{const m=ms/6e4|0;return m<60?m+' minutes':m<1440?(m/60|0)+' hours':(m/1440|0)+' days'};
 const day=ts=>new Date(ts).toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'});
 function build(a){
- const U=a.user||'the user',fill=t=>t.replace(/\{\{user\}\}|\{u\}/g,U).replace(/\{\{char\}\}/g,a.name),now=Date.now();
+ const U=unm(a)||'the user',fill=t=>t.replace(/\{\{user\}\}|\{u\}/g,U).replace(/\{\{char\}\}/g,a.name),now=Date.now();
  const min=st.mem?Math.min(mem.su||0,msgs.length):0;let bud=st.ctx,s0=msgs.length;
  while(s0>min){const c=est(msgs[s0-1].t);if(c>bud&&s0<msgs.length)break;bud-=c;s0--}
  let sys=`You are ${a.name}. ${fill(a.pers.trim())}\n\n${fill(RULES)}\n\nCurrent local time: ${new Date(now).toLocaleString(undefined,{dateStyle:'full',timeStyle:'short'})}.`;
@@ -260,10 +309,12 @@ function build(a){
    const pk=new Set();sc.forEach(([i])=>{pk.add(i);if(i+1<s0)pk.add(i+1)});let r='';
    for(const i of[...pk].sort((a,b)=>a-b)){const m=msgs[i],l=`[${day(m.ts)}] ${m.r==='user'?U:a.name}: ${m.t.slice(0,300)}\n`;if(r.length+l.length>1400)break;r+=l}
    if(r)sys+=`\nRelated moments from earlier in your conversation:\n${r}`}}
+ {const pp=st.pers?.find(x=>x.id===a.pid);if(pp?.bio)sys+=`\n\nAbout ${U}, the person you are talking to: ${pp.bio}`}
+ if(qaNote)sys+=`\n\n[Direction for this reply only: ${qaNote}]`;
  sys+=loreTxt();
  return[{role:'system',content:sys},...msgs.slice(s0).map(m=>({role:m.r,content:m.t}))]}
 async function memUp(a,p){
- const m=JSON.parse(JSON.stringify(mem)),n=msgs.length,U=a.user||'the user',all=msgs.slice();
+ const m=JSON.parse(JSON.stringify(mem)),n=msgs.length,U=unm(a)||'the user',all=msgs.slice();
  m.fu=Math.min(m.fu||0,n);m.su=Math.min(m.su||0,n);m.f=m.f||[];
  const tr=c=>c.map(x=>(x.r==='user'?U:a.name)+': '+x.t.slice(0,600)).join('\n');
  if(n-m.fu>=6){
@@ -280,32 +331,88 @@ async function memUp(a,p){
 
 /* ---------- chat flow ---------- */
 function add(m){m.id=uid();m.ts=Date.now();msgs.push(m);sv('c_'+v.id,msgs);if(m.r==='user')learn(m.t);sl()}
-function open(id,n='chat'){if(abort)abort.abort();v={n,id};const a=cur();msgs=ld('c_'+id,[]);lore=ld('l_'+id,[]);mem={f:[],s:'',su:0,fu:0,...ld('m_'+id,{})};stream=null;err='';
- if(n==='chat'&&!msgs.length&&a.greet)add({r:'assistant',t:a.greet.replace(/\{\{user\}\}/g,a.user||'you')});render()}
+function open(id,n='chat'){if(abort)abort.abort();v={n,id};ptab='ov';const a=cur();msgs=ld('c_'+id,[]);lore=ld('l_'+id,[]);mem={f:[],s:'',su:0,fu:0,...ld('m_'+id,{})};stream=null;err='';
+ if(n==='chat'&&!msgs.length&&a.greet)add({r:'assistant',t:a.greet.replace(/\{\{user\}\}/g,unm(a)||'you')});render();if(n==='chat')awayCheck()}
+let qaNote='',qaNext='',awayNote='',noAway=0,qaOpen=false,fbOnce=null;
+const QA=[['long','Longer','r','longer and more detailed, with more actions and feelings'],['short','Shorter','r','much shorter and to the point'],['emo','More emotion','r','much more emotional, with stronger feelings'],
+ ['scene','New scene','p','Move the story forward with a new scene or a change of setting. Describe it briefly and keep going.'],['skip','Time skip','p','Skip ahead in time by hours or days. Briefly say what happened, then continue from there.'],
+ ['ask','Ask me something','p','Ask me an interesting personal question that fits the moment.'],['steer','Steer…','s','']];
+function awayCheck(){const l=msgs.at(-1);if(noAway){noAway=0;return}if(!st.away||!l||stream!==null||!prof()||!msgs.some(m=>m.r==='user'))return;
+ const g=Date.now()-l.ts;if(g<(+st.awayH||6)*36e5)return;
+ qaNote=`The user has just come back after ${ago(g)} away. Greet them in character and react naturally to the time that passed and to where you left off. Never mention being an AI or this note.`;
+ setTimeout(()=>{if(v.n==='chat'&&stream===null)gen(l.r==='assistant')},400)}
+function ctxHtml(){const a=cur(),sm=(x,f)=>x.reduce((t,y)=>t+f(y),0),pe=est(a.pers||'')+est(RULES)+80,
+  me=st.mem?Math.min(2200,sm(mem.f,x=>x.t.length+3))/4+(mem.s?est(mem.s):0)+(msgs.length>8?350:0):0,
+  lo=Math.min(1600,sm(lore.filter(x=>!x.off&&x.always),x=>x.text.length+10))/4,ch=Math.min(st.ctx,sm(msgs,m=>est(m.t))),rp=+st.max||0,
+  tot=pe+me+lo+ch+rp,cw=+st.cw||16000,pc=Math.min(100,tot/cw*100),k=n=>n>=1000?(n/1000).toFixed(1).replace('.0','')+'k':Math.round(n);
+ return `<div class="cm ${pc>80?'hi':''}" style="max-width:none;height:6px;margin:.2rem 0 .6rem"><i style="width:${pc}%"></i></div><p class=lm><b>${k(tot)}</b> of ${k(cw)} tokens used (${Math.round(pc)}%)</p><p class=hint style="margin:.2rem 0 0">Character ${k(pe)}, memory ${k(me)}, lorebook ${k(lo)}, recent chat ${k(ch)}, room for the reply ${k(rp)}. This is an estimate. Set your model's size in Settings.</p>`}
+let busyT=0,ptab='ov';
+const unm=a=>st.pers?.find(x=>x.id===a?.pid)?.name||a?.user;
+const dl=(n,b)=>{const u=URL.createObjectURL(b),l=document.createElement('a');l.href=u;l.download=n;document.body.append(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),4000)};
+const fname=n=>(n||'file').replace(/[^\w\- ]+/g,'').trim().replace(/\s+/g,'-')||'file';
+const jparse=(raw,o)=>{try{return JSON.parse(raw.slice(raw.indexOf(o?'{':'['),raw.lastIndexOf(o?'}':']')+1))}catch{return null}};
+const dd=t=>new Date(t).toLocaleDateString(undefined,{dateStyle:'long'});
+function persDlg(p,n){const d=$('#dlg');d.innerHTML=`<h3 style="margin-top:0">${n?'New persona':'Edit persona'}</h3><label>Name (what characters call you)</label><input id=n-n value="${esc(p.name)}"><label>About you</label><textarea id=n-b rows=5 placeholder="Who you are in this story: age, job, looks, history…">${esc(p.bio||'')}</textarea><div class=row style="justify-content:flex-end;margin-top:1rem"><button data-a=pcancel>Cancel</button><button class=b data-a=nssave data-id=${p.id} data-new=${n?1:0}>Save</button></div>`;d.showModal()}
+function cardOf(a){return{spec:'chara_card_v2',spec_version:'2.0',data:{name:a.name,description:a.pers||'',personality:'',scenario:'',first_mes:a.greet||'',mes_example:'',creator_notes:a.tag||'',system_prompt:'',post_history_instructions:'',alternate_greetings:[],tags:a.tag?[a.tag]:[],creator:'Companion',character_version:'1',extensions:{companion:{emoji:a.emoji||'',tag:a.tag||''}},
+ character_book:lore.some(e=>!e.auto)?{name:a.name+' lore',extensions:{},entries:lore.filter(e=>!e.auto).map((e,i)=>({id:i,keys:e.keys||[],secondary_keys:[],content:e.text,comment:e.title,enabled:!e.off,insertion_order:i,constant:!!e.always,selective:false,extensions:{}}))}:undefined}}}
+const crc32=u=>{let c=-1;for(const x of u){c^=x;for(let k=0;k<8;k++)c=c&1?(c>>>1)^0xEDB88320:c>>>1}return(c^-1)>>>0};
+function embedPng(b,txt){let bs='';for(const x of new TextEncoder().encode(txt))bs+=String.fromCharCode(x);
+ const kw=new TextEncoder().encode('chara\0'),dt=new TextEncoder().encode(btoa(bs)),td=new Uint8Array(4+kw.length+dt.length);td.set(new TextEncoder().encode('tEXt'));td.set(kw,4);td.set(dt,4+kw.length);
+ const ch=new Uint8Array(8+td.length),dv=new DataView(ch.buffer);dv.setUint32(0,td.length-4);ch.set(td,4);dv.setUint32(4+td.length,crc32(td));
+ const e=b.length-12,o=new Uint8Array(b.length+ch.length);o.set(b.subarray(0,e));o.set(ch,e);o.set(b.subarray(e),e+ch.length);return o}
+async function cardPng(a){const im=new Image;im.src=a.img;await im.decode();const c=document.createElement('canvas');c.width=im.naturalWidth;c.height=im.naturalHeight;c.getContext('2d').drawImage(im,0,0);
+ const bl=await new Promise(r=>c.toBlob(r,'image/png')),b=new Uint8Array(await bl.arrayBuffer());dl(fname(a.name)+'.png',new Blob([embedPng(b,JSON.stringify(cardOf(a)))],{type:'image/png'}))}
+async function importCard(f){let j=null,img=null;
+ try{if(/\.png$/i.test(f.name)||f.type==='image/png'){const u=new Uint8Array(await f.arrayBuffer()),dv=new DataView(u.buffer);let o=8;
+   while(o+12<=u.length){const n=dv.getUint32(o);if(o+12+n>u.length)break;const ty=String.fromCharCode(...u.subarray(o+4,o+8));
+    if(ty==='tEXt'){const d=u.subarray(o+8,o+8+n),z=d.indexOf(0),k=new TextDecoder('latin1').decode(d.subarray(0,z));
+     if(k==='chara'||k==='ccv3'){j=JSON.parse(new TextDecoder().decode(Uint8Array.from(atob(new TextDecoder('latin1').decode(d.subarray(z+1))),c=>c.charCodeAt(0))));if(k==='chara')break}}
+    o+=12+n}
+   img=await rs(f,160,.85)}else j=JSON.parse(await f.text())}catch{return toast('That file is not a readable character card')}
+ const d=j?.data||j;if(!d||typeof d.name!=='string'||!d.name.trim())return toast('No character found in that file');
+ const nm=d.name.trim(),fx=t=>String(t||'').replace(/\{\{char\}\}/gi,nm),
+  pe=[d.description,d.personality&&'Personality: '+d.personality,d.scenario&&'Scenario: '+d.scenario,d.mes_example&&'Example dialogue:\n'+String(d.mes_example).slice(0,1500)].filter(Boolean).map(fx).join('\n\n');
+ if(!pe.trim())return toast('That card has no description');
+ const id=uid(),ex=d.extensions?.companion||{},tg=(Array.isArray(d.tags)?d.tags.join(', '):'')||String(d.creator_notes||'').slice(0,60);
+ av.push({id,name:nm,tag:String(ex.tag||tg).slice(0,80),emoji:ex.emoji||'🙂',img,user:'',pers:pe,greet:fx(d.first_mes)});
+ const bk=d.character_book?.entries;if(Array.isArray(bk)&&bk.length)sv('l_'+id,bk.filter(e=>e&&e.content).slice(0,100).map(e=>({id:uid(),title:String(e.comment||e.name||(e.keys||[])[0]||'Entry').slice(0,60),text:String(e.content).slice(0,500),keys:(Array.isArray(e.keys)?e.keys:[]).map(String).filter(Boolean),always:!!e.constant,off:e.enabled===false,auto:false,ts:Date.now(),hits:0})));
+ sv('av',av);toast('Imported '+nm);v={n:'home'};render()}
+function storyTxt(){const a=cur(),U=unm(a)||'You';return`${a.name} and ${U}\n${dd(msgs[0].ts)} to ${dd(msgs.at(-1).ts)}\n\n`+msgs.map(m=>`${m.r==='user'?U:a.name}: ${m.t}`).join('\n\n')+'\n'}
+function storyHtml(){const a=cur(),U=unm(a)||'You',f=t=>esc(t).replace(/\*([^*\n]+)\*/g,'<i>$1</i>').replace(/\n/g,'<br>');
+ return`<!doctype html><meta charset=utf-8><title>${esc(a.name)} and ${esc(U)}</title><style>body{font:12pt/1.5 Georgia,serif;max-width:40rem;margin:2rem auto;padding:0 1rem}h1{font-size:20pt;margin:0}p.d{color:#666;margin:.2rem 0 1.5rem}p{margin:.7rem 0}b{font:600 9pt system-ui,sans-serif;text-transform:uppercase;letter-spacing:.05em;color:#444}</style><h1>${esc(a.name)} and ${esc(U)}</h1><p class=d>${dd(msgs[0].ts)} to ${dd(msgs.at(-1).ts)}</p>${msgs.map(m=>`<p><b>${esc(m.r==='user'?U:a.name)}</b><br>${f(m.t)}</p>`).join('')}`}
+const hpin=s=>{let a=0xdeadbeef,b=0x41c6ce57;s='cmp:'+s;for(let i=0;i<s.length;i++){const c=s.charCodeAt(i);a=Math.imul(a^c,2654435761);b=Math.imul(b^c,1597334677)}
+ a=Math.imul(a^a>>>16,2246822507)^Math.imul(b^b>>>13,3266489909);b=Math.imul(b^b>>>16,2246822507)^Math.imul(a^a>>>13,3266489909);return(4294967296*(2097151&b)+(a>>>0)).toString(36)};
+function lockShow(){if(!st.pin||$('#lock'))return;if(VC.on)voiceOff();document.body.classList.add('locked');const d=document.createElement('div');d.id='lock';
+ d.innerHTML='<div class=brand>companion</div><p class=hint id=lm>Enter your PIN</p><input id=lp type=password inputmode=numeric autocomplete=off maxlength=12><button class=b id=lb>Unlock</button>';document.body.append(d);
+ const go=()=>{if(hpin($('#lp').value)===st.pin){d.remove();document.body.classList.remove('locked')}else{$('#lm').textContent='Wrong PIN';$('#lp').value=''}};$('#lb').onclick=go;$('#lp').onkeydown=e=>{if(e.key==='Enter')go()};setTimeout(()=>$('#lp').focus(),50)}
+let hidAt=0;document.addEventListener('visibilitychange',()=>{if(document.hidden)hidAt=Date.now();else if(st.pin&&hidAt&&Date.now()-hidAt>6e4)lockShow()});
+const bkBanner=()=>st.bkRem!==false&&av.length&&Date.now()-st.lastBk>6048e5&&Date.now()>(st.bkSnz||0)?`<div class=bn><span>It has been ${Math.floor((Date.now()-st.lastBk)/864e5)} days since your last backup. Everything lives in this browser, so a backup keeps your chats safe.</span><button class=b data-a=bknow>Back up now</button><button data-a=bklater>Later</button></div>`:'';
 const CONT="(Continue. Say something new in your own voice; do not wait for me.)";
 function addA(t,S){const m={r:'assistant',t};if(S){m.alts=[...(S.alts||[S.t]),t];m.si=m.alts.length-1;S.used=1}add(m)}
 async function gen(cont,S){
- const a=cur(),p=prof();if(!p){err='Add an API in Settings.';return drawMsgs()}
+ const a=cur(),p=fbOnce||prof();if(!p){err='Add an API in Settings.';return drawMsgs()}
  err='';stream='';VC.n=0;VC.mute=false;vs('Thinking…');drawMsgs();hdr();
  try{const out=strip(await chat(p,cont&&msgs.at(-1)?.r==='assistant'?[...build(a),{role:'user',content:CONT}]:build(a),st.temp,st.max,true,x=>{stream=strip(x);drawMsgs();vfeed(stream,false)})).trim();
   if(out){addA(out,S);vfeed(out,true)}else err='The model sent an empty reply.'}
- catch(e){if(e.name==='AbortError'){if(stream?.trim()&&v.id===a.id)addA(stream.trim(),S)}
+ catch(e){if(e.message==='Failed to fetch'&&a.fb&&!fbOnce){const m=mainP();if(m&&m.id!==p.id){fbOnce=m;toast('Could not reach '+p.name+', using '+m.name);stream=null;return gen(cont,S)}}
+  if(e.name==='AbortError'){if(stream?.trim()&&v.id===a.id)addA(stream.trim(),S)}
   else err=e.message==='Failed to fetch'&&/^https:/.test(p.url)?`Can't reach ${p.name}. Check your internet connection and API key. Some providers block requests from web pages; OpenRouter works from any page.`:e.message==='Failed to fetch'?`Can't reach ${p.url}. Check the server is running, the phone/PC is on the same Wi-Fi, the server allows CORS, and this page is opened over http or as a file (not https).`:e.message}
  if(S&&!S.used){if(v.id===a.id)msgs.push(S);else{const o=ld('c_'+a.id,[]);o.push(S);sv('c_'+a.id,o)}if(v.id===a.id)sv('c_'+a.id,msgs)}
+ qaNote='';awayNote='';fbOnce=null;
  stream=null;vdone();if(v.n==='chat'&&v.id===a.id){drawMsgs();hdr()}
  if(!err&&st.mem){mb=true;hdr();try{await memUp(a,p)}catch{}mb=false;if(v.n==='chat')hdr()}
  if(!err){try{await profUp(a,p)}catch{}try{await loreUp(a,p)}catch{}if(v.n==='chat')hdr();else if(v.n==='prof'||v.n==='lore')render()}}
-function send(){const t=$('#in'),x=t.value.trim();if(stream!==null)return;if(!x){const l=msgs.at(-1);if(l)gen(l.r==='assistant');return}t.value='';t.style.height='';add({r:'user',t:x});gen()}
+function send(){const t=$('#in'),x=t.value.trim();if(stream!==null)return;if(!x){const l=msgs.at(-1);if(l)gen(l.r==='assistant');return}t.value='';t.style.height='';if(qaNext){qaNote=qaNext;qaNext=''}add({r:'user',t:x});gen()}
 function regen(){if(stream!==null||!msgs.some(m=>m.r==='user'))return;let S=null;if(msgs.at(-1).r==='assistant'){S=msgs.pop();sv('c_'+v.id,msgs)}gen(false,S)}
 function branch(i){if(stream!==null)return;const a=cur(),m=msgs[i],n=i+1,id=uid(),M=JSON.parse(JSON.stringify(mem)),old=M.su>n;
  const nm={...M,f:M.f.filter(f=>f.ts<=m.ts),s:old?'':M.s,su:old?0:M.su,fu:Math.min(M.fu||0,n),pu:Math.min(M.pu||0,n),lu:Math.min(M.lu||0,n)};
  av.push({...a,id,tag:'⎇ Branch · '+day(m.ts)+(a.tag?' · '+a.tag.replace(/^⎇ Branch · [^·]*(· )?/,''):'')});sv('av',av);
- sv('c_'+id,msgs.slice(0,n));sv('m_'+id,nm);sv('l_'+id,lore.filter(e=>!e.auto));open(id);toast('Branched: this is a separate copy of the chat')}
+ sv('c_'+id,msgs.slice(0,n));sv('m_'+id,nm);sv('l_'+id,lore.filter(e=>!e.auto));noAway=1;open(id);toast('Branched: this is a separate copy of the chat')}
 function exportData(){const inc=confirm('Include your API keys in the backup?\n\nOK = include them (keep the file private)\nCancel = leave them out');const o={};
  for(let i=0;i<localStorage.length;i++){const k=localStorage.key(i);if(k==='st'||k==='av'||/^[cml]_/.test(k))o[k]=ld(k,null)}
  if(o.st&&!inc)o.st={...o.st,prof:(o.st.prof||[]).map(p=>({...p,key:''}))};
  const u=URL.createObjectURL(new Blob([JSON.stringify({app:'companion',v:1,at:Date.now(),data:o})],{type:'application/json'})),l=document.createElement('a');
- l.href=u;l.download='companion-backup-'+new Date().toISOString().slice(0,10)+'.json';document.body.append(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);toast('Backup downloaded')}
+ l.href=u;l.download='companion-backup-'+new Date().toISOString().slice(0,10)+'.json';document.body.append(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),4000);st.lastBk=Date.now();save();toast('Backup downloaded')}
 async function importData(f){let j;try{j=JSON.parse(await f.text())}catch{return toast('That file is not a valid backup')}
  const d=j&&j.app==='companion'&&j.data;if(!d||typeof d!=='object')return toast('That file is not a Companion backup');
  const ks=Object.keys(d).filter(k=>k==='st'||k==='av'||/^[cml]_/.test(k)),n=(d.av||[]).length;
@@ -340,40 +447,63 @@ speechSynthesis.onvoiceschanged=()=>{if(v.n==='set')render()};
 /* ---------- views ---------- */
 const hdr=()=>{const e=$('#sub');if(e)e.textContent=stream!==null?'typing…'+(recalled.length?' (recalling '+recalled.slice(0,2).join(', ')+')':''):mb?'remembering…':P().mood||cur()?.tag||'online'};
 function drawMsgs(){const el=$('#ml');if(!el)return;const a=cur(),near=$('#cv').scrollHeight-$('#cv').scrollTop-$('#cv').clientHeight<120;
- let h=msgs.map((m,i)=>{const u=m.r==='user';return `<div class="m ${u?'u':''}">${u?'':pic(a,2.2)}<div class=mc>${u?'':`<div class=nm>${esc(a.name)} <span class=tag>AI</span> <span class=tm>${rel(m.ts)}</span></div>`}<div class=bub>${rp(m.t)}</div>
-  <div class=ac>${u?'':`<button data-a=lk data-i=${i} class="${m.l?'lk':''}" title=Like>${m.l?'♥':'♡'}</button>`}<button data-a=tolore data-i=${i} title="Save to lorebook">📖</button>${!u&&m.alts?.length>1?`<button data-a=sw data-d=-1 data-i=${i} title="Previous reply">‹</button><span class=sc>${m.si+1}/${m.alts.length}</span><button data-a=sw data-d=1 data-i=${i} title="${i===msgs.length-1?'Next reply (or generate a new one)':'Next reply'}">›</button>`:''}<button data-a=cp data-i=${i} title=Copy>⧉</button><button data-a=br data-i=${i} title="Branch from here">⎇</button><button data-a=ed data-i=${i} title=Edit>✎</button><button data-a=rm data-i=${i} title=Delete>✕</button>${i===msgs.length-1&&m.r==='assistant'&&stream===null?'<button data-a=regen title=Regenerate>↻</button><button data-a=cont title="Continue (no message from you)">⏭</button>':''}</div></div></div>`}).join('');
+ let h=msgs.map((m,i)=>{const u=m.r==='user',gp=i&&m.ts-msgs[i-1].ts>216e5;return `${gp?`<div class=dv>${ago(m.ts-msgs[i-1].ts)} later, ${day(m.ts)}</div>`:''}<div class="m ${u?'u':''}">${u?'':pic(a,2.2)}<div class=mc>${u?'':`<div class=nm>${esc(a.name)} <span class=tag>AI</span> <span class=tm>${rel(m.ts)}</span></div>`}<div class=bub>${rp(m.t)}</div>${m.th?`<div class=th>💭 ${esc(m.th)}</div>`:''}
+  <div class=ac>${u?'':`<button data-a=lk data-i=${i} class="${m.l?'lk':''}" title=Like>${m.l?'♥':'♡'}</button>`}<button data-a=tolore data-i=${i} title="Save to lorebook">📖</button>${!u&&m.alts?.length>1?`<button data-a=sw data-d=-1 data-i=${i} title="Previous reply">‹</button><span class=sc>${m.si+1}/${m.alts.length}</span><button data-a=sw data-d=1 data-i=${i} title="${i===msgs.length-1?'Next reply (or generate a new one)':'Next reply'}">›</button>`:''}${!u&&i===msgs.length-1&&stream===null?`<button data-a=think data-i=${i} title="What are they thinking?">💭</button>`:''}<button data-a=cp data-i=${i} title=Copy>⧉</button><button data-a=br data-i=${i} title="Branch from here">⎇</button><button data-a=ed data-i=${i} title=Edit>✎</button><button data-a=rm data-i=${i} title=Delete>✕</button>${i===msgs.length-1&&m.r==='assistant'&&stream===null?'<button data-a=regen title=Regenerate>↻</button><button data-a=cont title="Continue (no message from you)">⏭</button>':''}</div></div></div>`}).join('');
  if(stream!==null)h+=`<div class=m>${pic(a,2.2)}<div class=mc><div class=nm>${esc(a.name)} <span class=tag>AI</span></div><div class=bub>${stream?rp(stream):'<span class=dots><span></span><span></span><span></span></span>'}</div></div></div>`;
  el.innerHTML=h;$('#send').textContent=stream!==null?'■':'➤';$('#err').innerHTML=err?`<p class=er>${esc(err)} <button data-a=regen>Retry</button></p>`:'';if(near||stream!==null)$('#cv').scrollTop=1e9}
 function render(){if(v.n!=='chat'&&VC.on)voiceOff();theme();document.body.classList.remove('sbo');const A=$('#pane');sb();
- if(v.n==='home')A.innerHTML=`<header><button class="ic mb" data-a=sb title=Menu>☰</button><h1>Characters<small>Pick someone to talk to</small></h1><button class=b data-a=new>＋ Create</button></header><main>${av.length?`<div class=grid>${av.map(a=>{const l=lastOf(a.id);return `<div class=card data-a=open data-n=prof data-id=${a.id}>${pic(a,4)}<div class=ci><b>${esc(a.name)}</b><p>${esc(a.tag)}</p><small>${l?esc(snip(l.t,50))+' ('+rel(l.ts)+')':'No chats yet'}</small></div></div>`}).join('')}</div>`:'<p class=empty>No one here yet.<br>Create your first character and start talking.</p>'}</main>`;
+ if(v.n==='home')A.innerHTML=`<header><button class="ic mb" data-a=sb title=Menu>☰</button><h1>Characters<small>Pick someone to talk to</small></h1><button class=t data-a=cimp>Import card</button><button class=b data-a=new>＋ Create</button></header><main><input type=file id=cardf accept=".json,.png,application/json,image/png" hidden>${bkBanner()}${av.length?`<div class=grid>${av.map(a=>{const l=lastOf(a.id);return `<div class=card data-a=open data-n=prof data-id=${a.id}>${pic(a,4)}<div class=ci><b>${esc(a.name)}</b><p>${esc(a.tag)}</p><small>${l?esc(snip(l.t,50))+' ('+rel(l.ts)+')':'No chats yet'}</small></div></div>`}).join('')}</div>`:'<p class=empty>No one here yet.<br>Create your first character and start talking.</p>'}</main>`;
  else if(v.n==='chat'){const a=cur();A.innerHTML=`<header><button class=ic data-a=go data-v=home title=Back>←</button><div class=hp data-a=go data-v=prof>${pic(a,2.6)}<h1>${esc(a.name)}<small id=sub></small></h1></div><button class="ic ${VC.on?'vo':''}" data-a=voice title="Voice chat">🎙</button><button class=ic data-a=go data-v=lore title=Lorebook>📖</button><button class=ic data-a=go data-v=mem title=Memory>🧠</button><button class=ic data-a=reset title="Reset conversation">⟲</button></header>
-  <main id=cv style="background:${bgCss()}"><div id=ml></div></main><footer><button id=vs data-a=vskip ${VC.on?'':'hidden'}>Listening…</button><div id=err></div><div class=row><textarea id=in rows=1 placeholder="Message ${esc(a.name)}…"></textarea><button class=b id=send data-a=send title="Send (leave empty to let them continue)">➤</button></div><p class=disc>This is AI and not a real person. Treat everything it says as fiction.</p></footer>`;
+  <main id=cv style="background:${bgCss()}"><div id=ml></div></main><footer><button id=vs data-a=vskip ${VC.on?'':'hidden'}>Listening…</button><div id=err></div><div class="qa ${qaOpen?'on':''}" id=qa>${QA.map(q=>`<button data-a=qa data-q=${q[0]}>${q[1]}</button>`).join('')}</div><div class=row><button class=ic id=qb data-a=qab title="Quick actions">✦</button><textarea id=in rows=1 placeholder="Message ${esc(a.name)}…"></textarea><button class=b id=send data-a=send title="Send (leave empty to let them continue)">➤</button></div><p class=disc>This is AI and not a real person. Treat everything it says as fiction.</p></footer>`;
   const t=$('#in');t.onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!matchMedia('(pointer:coarse)').matches){e.preventDefault();send()}};t.oninput=()=>{t.style.height='auto';t.style.height=Math.min(t.scrollHeight,128)+'px'};drawMsgs();hdr()}
- else if(v.n==='prof'){const a=cur(),p=P(),us=msgs.filter(m=>m.r==='user').length,lk=msgs.filter(m=>m.l).length,f=msgs[0],U=a.user||'You',
-  ch=(x,e)=>x&&x.length?x.map(t=>`<span class=chip>${esc(t)}</span>`).join(''):`<span class=hint>${e}</span>`;
-  A.innerHTML=`<header><button class="ic mb" data-a=sb title=Menu>☰</button><h1>${esc(a.name)}<small>Character profile</small></h1><button class=t data-a=edit data-id=${a.id}>Edit</button><button class=t data-a=del data-id=${a.id}>Delete</button></header>
-  <main><div class=pr><div class=ph>${pic(a,9)}<h2 class=pn>${esc(a.name)}</h2><p class=hint style="margin:0">${esc(a.tag)}</p><button class="b big" data-a=open data-id=${a.id}>Chat</button>
-  <div class=st><div><b>${us}</b>Interactions</div><div><b>${lk}</b>Likes</div><div><b>${f?day(f.ts):'Not yet'}</b>Talking since</div></div></div>
-  <div class=pb><section><h4>Last talk</h4>${msgs.length?msgs.slice(-3).map(m=>`<p class=lm><b>${m.r==='user'?esc(U):esc(a.name)}</b> ${esc(snip(m.t,170))}</p>`).join('')+`<small class=hint>${rel(msgs.at(-1).ts)}</small>`:'<p class=hint>You have not talked yet.</p>'}</section>
-  <section><h4>Right now</h4><p class=lm><b>Mood</b> ${esc(p.mood||'Not known yet')}</p><p class=lm><b>With you</b> ${esc(p.rel||'Not known yet')}</p></section>
-  <section><h4>${esc(a.name)} likes</h4>${ch(p.likes,'Learned as you chat.')}<h4 style="margin-top:.8rem">${esc(a.name)} dislikes</h4>${ch(p.dislikes,'Learned as you chat.')}</section>
-  <section><h4>What ${esc(a.name)} knows about you</h4><p class=hint style="margin:0 0 .4rem">You like</p>${ch(p.ul,'Say “I love …” in chat.')}<p class=hint style="margin:.6rem 0 .4rem">You dislike</p>${ch(p.ud,'Say “I hate …” in chat.')}</section>
-  <section><h4>Remembered</h4>${[...mem.f].reverse().slice(0,4).map(x=>`<p class=lm>${esc(x.t)}</p>`).join('')||'<p class=hint>Nothing saved yet.</p>'}<button class=t data-a=go data-v=mem>Open memory (${mem.f.length})</button></section>
-  <section><h4>Lorebook</h4><p class=lm>${lore.filter(e=>!e.auto).length} written by you, ${lore.filter(e=>e.auto).length} learned from chat</p>${[...lore].sort((x,y)=>y.ts-x.ts).slice(0,3).map(e=>`<p class=lm><b>${esc(e.title)}</b> ${esc(snip(e.text,90))}</p>`).join('')}<button class=t data-a=go data-v=lore>Open lorebook</button></section>
-  <section><h4>About</h4><p class=ab>${esc(a.pers)}</p></section></div></div></main>`}
+ else if(v.n==='prof'){const a=cur(),p=P(),U=unm(a)||'You',pp=st.pers?.find(x=>x.id===a.pid),f=msgs[0],h=[...a.name].reduce((x,c)=>(x*31+c.charCodeAt(0))%360,7),
+  days=f?Math.max(1,Math.ceil((Date.now()-f.ts)/864e5)):0,lk=msgs.filter(m=>m.l).length,
+  chips=(x,c,e)=>x&&x.length?x.map(t=>`<span class="chip ${c}">${esc(t)}</span>`).join(''):`<span class=hint>${e}</span>`,
+  meter=(l,n,c)=>`<div class=mt><span>${l}</span><div><i style="width:${n}%;background:${c}"></i></div><b>${n}</b></div>`,
+  mini=m=>`<div class="mini ${m.r==='user'?'u':''}">${rp(m.t)}</div>`,
+  tabs=[['ov','Overview'],['bd','Bond'],['mm','Memory'],['mg','Manage']],hid=k=>ptab===k?'':'hidden';
+  A.innerHTML=`<header><button class="ic mb" data-a=sb title=Menu>☰</button><button class=ic data-a=go data-v=home title=Back>←</button><h1>Profile</h1><button class=t data-a=edit data-id=${a.id}>Edit</button></header>
+  <main class=pg><div class=pgw style="--h:${h};${a.img?`--hbg:url('${a.img}') center/cover`:''}">
+  <div class=hero><div class=hin><div class=hav>${pic(a,7.5)}</div><div class=hx><h2 class=hn>${esc(a.name)}</h2><p class=ht>${esc(a.tag||'')}</p>
+  <div class=hs>${p.mood?`<span class=hc>Mood: ${esc(p.mood)}</span>`:''}${pp?`<span class=hc>You are ${esc(pp.name)}</span>`:''}</div><button class=cta data-a=open data-id=${a.id}>${msgs.length?'Continue chat':'Start chat'}</button></div></div></div>
+  <div class=sx><div><b>${msgs.length}</b><small>Messages</small></div><div><b>${days}</b><small>Days</small></div><div><b>${mem.f.length+lore.length}</b><small>Memories</small></div><div><b>${lk}</b><small>Liked</small></div></div>
+  <div class=tb>${tabs.map(([k,l])=>`<button data-a=ptab data-t=${k} class="${ptab===k?'on':''}">${l}</button>`).join('')}</div>
+  <div class=tp data-t=ov ${hid('ov')}>
+   <h3 class=sh>Where you left off</h3>${msgs.length?`<div class=prev>${msgs.slice(-3).map(mini).join('')}<small class=hint>${rel(msgs.at(-1).ts)}</small></div>`:'<p class=hint>No messages yet. Say hello.</p>'}
+   <h3 class=sh>Right now</h3><div class=tiles><div class=tile><small>Mood</small><b>${esc(p.mood||'Not known yet')}</b></div><div class=tile><small>With you</small><b>${esc(p.rel||'Not known yet')}</b></div></div>
+   <h3 class=sh>${esc(a.name)} likes</h3>${chips(p.likes,'lv','Learned as you chat.')}
+   <h3 class=sh>${esc(a.name)} dislikes</h3>${chips(p.dislikes,'dl','Learned as you chat.')}
+   <h3 class=sh>About</h3><p class=ab>${esc(a.pers)}</p>${(a.pers||'').length>260?'<button class=lk2 data-a=more>Read more</button>':''}</div>
+  <div class=tp data-t=bd ${hid('bd')}>
+   <h3 class=sh>How ${esc(a.name)} feels</h3>${p.rs?meter('Trust',p.rs.trust,'linear-gradient(90deg,#3d78f5,#7aa7ff)')+meter('Affection',p.rs.aff,'linear-gradient(90deg,#e0568d,#ff8fb5)')+meter('Jealousy',p.rs.jel,'linear-gradient(90deg,#e08a2f,#ffc062)'):'<p class=hint>Appears after a few messages.</p>'}
+   <h3 class=sh>Big moments</h3>${(p.tl||[]).length?`<div class=tl>${[...p.tl].reverse().slice(0,10).map(x=>`<p>${esc(x.t)}<small>${day(x.ts)}</small></p>`).join('')}</div>`:'<p class=hint>Key moments are added as your story unfolds.</p>'}
+   <h3 class=sh>What ${esc(a.name)} knows about you</h3><p class=hint style="margin:0 0 .4rem">You like</p>${chips(p.ul,'lv','Say “I love …” in chat.')}<p class=hint style="margin:.9rem 0 .4rem">You dislike</p>${chips(p.ud,'dl','Say “I hate …” in chat.')}
+   <h3 class=sh>Playing as</h3><select id=pid><option value="">${esc(a.user||'Default name')}</option>${(st.pers||[]).map(x=>`<option value="${esc(x.id)}" ${a.pid===x.id?'selected':''}>${esc(x.name)}</option>`).join('')}</select><p class=hint style="margin:.4rem 0 0">Manage personas in Settings.</p></div>
+  <div class=tp data-t=mm ${hid('mm')}>
+   <h3 class=sh>Remembered</h3>${[...mem.f].reverse().slice(0,6).map(x=>`<p class=fl>${esc(x.t)}</p>`).join('')||'<p class=hint>Nothing saved yet.</p>'}<button class=t data-a=go data-v=mem>Open memory (${mem.f.length})</button>
+   <h3 class=sh>Lorebook</h3><p class=lm>${lore.filter(e=>!e.auto).length} written by you, ${lore.filter(e=>e.auto).length} learned from chat</p>${[...lore].sort((x,y)=>y.ts-x.ts).slice(0,3).map(e=>`<p class=fl><b>${esc(e.title)}</b> ${esc(snip(e.text,90))}</p>`).join('')}<button class=t data-a=go data-v=lore>Open lorebook</button>
+   <h3 class=sh>Context window</h3>${ctxHtml()}</div>
+  <div class=tp data-t=mg ${hid('mg')}>
+   <h3 class=sh>Share and export</h3><div class=row style="flex-wrap:wrap"><button class=t data-a=cardj>Card (.json)</button>${a.img?'<button class=t data-a=cardp>Card with photo (.png)</button>':''}<button class=t data-a=storyt>Story (.txt)</button><button class=t data-a=storyp>Story (PDF)</button></div>
+   <h3 class=sh>AI connection</h3><p class=lm>${esc(prof(a)?.name||'None')}${a.conn?'':' (your main connection)'}</p><p class=hint>Change it with Edit.</p>
+   <h3 class=sh>Danger zone</h3><button class=dgr data-a=del data-id=${a.id}>Delete ${esc(a.name)}</button><p class=hint>Removes the character, chat, memory and lorebook.</p></div>
+  </div></main>`}
  else if(v.n==='lore'){const a=cur(),L=[...lore].sort((x,y)=>(x.auto?1:0)-(y.auto?1:0)||y.ts-x.ts);
   const card=e=>`<div class="lc ${e.off?'off':''}"><div class=lh><b>${esc(e.title)}</b><span class="tag ${e.auto?'au':''}">${e.auto?'Learned from chat':'You wrote'}</span>${e.always?'<span class=tag>Always on</span>':''}</div><p>${esc(e.text)}</p><small class=hint>Triggers: ${esc((e.keys||[]).join(', ')||'none')}. ${e.hits?`Recalled ${e.hits} time${e.hits>1?'s':''}, last ${rel(e.last)}.`:'Not recalled yet.'}</small><div class=la><button data-a=lon data-id=${e.id}>${e.off?'Turn on':'Turn off'}</button><button data-a=led data-id=${e.id}>Edit</button><button data-a=ldel data-id=${e.id}>Delete</button></div></div>`;
   A.innerHTML=`<header><button class=ic data-a=go data-v=chat title=Back>←</button><h1>${esc(a.name)}’s lorebook<small>${lore.length} entr${lore.length===1?'y':'ies'}</small></h1><button class=b data-a=ladd>＋ Add entry</button></header><main><p class=hint>Entries you write are never changed by the AI. Entries learned from chat update as you talk. When a trigger word comes up, the matching entry is handed to ${esc(a.name)} so they recall it clearly.</p>${L.map(card).join('')||'<p class=empty>No entries yet.<br>Add one, or keep chatting and they will appear.</p>'}</main>`}
  else if(v.n==='edit'){const a=cur()||{};A.innerHTML=`<header><button class=ic data-a=go data-v=${a.id?'home':'home'}>←</button><h1>${a.id?'Edit avatar':'New avatar'}</h1><button class="b" data-a=save>Save</button></header><main>
+  <div class=pb style="margin-bottom:1rem"><section><h4>✨ Character assistant</h4><p class=hint style="margin:0 0 .5rem">Describe who you want in a line or two and the AI fills in the form below. You can edit everything afterwards.</p><textarea id=cg rows=2 placeholder="e.g. a possessive 24-year-old billionaire with red hair who is secretly lonely"></textarea><div class=row style="margin-top:.5rem"><button class=t data-a=cgen>Write it for me</button><span id=cgs class=hint style="flex:1"></span></div></section></div>
   <div style="display:flex;gap:1rem;align-items:center"><span id=pv>${pic({img:ei,emoji:a.emoji},5)}</span><div><input type=file id=fi accept="image/*" hidden><button class=t data-a=photo>Choose photo</button> <button data-a=nophoto>Remove</button></div></div>
   <label>Emoji (used when there is no photo)</label><input id=e-emo maxlength=4 value="${esc(a.emoji||'🙂')}"><label>Name</label><input id=e-name value="${esc(a.name)}"><label>Short tagline</label><input id=e-tag value="${esc(a.tag)}">
   <label>What they call you</label><input id=e-user value="${esc(a.user)}"><label>Personality & backstory</label><textarea id=e-pers rows=7>${esc(a.pers)}</textarea><p class=hint>Age, looks, voice, history, quirks, how they talk, how they feel about you. The more specific, the more real. Use {{user}} for your name.</p>
-  <label>First message (optional)</label><textarea id=e-greet rows=3>${esc(a.greet)}</textarea></main>`;
+  <label>First message (optional)</label><textarea id=e-greet rows=3>${esc(a.greet)}</textarea>
+  <label>AI connection for this character</label><select id=e-conn><option value="">Use my main connection</option>${st.prof.map(p=>`<option value="${esc(p.id)}" ${a.conn===p.id?'selected':''}>${esc(p.name)}</option>`).join('')}</select>
+  <label style="display:flex;gap:.6rem;align-items:center;color:var(--tx);font-size:.95rem"><input type=checkbox id=e-fb style="width:auto" ${a.fb?'checked':''}> If it cannot be reached, use my main connection</label></main>`;
   $('#fi').onchange=async e=>{const f=e.target.files[0];if(f){ei=await rs(f,160,.85);$('#pv').innerHTML=pic({img:ei},5)}}}
  else if(v.n==='mem'){A.innerHTML=`<header><button class=ic data-a=go data-v=chat>←</button><h1>What ${esc(cur().name)} remembers</h1></header><main><p class=hint>Key details are saved automatically as you chat, and the full history is searched whenever you mention something from the past. Pinned facts are always kept in mind.</p>
   <div class=row><input id=nf placeholder="Add a fact to remember…"><button class=t data-a=addfact>Add</button></div>${mem.s?`<h2>Story so far</h2><p>${esc(mem.s)}</p>`:''}<h2>Facts</h2>
   ${[...mem.f].reverse().map(f=>`<div class=fact><span>${esc(f.t)}</span><button data-a=pin data-id=${f.id} style="opacity:${f.p?1:.35}">📌</button><button data-a=delfact data-id=${f.id}>✕</button></div>`).join('')||'<p class=hint>Nothing yet.</p>'}
-  ${mem.f.length||mem.s?'<button data-a=clrmem>Clear memory (keeps the chat)</button>':''}</main>`}
+  ${mem.f.length>5?'<button class=t data-a=tidy>🧹 Tidy memory</button> ':''}${mem.fb?'<button data-a=untidy>Undo last tidy</button> ':''}${mem.f.length||mem.s?'<button data-a=clrmem>Clear memory (keeps the chat)</button>':''}</main>`}
  else if(v.n==='set'){A.innerHTML=`<header><button class=ic data-a=go data-v=home>←</button><h1>Settings</h1></header><main>
   <h2>Appearance</h2><label>Theme</label><select data-k=theme>${['system','light','dark'].map(x=>`<option ${st.theme===x?'selected':''}>${x}</option>`).join('')}</select>
   <label>Text size (${Math.round(st.scale*100)}%)</label><input type=range min=.8 max=1.6 step=.1 value=${st.scale} data-k=scale data-c=1>
@@ -388,9 +518,14 @@ function render(){if(v.n!=='chat'&&VC.on)voiceOff();theme();document.body.classL
   <h2>Background updates</h2><p class=hint>Each one sends an extra request to your AI every few messages. Turn them off if your server is slow or handles one request at a time.</p>
   <label style="display:flex;gap:.6rem;align-items:center;color:var(--tx);font-size:1rem"><input type=checkbox style="width:auto" ${st.bgp?'checked':''} data-k=bgp> Profile: mood, likes and dislikes</label>
   <label style="display:flex;gap:.6rem;align-items:center;color:var(--tx);font-size:1rem"><input type=checkbox style="width:auto" ${st.bgl?'checked':''} data-k=bgl> Lorebook: learn new entries from chat</label>
+  <h2>While you were away</h2><label style="display:flex;gap:.6rem;align-items:center;color:var(--tx);font-size:1rem"><input type=checkbox style="width:auto" ${st.away?'checked':''} data-k=away> They message you when you come back after a break</label>
+  <label>Counts as a break after</label><select data-k=awayH>${[1,3,6,12,24,48].map(h=>`<option value=${h} ${+st.awayH===h?'selected':''}>${h} hour${h>1?'s':''}</option>`).join('')}</select>
+  <h2>Context meter</h2><label>Your model's context size</label><select data-k=cw>${[4000,8000,16000,32000,64000,128000,200000].map(n=>`<option value=${n} ${+st.cw===n?'selected':''}>${n/1000}k tokens</option>`).join('')}</select><p class=hint>The bar under the chat box shows roughly how much of this the next request uses.</p>
   <h2>Voice chat</h2><p class=hint>Tap 🎙 in a chat to talk back and forth hands-free. It uses your browser's built-in speech tools (Chrome, Edge or Safari); some browsers send the audio to their speech service.</p><label>Voice</label><select data-k=vv><option value="">Default</option>${(window.speechSynthesis?speechSynthesis.getVoices():[]).map(x=>`<option value="${esc(x.name)}" ${st.vv===x.name?'selected':''}>${esc(x.name)} (${esc(x.lang)})</option>`).join('')}</select>
   <label>Speaking speed (${st.vr})</label><input type=range min=.7 max=1.5 step=.05 value=${st.vr} data-k=vr data-c=1>
-  <h2>Backup</h2><p class=hint>Save every character, chat, memory and lorebook to a file, or restore them here or on another device.</p><div class=row><button class=t data-a=exp>Download backup</button><button class=t data-a=imp>Restore from file</button></div><input type=file id=bkf accept="application/json,.json" hidden></main>`}}
+  <h2>Personas</h2><p class=hint>Different versions of who you are. Pick one per character on that character's profile page.</p>${(st.pers||[]).map(x=>`<div class=pf><div><b>${esc(x.name)}</b><small>${esc(snip(x.bio||'',60))}</small></div><button data-a=nsed data-id=${x.id}>✎</button><button data-a=nsdel data-id=${x.id}>🗑</button></div>`).join('')}<button class=t data-a=nsnew>+ Add persona</button>
+  <h2>Privacy lock</h2><p class=hint>Asks for a PIN when the app opens and after it has been in the background for a minute. It keeps people from browsing your chats, but it is not encryption. If you forget the PIN, restore from a backup in a fresh browser profile.</p><div class=row>${st.pin?'<button class=t data-a=pinset>Change PIN</button><button class=t data-a=pinoff>Remove PIN</button>':'<button class=t data-a=pinset>Set a PIN</button>'}</div>
+  <h2>Backup</h2><p class=hint>Save every character, chat, memory and lorebook to a file, or restore them here or on another device.</p><div class=row><button class=t data-a=exp>Download backup</button><button class=t data-a=imp>Restore from file</button></div><label style="display:flex;gap:.6rem;align-items:center;color:var(--tx);font-size:1rem"><input type=checkbox style="width:auto" ${st.bkRem!==false?'checked':''} data-k=bkRem> Remind me to back up every week</label><p class=hint>Last backup: ${st.lastBk?dd(st.lastBk):'never'}</p><input type=file id=bkf accept="application/json,.json" hidden></main>`}}
 function profDlg(p,isNew){const d=$('#dlg'),k=p.pre||'local',loc=k==='local'?' (optional)':'';
  d.innerHTML=`<h3 style="margin-top:0">AI connection</h3><label>Provider</label><select id=p-pt>${Object.entries(PV).map(([x,o])=>`<option value=${x} ${x===k?'selected':''}>${o.n}</option>`).join('')}</select><p class=hint id=p-h>${esc(PV[k].h)}</p>
  <label>Name</label><input id=p-n value="${esc(p.name)}"><label>Server address</label><input id=p-u value="${esc(p.url)}"><label>API key${loc}</label><input id=p-k type=password value="${esc(p.key)}" autocomplete=off><label>Model name${loc}</label><input id=p-m value="${esc(p.model)}"><div id=chips class=chips></div>
@@ -418,15 +553,53 @@ document.addEventListener('click',async e=>{const t=e.target.closest('[data-a]')
  else if(a==='del'){e.stopPropagation();if(confirm('Delete this avatar, its chat and its memory?')){av=av.filter(x=>x.id!==d.id);sv('av',av);localStorage.removeItem('c_'+d.id);localStorage.removeItem('m_'+d.id);localStorage.removeItem('l_'+d.id);v={n:'home'};render()}}
  else if(a==='photo')$('#fi').click();else if(a==='nophoto'){ei=null;$('#pv').innerHTML=pic({emoji:$('#e-emo').value},5)}
  else if(a==='save'){const n=$('#e-name').value.trim(),p=$('#e-pers').value.trim();if(!n||!p)return toast('Name and personality are required');
-  const o={id:v.id||uid(),name:n,tag:$('#e-tag').value.trim(),emoji:$('#e-emo').value.trim()||'🙂',img:ei,user:$('#e-user').value.trim(),pers:p,greet:$('#e-greet').value.trim()};
+  const o={id:v.id||uid(),name:n,tag:$('#e-tag').value.trim(),emoji:$('#e-emo').value.trim()||'🙂',img:ei,user:$('#e-user').value.trim(),pers:p,greet:$('#e-greet').value.trim(),conn:$('#e-conn').value,fb:$('#e-fb').checked};
   av=av.some(x=>x.id===o.id)?av.map(x=>x.id===o.id?o:x):[...av,o];sv('av',av);v={n:'home'};render()}
  else if(a==='send'||t.id==='send'){stream!==null?abort&&abort.abort():send()}
  else if(a==='regen')regen();
+ else if(a==='qab'){qaOpen=!qaOpen;$('#qa')?.classList.toggle('on',qaOpen)}
+ else if(a==='qa'){if(stream!==null)return;const q=QA.find(x=>x[0]===d.q);
+  if(q[2]==='s'){const x=prompt('Steer the story. Only the AI sees this, and it applies to your next message:');if(x?.trim()){qaNext=x.trim();toast('Direction saved for your next message')}return}
+  if(!msgs.some(m=>m.r==='user'))return toast('Send a message first');
+  if(q[2]==='r'){if(msgs.at(-1).r!=='assistant')return;qaNote=`Reply to my last message again, but make the reply ${q[3]}.`;const S=msgs.pop();sv('c_'+v.id,msgs);gen(false,S)}
+  else{qaNote=q[3];gen(msgs.at(-1).r==='assistant')}}
+ else if(a==='cimp')$('#cardf').click();
+ else if(a==='cardj')dl(fname(cur().name)+'.json',new Blob([JSON.stringify(cardOf(cur()),null,2)],{type:'application/json'}));
+ else if(a==='cardp'){try{await cardPng(cur())}catch{toast('Could not build the PNG card')}}
+ else if(a==='storyt'){if(!msgs.length)return toast('No chat yet');dl(fname(cur().name)+'-story.txt',new Blob([storyTxt()],{type:'text/plain'}))}
+ else if(a==='storyp'){if(!msgs.length)return toast('No chat yet');const w=window.open('','_blank');if(!w)return toast('Allow pop-ups, then try again');w.document.write(storyHtml());w.document.close();setTimeout(()=>{w.focus();w.print()},500);toast('Choose Save as PDF in the print window')}
+ else if(a==='bknow'){exportData();render()}
+ else if(a==='bklater'){st.bkSnz=Date.now()+2*864e5;save();render()}
+ else if(a==='nsnew')persDlg({id:uid(),name:'',bio:''},1);
+ else if(a==='nsed')persDlg(st.pers.find(x=>x.id===d.id),0);
+ else if(a==='nsdel'){if(confirm('Delete this persona?')){st.pers=st.pers.filter(x=>x.id!==d.id);let ch=0;av.forEach(x=>{if(x.pid===d.id){delete x.pid;ch=1}});if(ch)sv('av',av);save();render()}}
+ else if(a==='nssave'){const n=$('#n-n').value.trim();if(!n)return toast('A name is required');const o={id:d.id,name:n,bio:$('#n-b').value.trim()};st.pers=d.new==='1'?[...(st.pers||[]),o]:st.pers.map(x=>x.id===o.id?o:x);save();$('#dlg').close();render()}
+ else if(a==='pinset'){if(st.pin&&hpin(prompt('Enter your current PIN')||'')!==st.pin)return toast('Wrong PIN');const n=prompt('New PIN (4 to 12 digits)');if(!n)return;if(!/^\d{4,12}$/.test(n))return toast('Use 4 to 12 digits');if(prompt('Type the new PIN again')!==n)return toast('The PINs did not match');st.pin=hpin(n);save();toast('PIN saved');render()}
+ else if(a==='pinoff'){if(hpin(prompt('Enter your PIN to remove it')||'')!==st.pin)return toast('Wrong PIN');delete st.pin;save();render()}
+ else if(a==='think'){if(stream!==null||busyT)return;const m=msgs[i],a0=cur(),p=prof();if(!p||i!==msgs.length-1||m.r!=='assistant')return;busyT=1;toast('Reading their mind…');
+  try{const q=[...build(a0),{role:'user',content:`(Out of character: write ${a0.name}'s private inner thoughts about what just happened, in first person, honest and unfiltered, 1 to 3 sentences. Do not continue the roleplay or address me.)`}];
+   const t=strip(await chat(p,q,.9,250,false)).trim();if(t){m.th=t;sv('c_'+a0.id,msgs);if(v.id===a0.id)drawMsgs()}else toast('No thought came back')}catch(x){toast(x.message.slice(0,80))}busyT=0}
+ else if(a==='tidy'){if(stream!==null||busyT)return;const p=prof(),id0=v.id,un=mem.f.filter(f=>!f.p);if(!p)return;if(un.length<4)return toast('Not enough facts to tidy');busyT=1;toast('Tidying memory…');
+  try{const raw=strip(await chat(p,[{role:'system',content:'You clean up a list of remembered facts. Output ONLY a JSON array of strings, nothing else.'},{role:'user',content:`Facts, oldest first:\n${un.map(f=>'- '+f.t).join('\n')}\n\nMerge duplicates and near-duplicates into single facts. When facts contradict, keep only the newest one. Drop trivial or outdated facts. Never invent or change details; keep names, dates and numbers exactly. Each fact stays a standalone sentence. Return the cleaned list.`}],.1,1500,false)),r=jparse(raw,0);
+   const out=Array.isArray(r)?[...new Set(r.filter(x=>typeof x==='string'&&x.trim().length>3&&x.length<400).map(x=>x.trim()))]:[];
+   if(v.id!==id0||v.n!=='mem'){busyT=0;return}
+   if(out.length<Math.ceil(un.length*.3)||out.length>un.length)toast('The AI result looked wrong, nothing was changed');
+   else if(confirm(`Replace ${un.length} facts with ${out.length} tidied ones?\n\nYou can undo this afterwards.`)){mem.fb=mem.f;const now=Date.now();mem.f=[...mem.f.filter(f=>f.p),...out.map(t=>({id:uid(),t,ts:now}))];sv('m_'+id0,mem);render()}}
+  catch(x){toast(x.message.slice(0,80))}busyT=0}
+ else if(a==='untidy'){if(mem.fb){mem.f=mem.fb;delete mem.fb;sv('m_'+v.id,mem);render()}}
+ else if(a==='cgen'){const x=$('#cg').value.trim(),s2=$('#cgs');if(!x)return toast('Describe the character first');const ap=st.prof.find(q=>q.id===$('#e-conn').value)||mainP();if(!ap||busyT)return;busyT=1;s2.textContent='Writing…';
+  try{const raw=strip(await chat(ap,[{role:'system',content:'You write roleplay character cards. Output ONLY a JSON object, nothing else.'},{role:'user',content:`Idea: ${x}\n\nReturn JSON with keys: "name", "tag" (short tagline, max 8 words), "emoji" (one emoji), "pers" (personality and backstory in plain third-person prose, 150 to 300 words: age, looks, voice, history, quirks, how they speak, how they feel about {{user}}; write {{user}} for the person talking to them), "greet" (their first message in roleplay style, actions in *asterisks*, 40 to 120 words, addressed to {{user}}).`}],.9,1200,false)),j=jparse(raw,1);
+   if(!$('#e-name')){busyT=0;return}
+   if(!j||typeof j.name!=='string'||typeof j.pers!=='string')s2.textContent='The AI did not return a usable card. Try again.';
+   else{const f=(id,t)=>{if(typeof t==='string'&&t.trim())$(id).value=t.trim()};f('#e-name',j.name);f('#e-tag',j.tag);f('#e-emo',(j.emoji||'').slice(0,4));f('#e-pers',j.pers);f('#e-greet',j.greet);s2.textContent='Done. Review it, then press Save.'}}
+  catch(e2){if(s2.isConnected)s2.textContent=e2.message.slice(0,100)}busyT=0}
+ else if(a==='ptab'){ptab=d.t;document.querySelectorAll('.tb button').forEach(b=>b.classList.toggle('on',b.dataset.t===ptab));document.querySelectorAll('.tp').forEach(q=>q.hidden=q.dataset.t!==ptab)}
+ else if(a==='more'){const b=t.previousElementSibling;b.classList.toggle('open');t.textContent=b.classList.contains('open')?'Show less':'Read more'}
  else if(a==='voice')VC.on?voiceOff():voiceOn();
  else if(a==='vskip'){if(VC.q>0){VC.mute=true;speechSynthesis.cancel()}}
  else if(a==='cont'){if(stream===null)gen(true)}
  else if(a==='br')branch(i);
- else if(a==='sw'){if(stream!==null)return;const m=msgs[i],k=m.si+ +d.d;if(k>=m.alts.length&&i===msgs.length-1)return regen();if(k<0||k>=m.alts.length)return;m.si=k;m.t=m.alts[k];sv('c_'+v.id,msgs);drawMsgs()}
+ else if(a==='sw'){if(stream!==null)return;const m=msgs[i],k=m.si+ +d.d;if(k>=m.alts.length&&i===msgs.length-1)return regen();if(k<0||k>=m.alts.length)return;m.si=k;m.t=m.alts[k];delete m.th;sv('c_'+v.id,msgs);drawMsgs()}
  else if(a==='exp')exportData();else if(a==='imp')$('#bkf').click();
  else if(a==='cp'){navigator.clipboard?.writeText(msgs[i].t);toast('Copied')}
  else if(a==='ed'){const x=prompt('Edit message',msgs[i].t);if(x?.trim()){msgs[i].t=x.trim();if(msgs[i].alts)msgs[i].alts[msgs[i].si]=msgs[i].t;sv('c_'+v.id,msgs);drawMsgs()}}
@@ -450,7 +623,9 @@ document.addEventListener('click',async e=>{const t=e.target.closest('[data-a]')
 document.addEventListener('input',e=>{const t=e.target,k=t.dataset.k;if(!k)return;st[k]=t.type==='checkbox'?t.checked:t.type==='range'?+t.value:t.value;save();if(k==='theme')theme();if(t.dataset.c)t.previousElementSibling.textContent=t.previousElementSibling.textContent.replace(/\(.*?\)/,`(${k==='scale'?Math.round(st.scale*100)+'%':k==='max'?st.max+' tokens':k==='ctx'?'~'+st.ctx+' tokens':k==='vr'?st.vr:st.temp})`);if(k==='scale')theme()});
 document.addEventListener('change',async e=>{if(e.target.id==='bkf'&&e.target.files[0]){await importData(e.target.files[0]);e.target.value=''}if(e.target.id==='bgf'&&e.target.files[0]){st.img=await rs(e.target.files[0],1000,.7);st.bg='image';save();render()}if(e.target.dataset.k==='dim')render()});
 document.addEventListener('input',e=>{if(e.target.id==='sq')sl()});
+document.addEventListener('change',async e=>{const t=e.target;if(t.id==='cardf'&&t.files[0]){await importCard(t.files[0]);t.value=''}if(t.id==='pid'){const a0=cur();a0.pid=t.value;sv('av',av);toast('Now playing as '+(unm(a0)||'the default name'))}});
 document.addEventListener('change',e=>{if(e.target.id!=='p-pt')return;const o=PV[e.target.value];$('#p-n').value=o.n;$('#p-u').value=o.u;$('#p-m').value=o.m;$('#p-h').textContent=o.h});
 matchMedia('(prefers-color-scheme:dark)').addEventListener('change',theme);
-render();
+if(!st.lastBk){st.lastBk=Date.now();save()}
+lockShow();render();
 </script></body></html>
