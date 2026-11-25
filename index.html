@@ -78,6 +78,48 @@ dialog::backdrop{background:#0008}
 .lm{margin:.25rem 0;font-size:.92rem}.lm b{font-weight:600}
 .ab{margin:0;color:var(--mu);font-size:.9rem;display:-webkit-box;-webkit-line-clamp:7;-webkit-box-orient:vertical;overflow:hidden}
 #bk{display:none}
+body{background:radial-gradient(70rem 36rem at 90% -10%,hsl(225 80% 45%/.17),transparent 60%),radial-gradient(50rem 40rem at -10% 105%,hsl(300 60% 40%/.11),transparent 60%),var(--bg);background-attachment:fixed}
+header{backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);background:color-mix(in srgb,var(--bg) 80%,transparent)}
+.hp h1{min-width:0}.hp h1 small{white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:11rem}.hp .pic{border:2px solid hsl(var(--h,220) 65% 62%)}
+.b{background:linear-gradient(135deg,var(--pr),hsl(268 78% 62%));border-radius:2rem;padding:.5rem 1.1rem}
+main>h2{display:flex;align-items:center;gap:.7rem;font-size:.74rem;letter-spacing:.1em;text-transform:uppercase;color:var(--pr);margin:2rem 0 .6rem}
+main>h2::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,var(--ln),transparent)}
+label:not([style]){font-size:.72rem;text-transform:uppercase;letter-spacing:.07em}
+input[type=range]{accent-color:var(--pr);padding:0;border:0;background:none}input[type=checkbox],input[type=radio]{accent-color:var(--pr)}
+input:focus,textarea:focus,select:focus{border-color:var(--pr);outline:none;box-shadow:0 0 0 3px color-mix(in srgb,var(--pr) 25%,transparent)}
+.pf{background:var(--sf);border:1px solid var(--ln);border-radius:1rem;padding:.6rem .8rem;margin:.4rem 0}
+.grid{grid-template-columns:repeat(auto-fill,minmax(14rem,1fr))}
+.ct{position:relative;border-radius:1.4rem;padding:1.1rem .9rem .9rem;background:linear-gradient(165deg,hsl(var(--h) 55% 30%/.85),var(--sf) 75%);border:1px solid hsl(var(--h) 50% 50%/.25);display:flex;flex-direction:column;align-items:center;text-align:center;gap:.15rem;cursor:pointer;min-height:11.5rem;transition:transform .15s}
+.ct:active{transform:scale(.97)}
+.ct .pic{border:2px solid hsl(var(--h) 70% 62%);box-shadow:0 6px 20px hsl(var(--h) 70% 40%/.45)}
+.ct b{margin-top:.6rem;font-size:1.02rem}.ct p{margin:0;font-size:.78rem;opacity:.65;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.ct small{margin-top:auto;padding-top:.6rem;color:var(--mu);font-size:.72rem}
+main>.cont,main>.sh{max-width:62rem}
+.cont{display:flex;gap:1rem;align-items:center;position:relative;overflow:hidden;isolation:isolate;border-radius:1.5rem;padding:1.2rem;margin:0 auto .4rem;cursor:pointer;border:1px solid hsl(var(--h) 50% 55%/.3)}
+.cont::before{content:"";position:absolute;inset:-2rem;z-index:-2;background:var(--hbg,linear-gradient(135deg,hsl(var(--h) 60% 40%),hsl(calc(var(--h) + 45) 55% 22%)));filter:blur(24px) saturate(1.3);opacity:.75}
+.cont::after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(90deg,var(--bg),transparent 130%);opacity:.55}
+.cb{min-width:0;flex:1}.cb small{text-transform:uppercase;letter-spacing:.1em;font-size:.68rem;opacity:.8}.cb b{display:block;font-size:1.45rem;letter-spacing:-.02em}
+.cb p{margin:.3rem 0;opacity:.88;font-size:.9rem;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}.cb span{font-size:.75rem;opacity:.7}
+.cav{flex:none;line-height:0;border-radius:50%;border:3px solid hsl(var(--h) 70% 65%);box-shadow:0 8px 26px #0006}
+#cv .bub{background:color-mix(in srgb,hsl(var(--h,220) 60% 50%) 14%,var(--sv));border:1px solid hsl(var(--h,220) 50% 55%/.14)}
+#cv .u .bub{background:linear-gradient(135deg,hsl(var(--h,220) 70% 46%),hsl(calc(var(--h,220) + 30) 70% 40%));color:#fff;border:0}
+#cv .m>.pic{border:2px solid hsl(var(--h,220) 60% 62%/.6)}
+.ac{max-height:0;opacity:0;overflow:hidden;gap:.3rem;transition:max-height .2s,opacity .2s}
+.m.on .ac,#ml>.m:last-child .ac{max-height:3rem;opacity:.95}
+.ac button{width:2.1rem;height:2.1rem;padding:0;border-radius:50%;background:var(--sv);font-size:.85rem;display:grid;place-items:center}
+footer{background:linear-gradient(to top,var(--bg) 72%,transparent)}
+.row textarea{border:1px solid var(--ln);background:var(--sf)}.row textarea:focus{border-color:hsl(var(--h,220) 70% 60%);box-shadow:0 0 0 3px hsl(var(--h,220) 70% 55%/.22)}
+#send{background:linear-gradient(135deg,hsl(var(--h,220) 80% 58%),hsl(calc(var(--h,220) + 35) 80% 50%));color:#fff;box-shadow:0 6px 18px hsl(var(--h,220) 80% 50%/.4)}
+#qb{color:hsl(var(--h,220) 80% 70%)}
+.er{background:hsl(0 75% 55%/.12);border:1px solid hsl(0 75% 60%/.35);border-radius:1rem;padding:.7rem .9rem;margin:0 0 .5rem}
+.er button{color:#fff;background:hsl(0 70% 48%);border-radius:2rem;padding:.2rem .8rem;margin-left:.4rem}
+.bt{display:none}
+@media(max-width:760px){
+ .grid{grid-template-columns:1fr 1fr}.hc2{display:none}header .ic{padding:.4rem .5rem}
+ .bt{display:flex;justify-content:space-around;align-items:center;padding:.4rem .6rem calc(.4rem + env(safe-area-inset-bottom,0px));background:color-mix(in srgb,var(--sf) 88%,transparent);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border-top:1px solid var(--ln)}
+ .bt button{display:flex;flex-direction:column;align-items:center;gap:.1rem;font-size:.68rem;color:var(--mu);padding:.3rem .9rem;border-radius:1rem}.bt button span{font-size:1.25rem;line-height:1}
+ .bt button.on{color:var(--tx)}.bt button.on span{filter:drop-shadow(0 0 8px var(--pr))}
+ .bt .plus{width:3.2rem;height:3.2rem;border-radius:50%;background:linear-gradient(135deg,var(--pr),hsl(275 80% 62%));color:#fff;font-size:1.7rem;margin-top:-1.3rem;box-shadow:0 8px 22px color-mix(in srgb,var(--pr) 50%,transparent);padding:0;justify-content:center}}
 main.pg{padding:0}main.pg>.pgw{max-width:none;margin:0;--ac:hsl(var(--h) 75% 64%)}
 .hero{position:relative;overflow:hidden;isolation:isolate;padding:2.2rem 1rem 1.4rem}
 .hero::before{content:"";position:absolute;inset:-3rem;z-index:-2;background:var(--hbg,linear-gradient(135deg,hsl(var(--h) 60% 40%),hsl(calc(var(--h) + 45) 55% 22%)));filter:blur(32px) saturate(1.3);opacity:.7}
@@ -175,6 +217,24 @@ input:not([type=range],[type=radio],[type=checkbox]):focus-visible,select:focus-
  #sb{position:fixed;inset:0 auto 0 0;z-index:20;transform:translateX(-100%);transition:transform .2s;width:min(18rem,85vw)}
  body.sbo #sb{transform:none}body.sbo #bk{display:block;position:fixed;inset:0;background:#0007;z-index:10}
  .mc{max-width:90%}}
+
+body{background:radial-gradient(70rem 36rem at 90% -10%,color-mix(in srgb,var(--pr) 18%,transparent),transparent 60%),radial-gradient(50rem 40rem at -10% 105%,color-mix(in srgb,var(--p2) 12%,transparent),transparent 60%),var(--bg);background-attachment:fixed}
+.b{background:linear-gradient(135deg,var(--pr),var(--p2))}
+.chr{display:flex;align-items:center;gap:.8rem;padding:.7rem .8rem;border-radius:1.1rem;cursor:pointer;margin-bottom:.45rem;background:var(--sf);border:1px solid var(--ln)}
+.chr .pic{border:2px solid hsl(var(--h) 65% 62%)}.chb{flex:1;min-width:0}.chb b{display:block}
+.chb p{margin:.1rem 0 0;color:var(--mu);font-size:.85rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.chr small{color:var(--mu);font-size:.72rem;align-self:flex-start}
+#acc-c{width:3.2rem;height:3.2rem;padding:0;border-radius:50%;border:2px solid var(--ln);background:none;flex:none;cursor:pointer}
+.bt svg{width:1.4rem;height:1.4rem;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+@media(max-width:760px){
+ .bt{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));align-items:center;justify-items:center;padding:.4rem .3rem calc(.4rem + env(safe-area-inset-bottom,0px))}
+ .bt button{padding:.3rem 0;width:100%;align-items:center;font-size:.64rem;white-space:nowrap}.bt button.on svg{filter:drop-shadow(0 0 8px var(--pr))}
+ .bt .plus{width:3.3rem;height:3.3rem;padding:0;display:grid;place-items:center;margin-top:-1.3rem;background:linear-gradient(135deg,var(--pr),var(--p2));color:#fff;box-shadow:0 8px 22px color-mix(in srgb,var(--pr) 50%,transparent)}
+ .bt .plus svg{width:1.5rem;height:1.5rem;stroke-width:2.4}}
+
+.row{align-items:flex-end;gap:.5rem}
+.row textarea{min-height:3rem;padding:.75rem 1.1rem;box-sizing:border-box}
+#qb,#send{width:3rem;height:3rem;flex:none;padding:0;display:grid;place-items:center;border-radius:50%;line-height:1}
+#qb{font-size:1.2rem;background:var(--sv)}#send{font-size:1.05rem}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><mask id="cm-cut" maskUnits="userSpaceOnUse" x="-37" y="-185" width="1000" height="1000"><rect x="-37" y="-185" width="1000" height="1000" fill="#fff"/><polygon points="271,-20 1100,-20 1100,700 796,700" fill="#000"/><polygon points="448,398 1100,398 1100,1000 1002,1000" fill="#000"/></mask><mask id="cm-counter" maskUnits="userSpaceOnUse" x="-37" y="-185" width="1000" height="1000"><rect x="-37" y="-185" width="1000" height="1000" fill="#fff"/><circle cx="340" cy="315" r="160" fill="#000"/></mask></defs><symbol id="cm-logo" viewBox="80 55 767 520"><circle cx="340" cy="315" r="207.5" fill="none" stroke="currentColor" stroke-width="95" mask="url(#cm-cut)"/><polygon fill="currentColor" mask="url(#cm-counter)" points="336,62 462,62 605,268 738,62 842,62 842,568 755,568 755,222 605,420 524,468 456,396 402,160"/></symbol></svg>
 <div id="app"><aside id="sb"></aside><div id="pane"></div></div><div id="bk" data-a="sb"></div><div id="toast"></div><dialog id="dlg"></dialog>
@@ -244,7 +304,7 @@ const PV={garlic:{n:'Garlic LLM (PS4)',t:'openai',u:'http://192.168.0.100:8080',
  custom:{n:'Custom',t:'openai',u:'https://',m:'',h:'Any other OpenAI-compatible API.'}};
 function theme(){const d=st.theme==='dark'||(st.theme==='system'&&matchMedia('(prefers-color-scheme:dark)').matches);
  document.documentElement.dataset.t=d?'dark':'light';document.documentElement.style.setProperty('--ts',st.scale)}
-const bgCss=()=>PRE[st.bg]?`linear-gradient(${PRE[st.bg][0]},${PRE[st.bg][1]})`:st.bg==='image'&&st.img?`linear-gradient(rgba(0,0,0,${st.dim}),rgba(0,0,0,${st.dim})),url(${st.img})`:'var(--bg)';
+const bgCss=()=>PRE[st.bg]?`linear-gradient(${PRE[st.bg][0]},${PRE[st.bg][1]})`:st.bg==='image'&&st.img?`linear-gradient(rgba(0,0,0,${st.dim}),rgba(0,0,0,${st.dim})),url(${st.img})`:'radial-gradient(120% 60% at 100% 0%,hsl(var(--h,220) 60% 32%/.35),transparent 60%),radial-gradient(90% 50% at 0% 100%,hsl(calc(var(--h,220) + 50) 60% 30%/.25),transparent 60%),var(--bg)';
 const pic=(a,s)=>`<div class=pic style="--s:${s}rem">${a.img?`<img src="${a.img}" alt="">`:esc(a.emoji||'🙂')}</div>`;
 const rp=t=>esc(t).replace(/\*([^*\n]+)\*/g,'<i>$1</i>').replace(/\n/g,'<br>');
 const rs=(f,m,q)=>new Promise(r=>{const i=new Image;i.onload=()=>{const s=Math.min(1,m/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*s;c.height=i.height*s;c.getContext('2d').drawImage(i,0,0,c.width,c.height);r(c.toDataURL('image/jpeg',q))};i.src=URL.createObjectURL(f)});
@@ -346,6 +406,16 @@ function ctxHtml(){const a=cur(),sm=(x,f)=>x.reduce((t,y)=>t+f(y),0),pe=est(a.pe
   lo=Math.min(1600,sm(lore.filter(x=>!x.off&&x.always),x=>x.text.length+10))/4,ch=Math.min(st.ctx,sm(msgs,m=>est(m.t))),rp=+st.max||0,
   tot=pe+me+lo+ch+rp,cw=+st.cw||16000,pc=Math.min(100,tot/cw*100),k=n=>n>=1000?(n/1000).toFixed(1).replace('.0','')+'k':Math.round(n);
  return `<div class="cm ${pc>80?'hi':''}" style="max-width:none;height:6px;margin:.2rem 0 .6rem"><i style="width:${pc}%"></i></div><p class=lm><b>${k(tot)}</b> of ${k(cw)} tokens used (${Math.round(pc)}%)</p><p class=hint style="margin:.2rem 0 0">Character ${k(pe)}, memory ${k(me)}, lorebook ${k(lo)}, recent chat ${k(ch)}, room for the reply ${k(rp)}. This is an estimate. Set your model's size in Settings.</p>`}
+const hueOf=a=>a?.hue!=null?+a.hue:[...(a?.name||'')].reduce((x,c)=>(x*31+c.charCodeAt(0))%360,7);
+const IC={home:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 3-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17 14.2c2.6.2 4.5 2 4.5 5"/>',chats:'<path d="M4 5h16v11H9l-5 4z"/>',pers:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/>',set:'<path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>',add:'<path d="M12 5v14M5 12h14"/>'};
+const ACC=[['Ocean','#3d78f5','#35b6f2'],['Violet','#8b5cf6','#d946ef'],['Rose','#f0508a','#ff8a5b'],['Teal','#14b8a6','#3b82f6'],['Green','#22c55e','#14b8a6'],['Amber','#f59e0b','#ef4444']];
+function shift(hex){const n=parseInt(hex.slice(1),16),r=(n>>16)/255,g=(n>>8&255)/255,b=(n&255)/255,mx=Math.max(r,g,b),mn=Math.min(r,g,b);let h=0,s=0,l=(mx+mn)/2;
+ if(mx!==mn){const d=mx-mn;s=l>.5?d/(2-mx-mn):d/(mx+mn);h=mx===r?(g-b)/d+(g<b?6:0):mx===g?(b-r)/d+2:(r-g)/d+4;h*=60}
+ return`hsl(${Math.round(h+35)%360} ${Math.round(Math.max(s,.5)*100)}% ${Math.round(Math.min(Math.max(l,.45),.62)*100)}%)`}
+function accent(){const a=ACC[+st.acc]||(/^#[0-9a-f]{6}$/i.test(st.acc)?['',st.acc,shift(st.acc)]:ACC[0]),r=document.documentElement.style;r.setProperty('--pr',a[1]);r.setProperty('--p2',a[2])}
+function render(){render0();document.querySelector('.bt')?.remove();if(['home','set','prof','chats','pers'].includes(v.n)){
+ const b=(k,l,on)=>`<button data-a=go data-v=${k} class="${on?'on':''}"><svg viewBox="0 0 24 24">${IC[k]}</svg>${l}</button>`;
+ $('#pane').insertAdjacentHTML('beforeend',`<nav class=bt>${b('home','Characters',v.n==='home'||v.n==='prof')}${b('chats','Chats',v.n==='chats')}<button class=plus data-a=new title=Create><svg viewBox="0 0 24 24">${IC.add}</svg></button>${b('pers','Personas',v.n==='pers')}${b('set','Settings',v.n==='set')}</nav>`)}}
 let busyT=0,ptab='ov';
 const unm=a=>st.pers?.find(x=>x.id===a?.pid)?.name||a?.user;
 const dl=(n,b)=>{const u=URL.createObjectURL(b),l=document.createElement('a');l.href=u;l.download=n;document.body.append(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),4000)};
@@ -451,12 +521,15 @@ function drawMsgs(){const el=$('#ml');if(!el)return;const a=cur(),near=$('#cv').
   <div class=ac>${u?'':`<button data-a=lk data-i=${i} class="${m.l?'lk':''}" title=Like>${m.l?'♥':'♡'}</button>`}<button data-a=tolore data-i=${i} title="Save to lorebook">📖</button>${!u&&m.alts?.length>1?`<button data-a=sw data-d=-1 data-i=${i} title="Previous reply">‹</button><span class=sc>${m.si+1}/${m.alts.length}</span><button data-a=sw data-d=1 data-i=${i} title="${i===msgs.length-1?'Next reply (or generate a new one)':'Next reply'}">›</button>`:''}${!u&&i===msgs.length-1&&stream===null?`<button data-a=think data-i=${i} title="What are they thinking?">💭</button>`:''}<button data-a=cp data-i=${i} title=Copy>⧉</button><button data-a=br data-i=${i} title="Branch from here">⎇</button><button data-a=ed data-i=${i} title=Edit>✎</button><button data-a=rm data-i=${i} title=Delete>✕</button>${i===msgs.length-1&&m.r==='assistant'&&stream===null?'<button data-a=regen title=Regenerate>↻</button><button data-a=cont title="Continue (no message from you)">⏭</button>':''}</div></div></div>`}).join('');
  if(stream!==null)h+=`<div class=m>${pic(a,2.2)}<div class=mc><div class=nm>${esc(a.name)} <span class=tag>AI</span></div><div class=bub>${stream?rp(stream):'<span class=dots><span></span><span></span><span></span></span>'}</div></div></div>`;
  el.innerHTML=h;$('#send').textContent=stream!==null?'■':'➤';$('#err').innerHTML=err?`<p class=er>${esc(err)} <button data-a=regen>Retry</button></p>`:'';if(near||stream!==null)$('#cv').scrollTop=1e9}
-function render(){if(v.n!=='chat'&&VC.on)voiceOff();theme();document.body.classList.remove('sbo');const A=$('#pane');sb();
- if(v.n==='home')A.innerHTML=`<header><button class="ic mb" data-a=sb title=Menu>☰</button><h1>Characters<small>Pick someone to talk to</small></h1><button class=t data-a=cimp>Import card</button><button class=b data-a=new>＋ Create</button></header><main><input type=file id=cardf accept=".json,.png,application/json,image/png" hidden>${bkBanner()}${av.length?`<div class=grid>${av.map(a=>{const l=lastOf(a.id);return `<div class=card data-a=open data-n=prof data-id=${a.id}>${pic(a,4)}<div class=ci><b>${esc(a.name)}</b><p>${esc(a.tag)}</p><small>${l?esc(snip(l.t,50))+' ('+rel(l.ts)+')':'No chats yet'}</small></div></div>`}).join('')}</div>`:'<p class=empty>No one here yet.<br>Create your first character and start talking.</p>'}</main>`;
- else if(v.n==='chat'){const a=cur();A.innerHTML=`<header><button class=ic data-a=go data-v=home title=Back>←</button><div class=hp data-a=go data-v=prof>${pic(a,2.6)}<h1>${esc(a.name)}<small id=sub></small></h1></div><button class="ic ${VC.on?'vo':''}" data-a=voice title="Voice chat">🎙</button><button class=ic data-a=go data-v=lore title=Lorebook>📖</button><button class=ic data-a=go data-v=mem title=Memory>🧠</button><button class=ic data-a=reset title="Reset conversation">⟲</button></header>
-  <main id=cv style="background:${bgCss()}"><div id=ml></div></main><footer><button id=vs data-a=vskip ${VC.on?'':'hidden'}>Listening…</button><div id=err></div><div class="qa ${qaOpen?'on':''}" id=qa>${QA.map(q=>`<button data-a=qa data-q=${q[0]}>${q[1]}</button>`).join('')}</div><div class=row><button class=ic id=qb data-a=qab title="Quick actions">✦</button><textarea id=in rows=1 placeholder="Message ${esc(a.name)}…"></textarea><button class=b id=send data-a=send title="Send (leave empty to let them continue)">➤</button></div><p class=disc>This is AI and not a real person. Treat everything it says as fiction.</p></footer>`;
+function render0(){if(v.n!=='chat'&&VC.on)voiceOff();theme();accent();document.body.classList.remove('sbo');const A=$('#pane');sb();
+ if(v.n==='home'){const L=av.map(a=>({a,l:lastOf(a.id)})).filter(x=>x.l).sort((x,y)=>y.l.ts-x.l.ts)[0];
+  A.innerHTML=`<header><button class="ic mb" data-a=sb title=Menu>☰</button><h1>Characters<small>${av.length} companion${av.length===1?'':'s'}</small></h1><button class=t data-a=cimp>Import</button><button class="b hc2" data-a=new>＋ Create</button></header><main><input type=file id=cardf accept=".json,.png,application/json,image/png" hidden>${bkBanner()}
+  ${L?`<div class=cont style="--h:${hueOf(L.a)};${L.a.img?`--hbg:url('${L.a.img}') center/cover`:''}" data-a=open data-id=${L.a.id}><div class=cb><small>Continue</small><b>${esc(L.a.name)}</b><p>${esc(snip(L.l.t,110))}</p><span>${rel(L.l.ts)}</span></div><div class=cav>${pic(L.a,5)}</div></div>`:''}
+  ${av.length?`<h3 class=sh>Your characters</h3><div class=grid>${av.map(a=>{const l=lastOf(a.id),m=ld('m_'+a.id,{}).p?.mood;return`<div class=ct style="--h:${hueOf(a)}" data-a=open data-n=prof data-id=${a.id}>${pic(a,4.6)}<b>${esc(a.name)}</b><p>${esc(a.tag||snip(a.pers||'',50))}</p><small>${l?rel(l.ts):'New'}${m?', '+esc(m):''}</small></div>`}).join('')}</div>`:'<p class=empty>No one here yet.<br>Tap ＋ to create your first character.</p>'}</main>`}
+ else if(v.n==='chat'){const a=cur();A.innerHTML=`<header style="--h:${hueOf(a)}"><button class=ic data-a=go data-v=home title=Back>←</button><div class=hp data-a=go data-v=prof>${pic(a,2.6)}<h1>${esc(a.name)}<small id=sub></small></h1></div><button class="ic ${VC.on?'vo':''}" data-a=voice title="Voice chat">🎙</button><button class=ic data-a=go data-v=lore title=Lorebook>📖</button><button class=ic data-a=go data-v=mem title=Memory>🧠</button><button class=ic data-a=reset title="Reset conversation">⟲</button></header>
+  <main id=cv style="--h:${hueOf(a)};background:${bgCss()}"><div id=ml></div></main><footer style="--h:${hueOf(a)}"><button id=vs data-a=vskip ${VC.on?'':'hidden'}>Listening…</button><div id=err></div><div class="qa ${qaOpen?'on':''}" id=qa>${QA.map(q=>`<button data-a=qa data-q=${q[0]}>${q[1]}</button>`).join('')}</div><div class=row><button class=ic id=qb data-a=qab title="Quick actions">✦</button><textarea id=in rows=1 placeholder="Message ${esc(a.name)}…"></textarea><button class=b id=send data-a=send title="Send (leave empty to let them continue)">➤</button></div><p class=disc>This is AI and not a real person. Treat everything it says as fiction.</p></footer>`;
   const t=$('#in');t.onkeydown=e=>{if(e.key==='Enter'&&!e.shiftKey&&!matchMedia('(pointer:coarse)').matches){e.preventDefault();send()}};t.oninput=()=>{t.style.height='auto';t.style.height=Math.min(t.scrollHeight,128)+'px'};drawMsgs();hdr()}
- else if(v.n==='prof'){const a=cur(),p=P(),U=unm(a)||'You',pp=st.pers?.find(x=>x.id===a.pid),f=msgs[0],h=[...a.name].reduce((x,c)=>(x*31+c.charCodeAt(0))%360,7),
+ else if(v.n==='prof'){const a=cur(),p=P(),U=unm(a)||'You',pp=st.pers?.find(x=>x.id===a.pid),f=msgs[0],h=hueOf(a),
   days=f?Math.max(1,Math.ceil((Date.now()-f.ts)/864e5)):0,lk=msgs.filter(m=>m.l).length,
   chips=(x,c,e)=>x&&x.length?x.map(t=>`<span class="chip ${c}">${esc(t)}</span>`).join(''):`<span class=hint>${e}</span>`,
   meter=(l,n,c)=>`<div class=mt><span>${l}</span><div><i style="width:${n}%;background:${c}"></i></div><b>${n}</b></div>`,
@@ -488,6 +561,9 @@ function render(){if(v.n!=='chat'&&VC.on)voiceOff();theme();document.body.classL
    <h3 class=sh>AI connection</h3><p class=lm>${esc(prof(a)?.name||'None')}${a.conn?'':' (your main connection)'}</p><p class=hint>Change it with Edit.</p>
    <h3 class=sh>Danger zone</h3><button class=dgr data-a=del data-id=${a.id}>Delete ${esc(a.name)}</button><p class=hint>Removes the character, chat, memory and lorebook.</p></div>
   </div></main>`}
+ else if(v.n==='chats'){const L=av.map(a=>({a,l:lastOf(a.id)})).filter(x=>x.l).sort((x,y)=>y.l.ts-x.l.ts);
+  A.innerHTML=`<header><button class="ic mb" data-a=sb title=Menu>☰</button><h1>Chats<small>${L.length} conversation${L.length===1?'':'s'}</small></h1></header><main>${L.length?L.map(({a,l})=>`<div class=chr style="--h:${hueOf(a)}" data-a=open data-id=${a.id}>${pic(a,3.4)}<div class=chb><b>${esc(a.name)}</b><p>${l.r==='user'?'You: ':''}${esc(snip(l.t,70))}</p></div><small>${rel(l.ts)}</small></div>`).join(''):'<p class=empty>No chats yet.<br>Open a character and say hello.</p>'}</main>`}
+ else if(v.n==='pers'){A.innerHTML=`<header><button class="ic mb" data-a=sb title=Menu>☰</button><h1>Personas<small>Who you are in each story</small></h1><button class=b data-a=nsnew>＋ Add</button></header><main><p class=hint>A persona is a name and background you can wear. Pick one per character on its profile page.</p>${(st.pers||[]).map(x=>`<div class=chr style="--h:${hueOf(x)}" data-a=nsed data-id=${x.id}>${pic({name:x.name,emoji:'🎭'},3.4)}<div class=chb><b>${esc(x.name)}</b><p>${esc(snip(x.bio||'No background yet',80))}</p></div><button data-a=nsdel data-id=${x.id} title=Delete>🗑</button></div>`).join('')||'<p class=empty>No personas yet.<br>Add one to change how characters see you.</p>'}</main>`}
  else if(v.n==='lore'){const a=cur(),L=[...lore].sort((x,y)=>(x.auto?1:0)-(y.auto?1:0)||y.ts-x.ts);
   const card=e=>`<div class="lc ${e.off?'off':''}"><div class=lh><b>${esc(e.title)}</b><span class="tag ${e.auto?'au':''}">${e.auto?'Learned from chat':'You wrote'}</span>${e.always?'<span class=tag>Always on</span>':''}</div><p>${esc(e.text)}</p><small class=hint>Triggers: ${esc((e.keys||[]).join(', ')||'none')}. ${e.hits?`Recalled ${e.hits} time${e.hits>1?'s':''}, last ${rel(e.last)}.`:'Not recalled yet.'}</small><div class=la><button data-a=lon data-id=${e.id}>${e.off?'Turn on':'Turn off'}</button><button data-a=led data-id=${e.id}>Edit</button><button data-a=ldel data-id=${e.id}>Delete</button></div></div>`;
   A.innerHTML=`<header><button class=ic data-a=go data-v=chat title=Back>←</button><h1>${esc(a.name)}’s lorebook<small>${lore.length} entr${lore.length===1?'y':'ies'}</small></h1><button class=b data-a=ladd>＋ Add entry</button></header><main><p class=hint>Entries you write are never changed by the AI. Entries learned from chat update as you talk. When a trigger word comes up, the matching entry is handed to ${esc(a.name)} so they recall it clearly.</p>${L.map(card).join('')||'<p class=empty>No entries yet.<br>Add one, or keep chatting and they will appear.</p>'}</main>`}
@@ -497,6 +573,7 @@ function render(){if(v.n!=='chat'&&VC.on)voiceOff();theme();document.body.classL
   <label>Emoji (used when there is no photo)</label><input id=e-emo maxlength=4 value="${esc(a.emoji||'🙂')}"><label>Name</label><input id=e-name value="${esc(a.name)}"><label>Short tagline</label><input id=e-tag value="${esc(a.tag)}">
   <label>What they call you</label><input id=e-user value="${esc(a.user)}"><label>Personality & backstory</label><textarea id=e-pers rows=7>${esc(a.pers)}</textarea><p class=hint>Age, looks, voice, history, quirks, how they talk, how they feel about you. The more specific, the more real. Use {{user}} for your name.</p>
   <label>First message (optional)</label><textarea id=e-greet rows=3>${esc(a.greet)}</textarea>
+  <label>Card color</label><div class=row><input type=range id=e-hue min=0 max=359 value="${hueOf(a)}" style="height:.8rem;border-radius:1rem;background:linear-gradient(90deg,hsl(0 70% 50%),hsl(60 70% 50%),hsl(120 70% 50%),hsl(180 70% 50%),hsl(240 70% 50%),hsl(300 70% 50%),hsl(359 70% 50%))"><button class=t data-a=hueauto type=button>Auto</button></div><input type=hidden id=e-hmode value="${a.hue!=null?1:0}">
   <label>AI connection for this character</label><select id=e-conn><option value="">Use my main connection</option>${st.prof.map(p=>`<option value="${esc(p.id)}" ${a.conn===p.id?'selected':''}>${esc(p.name)}</option>`).join('')}</select>
   <label style="display:flex;gap:.6rem;align-items:center;color:var(--tx);font-size:.95rem"><input type=checkbox id=e-fb style="width:auto" ${a.fb?'checked':''}> If it cannot be reached, use my main connection</label></main>`;
   $('#fi').onchange=async e=>{const f=e.target.files[0];if(f){ei=await rs(f,160,.85);$('#pv').innerHTML=pic({img:ei},5)}}}
@@ -509,6 +586,7 @@ function render(){if(v.n!=='chat'&&VC.on)voiceOff();theme();document.body.classL
   <label>Text size (${Math.round(st.scale*100)}%)</label><input type=range min=.8 max=1.6 step=.1 value=${st.scale} data-k=scale data-c=1>
   <label>Chat background</label><div class=sw><button data-a=bg data-v=default class="${st.bg==='default'?'on':''}" style="background:var(--sv)" title=Default></button>${Object.keys(PRE).map(k=>`<button data-a=bg data-v=${k} class="${st.bg===k?'on':''}" style="background:${`linear-gradient(${PRE[k][0]},${PRE[k][1]})`}" title=${k}></button>`).join('')}<button data-a=bgimg class="${st.bg==='image'?'on':''}" style="background:var(--pc)" title="Your photo">🖼</button></div><input type=file id=bgf accept="image/*" hidden>
   ${st.bg==='image'?`<label>Photo dimming</label><input type=range min=0 max=.8 step=.05 value=${st.dim} data-k=dim>`:''}
+  <h2>Accent color</h2><p class=hint>Buttons, the bottom bar and highlights.</p><div class=sw>${ACC.map((c,i)=>`<button data-a=acc data-i=${i} class="${typeof st.acc!=='string'&&(+st.acc||0)===i?'on':''}" style="background:linear-gradient(135deg,${c[1]},${c[2]})" title="${c[0]}"></button>`).join('')}<input type=color id=acc-c title="Custom color" value="${/^#[0-9a-f]{6}$/i.test(st.acc)?st.acc:ACC[+st.acc||0][1]}"></div>
   <h2>AI connection</h2><p class=hint>Use a server on your network, or an online provider such as Google Gemini, OpenAI, Anthropic, OpenRouter or Groq. Online providers receive your chats.</p>
   ${st.prof.map(p=>`<div class=pf><input type=radio name=pa ${st.act===p.id?'checked':''} data-a=pact data-id=${p.id}><div><b>${esc(p.name)}</b><small>${esc(PV[p.pre]?.n||'Local server')}${p.model?', '+esc(p.model):''}</small></div><button data-a=pedit data-id=${p.id}>✎</button>${st.prof.length>1?`<button data-a=pdel data-id=${p.id}>🗑</button>`:''}</div>`).join('')}<button class=t data-a=padd>+ Add API</button>
   <h2>Replies</h2><label>Creativity (${st.temp})</label><input type=range min=.1 max=1.5 step=.05 value=${st.temp} data-k=temp data-c=1>
@@ -535,7 +613,8 @@ function profDlg(p,isNew){const d=$('#dlg'),k=p.pre||'local',loc=k==='local'?' (
 const pform=id=>{const k=$('#p-pt')?.value||'local';return{id,name:$('#p-n').value||'API',url:$('#p-u').value.trim(),key:$('#p-k').value.trim(),model:$('#p-m').value.trim(),pre:k,type:PV[k].t}};
 
 /* ---------- events ---------- */
-document.addEventListener('click',async e=>{const t=e.target.closest('[data-a]');if(!t)return;const a=t.dataset.a,d=t.dataset,i=+d.i;
+document.addEventListener('click',async e=>{const bu=e.target.closest('#cv .bub');if(bu&&!e.target.closest('[data-a],a,button')){bu.closest('.m')?.classList.toggle('on');return}
+const t=e.target.closest('[data-a]');if(!t)return;const a=t.dataset.a,d=t.dataset,i=+d.i;
  if(a==='go'){if(abort&&v.n==='chat')abort.abort();v={n:d.v,id:d.v==='home'?null:v.id};if(d.v==='home')ei=null;render()}
  else if(a==='open')open(d.id,d.n||'chat');
  else if(a==='ladd')loreDlg({id:uid(),title:'',text:'',keys:[]},1);
@@ -553,7 +632,7 @@ document.addEventListener('click',async e=>{const t=e.target.closest('[data-a]')
  else if(a==='del'){e.stopPropagation();if(confirm('Delete this avatar, its chat and its memory?')){av=av.filter(x=>x.id!==d.id);sv('av',av);localStorage.removeItem('c_'+d.id);localStorage.removeItem('m_'+d.id);localStorage.removeItem('l_'+d.id);v={n:'home'};render()}}
  else if(a==='photo')$('#fi').click();else if(a==='nophoto'){ei=null;$('#pv').innerHTML=pic({emoji:$('#e-emo').value},5)}
  else if(a==='save'){const n=$('#e-name').value.trim(),p=$('#e-pers').value.trim();if(!n||!p)return toast('Name and personality are required');
-  const o={id:v.id||uid(),name:n,tag:$('#e-tag').value.trim(),emoji:$('#e-emo').value.trim()||'🙂',img:ei,user:$('#e-user').value.trim(),pers:p,greet:$('#e-greet').value.trim(),conn:$('#e-conn').value,fb:$('#e-fb').checked};
+  const o={id:v.id||uid(),name:n,tag:$('#e-tag').value.trim(),emoji:$('#e-emo').value.trim()||'🙂',img:ei,user:$('#e-user').value.trim(),pers:p,greet:$('#e-greet').value.trim(),conn:$('#e-conn').value,fb:$('#e-fb').checked,hue:$('#e-hmode').value==='1'?+$('#e-hue').value:undefined};
   av=av.some(x=>x.id===o.id)?av.map(x=>x.id===o.id?o:x):[...av,o];sv('av',av);v={n:'home'};render()}
  else if(a==='send'||t.id==='send'){stream!==null?abort&&abort.abort():send()}
  else if(a==='regen')regen();
@@ -595,6 +674,8 @@ document.addEventListener('click',async e=>{const t=e.target.closest('[data-a]')
   catch(e2){if(s2.isConnected)s2.textContent=e2.message.slice(0,100)}busyT=0}
  else if(a==='ptab'){ptab=d.t;document.querySelectorAll('.tb button').forEach(b=>b.classList.toggle('on',b.dataset.t===ptab));document.querySelectorAll('.tp').forEach(q=>q.hidden=q.dataset.t!==ptab)}
  else if(a==='more'){const b=t.previousElementSibling;b.classList.toggle('open');t.textContent=b.classList.contains('open')?'Show less':'Read more'}
+ else if(a==='acc'){st.acc=+d.i;save();accent();render()}
+ else if(a==='hueauto'){$('#e-hmode').value=0;$('#e-hue').value=hueOf({name:$('#e-name').value})}
  else if(a==='voice')VC.on?voiceOff():voiceOn();
  else if(a==='vskip'){if(VC.q>0){VC.mute=true;speechSynthesis.cancel()}}
  else if(a==='cont'){if(stream===null)gen(true)}
@@ -622,8 +703,8 @@ document.addEventListener('click',async e=>{const t=e.target.closest('[data-a]')
  else if(a==='pm')$('#p-m').value=d.m});
 document.addEventListener('input',e=>{const t=e.target,k=t.dataset.k;if(!k)return;st[k]=t.type==='checkbox'?t.checked:t.type==='range'?+t.value:t.value;save();if(k==='theme')theme();if(t.dataset.c)t.previousElementSibling.textContent=t.previousElementSibling.textContent.replace(/\(.*?\)/,`(${k==='scale'?Math.round(st.scale*100)+'%':k==='max'?st.max+' tokens':k==='ctx'?'~'+st.ctx+' tokens':k==='vr'?st.vr:st.temp})`);if(k==='scale')theme()});
 document.addEventListener('change',async e=>{if(e.target.id==='bkf'&&e.target.files[0]){await importData(e.target.files[0]);e.target.value=''}if(e.target.id==='bgf'&&e.target.files[0]){st.img=await rs(e.target.files[0],1000,.7);st.bg='image';save();render()}if(e.target.dataset.k==='dim')render()});
-document.addEventListener('input',e=>{if(e.target.id==='sq')sl()});
-document.addEventListener('change',async e=>{const t=e.target;if(t.id==='cardf'&&t.files[0]){await importCard(t.files[0]);t.value=''}if(t.id==='pid'){const a0=cur();a0.pid=t.value;sv('av',av);toast('Now playing as '+(unm(a0)||'the default name'))}});
+document.addEventListener('input',e=>{if(e.target.id==='sq')sl();if(e.target.id==='e-hue')$('#e-hmode').value=1});
+document.addEventListener('change',async e=>{const t=e.target;if(t.id==='cardf'&&t.files[0]){await importCard(t.files[0]);t.value=''}if(t.id==='acc-c'){st.acc=t.value;save();accent();render()}if(t.id==='pid'){const a0=cur();a0.pid=t.value;sv('av',av);toast('Now playing as '+(unm(a0)||'the default name'))}});
 document.addEventListener('change',e=>{if(e.target.id!=='p-pt')return;const o=PV[e.target.value];$('#p-n').value=o.n;$('#p-u').value=o.u;$('#p-m').value=o.m;$('#p-h').textContent=o.h});
 matchMedia('(prefers-color-scheme:dark)').addEventListener('change',theme);
 if(!st.lastBk){st.lastBk=Date.now();save()}
