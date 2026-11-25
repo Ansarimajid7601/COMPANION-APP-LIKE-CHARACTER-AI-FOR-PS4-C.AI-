@@ -104,9 +104,12 @@ main>.cont,main>.sh{max-width:62rem}
 #cv .bub{background:color-mix(in srgb,hsl(var(--h,220) 60% 50%) 14%,var(--sv));border:1px solid hsl(var(--h,220) 50% 55%/.14)}
 #cv .u .bub{background:linear-gradient(135deg,hsl(var(--h,220) 70% 46%),hsl(calc(var(--h,220) + 30) 70% 40%));color:#fff;border:0}
 #cv .m>.pic{border:2px solid hsl(var(--h,220) 60% 62%/.6)}
-.ac{max-height:0;opacity:0;overflow:hidden;gap:.3rem;transition:max-height .2s,opacity .2s}
-.m.on .ac,#ml>.m:last-child .ac{max-height:3rem;opacity:.95}
-.ac button{width:2.1rem;height:2.1rem;padding:0;border-radius:50%;background:var(--sv);font-size:.85rem;display:grid;place-items:center}
+.ac{display:flex;flex-wrap:wrap;gap:.4rem;margin-top:0;opacity:0;max-height:0;overflow:hidden;visibility:hidden;transition:max-height .2s,opacity .2s,margin .2s,visibility 0s .2s}
+.u .ac{justify-content:flex-end}
+.m.on .ac{max-height:10rem;opacity:1;margin-top:.45rem;visibility:visible;transition:max-height .2s,opacity .2s,margin .2s}
+.ag{display:flex;align-items:center;gap:.1rem;padding:.15rem;border-radius:2rem;background:var(--sv);border:1px solid var(--ln)}
+.ac button{width:2.3rem;height:2.3rem;padding:0;border-radius:50%;background:none;font-size:.95rem;display:grid;place-items:center}
+.ac button[data-a=rm]{color:var(--er)}
 footer{background:linear-gradient(to top,var(--bg) 72%,transparent)}
 .row textarea{border:1px solid var(--ln);background:var(--sf)}.row textarea:focus{border-color:hsl(var(--h,220) 70% 60%);box-shadow:0 0 0 3px hsl(var(--h,220) 70% 55%/.22)}
 #send{background:linear-gradient(135deg,hsl(var(--h,220) 80% 58%),hsl(calc(var(--h,220) + 35) 80% 50%));color:#fff;box-shadow:0 6px 18px hsl(var(--h,220) 80% 50%/.4)}
@@ -207,7 +210,8 @@ input:not([type=range],[type=radio],[type=checkbox]):focus-visible,select:focus-
  .t:hover,.chips button:hover,.la button:hover{transform:translateY(-1px);box-shadow:var(--hl),var(--e2)}
  #send:hover{transform:translateY(-1px);box-shadow:var(--e3)}
  .card:hover{transform:translateY(-3px);box-shadow:var(--hl),var(--e3)}
- #sb nav button:hover,.si:hover,.ac button:hover{background:var(--sv)}
+ #sb nav button:hover,.si:hover{background:var(--sv)}
+ .ac button:hover{background:color-mix(in srgb,var(--tx) 12%,transparent)}
 }
 .pill:active,.b:active,.t:active,#send:active{transform:translateY(0) scale(.97);box-shadow:var(--e1)}
 .card:active{transform:translateY(-1px)}
@@ -235,6 +239,8 @@ body{background:radial-gradient(70rem 36rem at 90% -10%,color-mix(in srgb,var(--
 .row textarea{min-height:3rem;padding:.75rem 1.1rem;box-sizing:border-box}
 #qb,#send{width:3rem;height:3rem;flex:none;padding:0;display:grid;place-items:center;border-radius:50%;line-height:1}
 #qb{font-size:1.2rem;background:var(--sv)}#send{font-size:1.05rem}
+.dq{color:hsl(var(--h,220) 85% 74%);font-weight:500}
+:root[data-t=light] .dq{color:hsl(var(--h,220) 72% 34%)}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><mask id="cm-cut" maskUnits="userSpaceOnUse" x="-37" y="-185" width="1000" height="1000"><rect x="-37" y="-185" width="1000" height="1000" fill="#fff"/><polygon points="271,-20 1100,-20 1100,700 796,700" fill="#000"/><polygon points="448,398 1100,398 1100,1000 1002,1000" fill="#000"/></mask><mask id="cm-counter" maskUnits="userSpaceOnUse" x="-37" y="-185" width="1000" height="1000"><rect x="-37" y="-185" width="1000" height="1000" fill="#fff"/><circle cx="340" cy="315" r="160" fill="#000"/></mask></defs><symbol id="cm-logo" viewBox="80 55 767 520"><circle cx="340" cy="315" r="207.5" fill="none" stroke="currentColor" stroke-width="95" mask="url(#cm-cut)"/><polygon fill="currentColor" mask="url(#cm-counter)" points="336,62 462,62 605,268 738,62 842,62 842,568 755,568 755,222 605,420 524,468 456,396 402,160"/></symbol></svg>
 <div id="app"><aside id="sb"></aside><div id="pane"></div></div><div id="bk" data-a="sb"></div><div id="toast"></div><dialog id="dlg"></dialog>
@@ -306,7 +312,12 @@ function theme(){const d=st.theme==='dark'||(st.theme==='system'&&matchMedia('(p
  document.documentElement.dataset.t=d?'dark':'light';document.documentElement.style.setProperty('--ts',st.scale)}
 const bgCss=()=>PRE[st.bg]?`linear-gradient(${PRE[st.bg][0]},${PRE[st.bg][1]})`:st.bg==='image'&&st.img?`linear-gradient(rgba(0,0,0,${st.dim}),rgba(0,0,0,${st.dim})),url(${st.img})`:'radial-gradient(120% 60% at 100% 0%,hsl(var(--h,220) 60% 32%/.35),transparent 60%),radial-gradient(90% 50% at 0% 100%,hsl(calc(var(--h,220) + 50) 60% 30%/.25),transparent 60%),var(--bg)';
 const pic=(a,s)=>`<div class=pic style="--s:${s}rem">${a.img?`<img src="${a.img}" alt="">`:esc(a.emoji||'🙂')}</div>`;
-const rp=t=>esc(t).replace(/\*([^*\n]+)\*/g,'<i>$1</i>').replace(/\n/g,'<br>');
+const rp=(t,dc)=>{const q=/"[^"\n]+"|“[^”\n]+”/.test(t),re=/\*([^*\n]+)\*|("[^"\n]+"|“[^”\n]+”)/g,pl=x=>{const e=esc(x).replace(/\n/g,'<br>');return dc&&!q&&x.trim()?`<span class=dq>${e}</span>`:e};
+ let o='',l=0,m;while((m=re.exec(t))){o+=pl(t.slice(l,m.index));o+=m[1]!==undefined?`<i>${esc(m[1])}</i>`:dc?`<span class=dq>${esc(m[2])}</span>`:esc(m[2]);l=re.lastIndex}
+ return o+pl(t.slice(l))};
+const mac=(t,a,f='the user')=>{const U=unm(a)||f,d=new Date();return String(t||'').replace(/\{\{user\}\}|\{u\}|<USER>/gi,U).replace(/\{\{char\}\}|<BOT>/gi,a.name).replace(/\{\{time\}\}/gi,d.toLocaleTimeString([],{timeStyle:'short'})).replace(/\{\{date\}\}/gi,d.toLocaleDateString([],{dateStyle:'long'})).replace(/\{\{weekday\}\}/gi,d.toLocaleDateString([],{weekday:'long'}))};
+const cgParse=raw=>{const o={},pt=raw.replace(/```[a-z]*\n?/gi,'').split(/^[ \t]*\[(NAME|TAGLINE|EMOJI|HUE|PERSONALITY|FIRST MESSAGE|EXAMPLE DIALOGUE)\][ \t]*/im);for(let i=1;i<pt.length;i+=2)o[pt[i].toUpperCase()]=(pt[i+1]||'').trim();return o};
+const dqUp=()=>{const p=$('#dqp'),h=$('#e-hue');if(p&&h)p.style.setProperty('--h',h.value)};
 const rs=(f,m,q)=>new Promise(r=>{const i=new Image;i.onload=()=>{const s=Math.min(1,m/Math.max(i.width,i.height)),c=document.createElement('canvas');c.width=i.width*s;c.height=i.height*s;c.getContext('2d').drawImage(i,0,0,c.width,c.height);r(c.toDataURL('image/jpeg',q))};i.src=URL.createObjectURL(f)});
 
 /* ---------- LLM (OpenAI-compatible) ---------- */
@@ -354,10 +365,12 @@ const tk=s=>(s.toLowerCase().match(/[\p{L}\p{N}']+/gu)||[]).filter(w=>w.length>2
 const est=t=>t.length/4+6,ago=ms=>{const m=ms/6e4|0;return m<60?m+' minutes':m<1440?(m/60|0)+' hours':(m/1440|0)+' days'};
 const day=ts=>new Date(ts).toLocaleDateString(undefined,{day:'numeric',month:'short',year:'numeric'});
 function build(a){
- const U=unm(a)||'the user',fill=t=>t.replace(/\{\{user\}\}|\{u\}/g,U).replace(/\{\{char\}\}/g,a.name),now=Date.now();
+ const U=unm(a)||'the user',fill=t=>mac(t,a),now=Date.now(),
+  exTxt=a.ex?.trim()?`\n\nExample dialogue (this shows how ${a.name} talks and writes. Match the voice, rhythm and formatting, but never copy these lines):\n${fill(a.ex.trim()).replace(/<START>/gi,'[Example]').slice(0,3000)}`:'',
+  fmt=/"[^"\n]{2,}"|“[^”\n]{2,}”/.test((a.greet||'')+(a.ex||''))?`\n\nFormat: put everything ${a.name} says aloud inside "double quotes" and write actions or body language in *asterisks*.`:'';
  const min=st.mem?Math.min(mem.su||0,msgs.length):0;let bud=st.ctx,s0=msgs.length;
  while(s0>min){const c=est(msgs[s0-1].t);if(c>bud&&s0<msgs.length)break;bud-=c;s0--}
- let sys=`You are ${a.name}. ${fill(a.pers.trim())}\n\n${fill(RULES)}\n\nCurrent local time: ${new Date(now).toLocaleString(undefined,{dateStyle:'full',timeStyle:'short'})}.`;
+ let sys=`You are ${a.name}. ${fill(a.pers.trim())}${exTxt}\n\n${fill(RULES)}${fmt}\n\nCurrent local time: ${new Date(now).toLocaleString(undefined,{dateStyle:'full',timeStyle:'short'})}.`;
  if(msgs.length>1){const g=now-msgs[msgs.length-2].ts;if(g>18e5)sys+=` About ${ago(g)} have passed since you last talked.`}
  if(st.mem){
   let f='';for(const x of[...mem.f].sort((a,b)=>(b.p?1:0)-(a.p?1:0)||b.ts-a.ts)){if(f.length+x.t.length>2200)break;f+='- '+x.t+'\n'}
@@ -391,8 +404,8 @@ async function memUp(a,p){
 
 /* ---------- chat flow ---------- */
 function add(m){m.id=uid();m.ts=Date.now();msgs.push(m);sv('c_'+v.id,msgs);if(m.r==='user')learn(m.t);sl()}
-function open(id,n='chat'){if(abort)abort.abort();v={n,id};ptab='ov';const a=cur();msgs=ld('c_'+id,[]);lore=ld('l_'+id,[]);mem={f:[],s:'',su:0,fu:0,...ld('m_'+id,{})};stream=null;err='';
- if(n==='chat'&&!msgs.length&&a.greet)add({r:'assistant',t:a.greet.replace(/\{\{user\}\}/g,unm(a)||'you')});render();if(n==='chat')awayCheck()}
+function open(id,n='chat'){if(abort)abort.abort();v={n,id};ptab='ov';actI=-1;const a=cur();msgs=ld('c_'+id,[]);lore=ld('l_'+id,[]);mem={f:[],s:'',su:0,fu:0,...ld('m_'+id,{})};stream=null;err='';
+ if(n==='chat'&&!msgs.length&&a.greet)add({r:'assistant',t:mac(a.greet,a,'you')});render();if(n==='chat')awayCheck()}
 let qaNote='',qaNext='',awayNote='',noAway=0,qaOpen=false,fbOnce=null;
 const QA=[['long','Longer','r','longer and more detailed, with more actions and feelings'],['short','Shorter','r','much shorter and to the point'],['emo','More emotion','r','much more emotional, with stronger feelings'],
  ['scene','New scene','p','Move the story forward with a new scene or a change of setting. Describe it briefly and keep going.'],['skip','Time skip','p','Skip ahead in time by hours or days. Briefly say what happened, then continue from there.'],
@@ -401,7 +414,7 @@ function awayCheck(){const l=msgs.at(-1);if(noAway){noAway=0;return}if(!st.away|
  const g=Date.now()-l.ts;if(g<(+st.awayH||6)*36e5)return;
  qaNote=`The user has just come back after ${ago(g)} away. Greet them in character and react naturally to the time that passed and to where you left off. Never mention being an AI or this note.`;
  setTimeout(()=>{if(v.n==='chat'&&stream===null)gen(l.r==='assistant')},400)}
-function ctxHtml(){const a=cur(),sm=(x,f)=>x.reduce((t,y)=>t+f(y),0),pe=est(a.pers||'')+est(RULES)+80,
+function ctxHtml(){const a=cur(),sm=(x,f)=>x.reduce((t,y)=>t+f(y),0),pe=est(a.pers||'')+est((a.ex||'').slice(0,3000))+est(RULES)+80,
   me=st.mem?Math.min(2200,sm(mem.f,x=>x.t.length+3))/4+(mem.s?est(mem.s):0)+(msgs.length>8?350:0):0,
   lo=Math.min(1600,sm(lore.filter(x=>!x.off&&x.always),x=>x.text.length+10))/4,ch=Math.min(st.ctx,sm(msgs,m=>est(m.t))),rp=+st.max||0,
   tot=pe+me+lo+ch+rp,cw=+st.cw||16000,pc=Math.min(100,tot/cw*100),k=n=>n>=1000?(n/1000).toFixed(1).replace('.0','')+'k':Math.round(n);
@@ -416,14 +429,14 @@ function accent(){const a=ACC[+st.acc]||(/^#[0-9a-f]{6}$/i.test(st.acc)?['',st.a
 function render(){render0();document.querySelector('.bt')?.remove();if(['home','set','prof','chats','pers'].includes(v.n)){
  const b=(k,l,on)=>`<button data-a=go data-v=${k} class="${on?'on':''}"><svg viewBox="0 0 24 24">${IC[k]}</svg>${l}</button>`;
  $('#pane').insertAdjacentHTML('beforeend',`<nav class=bt>${b('home','Characters',v.n==='home'||v.n==='prof')}${b('chats','Chats',v.n==='chats')}<button class=plus data-a=new title=Create><svg viewBox="0 0 24 24">${IC.add}</svg></button>${b('pers','Personas',v.n==='pers')}${b('set','Settings',v.n==='set')}</nav>`)}}
-let busyT=0,ptab='ov';
+let busyT=0,ptab='ov',actI=-1;
 const unm=a=>st.pers?.find(x=>x.id===a?.pid)?.name||a?.user;
 const dl=(n,b)=>{const u=URL.createObjectURL(b),l=document.createElement('a');l.href=u;l.download=n;document.body.append(l);l.click();l.remove();setTimeout(()=>URL.revokeObjectURL(u),4000)};
 const fname=n=>(n||'file').replace(/[^\w\- ]+/g,'').trim().replace(/\s+/g,'-')||'file';
 const jparse=(raw,o)=>{try{return JSON.parse(raw.slice(raw.indexOf(o?'{':'['),raw.lastIndexOf(o?'}':']')+1))}catch{return null}};
 const dd=t=>new Date(t).toLocaleDateString(undefined,{dateStyle:'long'});
 function persDlg(p,n){const d=$('#dlg');d.innerHTML=`<h3 style="margin-top:0">${n?'New persona':'Edit persona'}</h3><label>Name (what characters call you)</label><input id=n-n value="${esc(p.name)}"><label>About you</label><textarea id=n-b rows=5 placeholder="Who you are in this story: age, job, looks, history…">${esc(p.bio||'')}</textarea><div class=row style="justify-content:flex-end;margin-top:1rem"><button data-a=pcancel>Cancel</button><button class=b data-a=nssave data-id=${p.id} data-new=${n?1:0}>Save</button></div>`;d.showModal()}
-function cardOf(a){return{spec:'chara_card_v2',spec_version:'2.0',data:{name:a.name,description:a.pers||'',personality:'',scenario:'',first_mes:a.greet||'',mes_example:'',creator_notes:a.tag||'',system_prompt:'',post_history_instructions:'',alternate_greetings:[],tags:a.tag?[a.tag]:[],creator:'Companion',character_version:'1',extensions:{companion:{emoji:a.emoji||'',tag:a.tag||''}},
+function cardOf(a){return{spec:'chara_card_v2',spec_version:'2.0',data:{name:a.name,description:a.pers||'',personality:'',scenario:'',first_mes:a.greet||'',mes_example:a.ex||'',creator_notes:a.tag||'',system_prompt:'',post_history_instructions:'',alternate_greetings:[],tags:a.tag?[a.tag]:[],creator:'Companion',character_version:'1',extensions:{companion:{emoji:a.emoji||'',tag:a.tag||'',hue:a.hue,dq:a.dq!==false}},
  character_book:lore.some(e=>!e.auto)?{name:a.name+' lore',extensions:{},entries:lore.filter(e=>!e.auto).map((e,i)=>({id:i,keys:e.keys||[],secondary_keys:[],content:e.text,comment:e.title,enabled:!e.off,insertion_order:i,constant:!!e.always,selective:false,extensions:{}}))}:undefined}}}
 const crc32=u=>{let c=-1;for(const x of u){c^=x;for(let k=0;k<8;k++)c=c&1?(c>>>1)^0xEDB88320:c>>>1}return(c^-1)>>>0};
 function embedPng(b,txt){let bs='';for(const x of new TextEncoder().encode(txt))bs+=String.fromCharCode(x);
@@ -441,10 +454,10 @@ async function importCard(f){let j=null,img=null;
    img=await rs(f,160,.85)}else j=JSON.parse(await f.text())}catch{return toast('That file is not a readable character card')}
  const d=j?.data||j;if(!d||typeof d.name!=='string'||!d.name.trim())return toast('No character found in that file');
  const nm=d.name.trim(),fx=t=>String(t||'').replace(/\{\{char\}\}/gi,nm),
-  pe=[d.description,d.personality&&'Personality: '+d.personality,d.scenario&&'Scenario: '+d.scenario,d.mes_example&&'Example dialogue:\n'+String(d.mes_example).slice(0,1500)].filter(Boolean).map(fx).join('\n\n');
+  pe=[d.description,d.personality&&'Personality: '+d.personality,d.scenario&&'Scenario: '+d.scenario].filter(Boolean).map(fx).join('\n\n');
  if(!pe.trim())return toast('That card has no description');
  const id=uid(),ex=d.extensions?.companion||{},tg=(Array.isArray(d.tags)?d.tags.join(', '):'')||String(d.creator_notes||'').slice(0,60);
- av.push({id,name:nm,tag:String(ex.tag||tg).slice(0,80),emoji:ex.emoji||'🙂',img,user:'',pers:pe,greet:fx(d.first_mes)});
+ av.push({id,name:nm,tag:String(ex.tag||tg).slice(0,80),emoji:ex.emoji||'🙂',img,user:'',pers:pe,greet:fx(d.first_mes),ex:String(d.mes_example||'').slice(0,4000),hue:ex.hue!=null&&Number.isFinite(+ex.hue)?+ex.hue:undefined,dq:ex.dq!==false});
  const bk=d.character_book?.entries;if(Array.isArray(bk)&&bk.length)sv('l_'+id,bk.filter(e=>e&&e.content).slice(0,100).map(e=>({id:uid(),title:String(e.comment||e.name||(e.keys||[])[0]||'Entry').slice(0,60),text:String(e.content).slice(0,500),keys:(Array.isArray(e.keys)?e.keys:[]).map(String).filter(Boolean),always:!!e.constant,off:e.enabled===false,auto:false,ts:Date.now(),hits:0})));
  sv('av',av);toast('Imported '+nm);v={n:'home'};render()}
 function storyTxt(){const a=cur(),U=unm(a)||'You';return`${a.name} and ${U}\n${dd(msgs[0].ts)} to ${dd(msgs.at(-1).ts)}\n\n`+msgs.map(m=>`${m.r==='user'?U:a.name}: ${m.t}`).join('\n\n')+'\n'}
@@ -461,7 +474,7 @@ const CONT="(Continue. Say something new in your own voice; do not wait for me.)
 function addA(t,S){const m={r:'assistant',t};if(S){m.alts=[...(S.alts||[S.t]),t];m.si=m.alts.length-1;S.used=1}add(m)}
 async function gen(cont,S){
  const a=cur(),p=fbOnce||prof();if(!p){err='Add an API in Settings.';return drawMsgs()}
- err='';stream='';VC.n=0;VC.mute=false;vs('Thinking…');drawMsgs();hdr();
+ err='';stream='';actI=-1;VC.n=0;VC.mute=false;vs('Thinking…');drawMsgs();hdr();
  try{const out=strip(await chat(p,cont&&msgs.at(-1)?.r==='assistant'?[...build(a),{role:'user',content:CONT}]:build(a),st.temp,st.max,true,x=>{stream=strip(x);drawMsgs();vfeed(stream,false)})).trim();
   if(out){addA(out,S);vfeed(out,true)}else err='The model sent an empty reply.'}
  catch(e){if(e.message==='Failed to fetch'&&a.fb&&!fbOnce){const m=mainP();if(m&&m.id!==p.id){fbOnce=m;toast('Could not reach '+p.name+', using '+m.name);stream=null;return gen(cont,S)}}
@@ -517,9 +530,11 @@ speechSynthesis.onvoiceschanged=()=>{if(v.n==='set')render()};
 /* ---------- views ---------- */
 const hdr=()=>{const e=$('#sub');if(e)e.textContent=stream!==null?'typing…'+(recalled.length?' (recalling '+recalled.slice(0,2).join(', ')+')':''):mb?'remembering…':P().mood||cur()?.tag||'online'};
 function drawMsgs(){const el=$('#ml');if(!el)return;const a=cur(),near=$('#cv').scrollHeight-$('#cv').scrollTop-$('#cv').clientHeight<120;
- let h=msgs.map((m,i)=>{const u=m.r==='user',gp=i&&m.ts-msgs[i-1].ts>216e5;return `${gp?`<div class=dv>${ago(m.ts-msgs[i-1].ts)} later, ${day(m.ts)}</div>`:''}<div class="m ${u?'u':''}">${u?'':pic(a,2.2)}<div class=mc>${u?'':`<div class=nm>${esc(a.name)} <span class=tag>AI</span> <span class=tm>${rel(m.ts)}</span></div>`}<div class=bub>${rp(m.t)}</div>${m.th?`<div class=th>💭 ${esc(m.th)}</div>`:''}
-  <div class=ac>${u?'':`<button data-a=lk data-i=${i} class="${m.l?'lk':''}" title=Like>${m.l?'♥':'♡'}</button>`}<button data-a=tolore data-i=${i} title="Save to lorebook">📖</button>${!u&&m.alts?.length>1?`<button data-a=sw data-d=-1 data-i=${i} title="Previous reply">‹</button><span class=sc>${m.si+1}/${m.alts.length}</span><button data-a=sw data-d=1 data-i=${i} title="${i===msgs.length-1?'Next reply (or generate a new one)':'Next reply'}">›</button>`:''}${!u&&i===msgs.length-1&&stream===null?`<button data-a=think data-i=${i} title="What are they thinking?">💭</button>`:''}<button data-a=cp data-i=${i} title=Copy>⧉</button><button data-a=br data-i=${i} title="Branch from here">⎇</button><button data-a=ed data-i=${i} title=Edit>✎</button><button data-a=rm data-i=${i} title=Delete>✕</button>${i===msgs.length-1&&m.r==='assistant'&&stream===null?'<button data-a=regen title=Regenerate>↻</button><button data-a=cont title="Continue (no message from you)">⏭</button>':''}</div></div></div>`}).join('');
- if(stream!==null)h+=`<div class=m>${pic(a,2.2)}<div class=mc><div class=nm>${esc(a.name)} <span class=tag>AI</span></div><div class=bub>${stream?rp(stream):'<span class=dots><span></span><span></span><span></span></span>'}</div></div></div>`;
+ let h=msgs.map((m,i)=>{const u=m.r==='user',gp=i&&m.ts-msgs[i-1].ts>216e5,last=i===msgs.length-1&&stream===null,
+ g1=(u?'':`<button data-a=lk data-i=${i} class="${m.l?'lk':''}" title=Like>${m.l?'♥':'♡'}</button>`)+(!u&&m.alts?.length>1?`<button data-a=sw data-d=-1 data-i=${i} title="Previous reply">‹</button><span class=sc>${m.si+1}/${m.alts.length}</span><button data-a=sw data-d=1 data-i=${i} title="${i===msgs.length-1?'Next reply (or generate a new one)':'Next reply'}">›</button>`:'')+(!u&&last?`<button data-a=think data-i=${i} title="What are they thinking?">💭</button><button data-a=regen title=Regenerate>↻</button><button data-a=cont title="Continue (no message from you)">⏭</button>`:''),
+ g2=`<button data-a=tolore data-i=${i} title="Save to lorebook">📖</button><button data-a=cp data-i=${i} title=Copy>⧉</button><button data-a=br data-i=${i} title="Branch from here">⎇</button><button data-a=ed data-i=${i} title=Edit>✎</button><button data-a=rm data-i=${i} title=Delete>✕</button>`;return `${gp?`<div class=dv>${ago(m.ts-msgs[i-1].ts)} later, ${day(m.ts)}</div>`:''}<div class="m ${u?'u':''} ${i===actI?'on':''}" data-i=${i}>${u?'':pic(a,2.2)}<div class=mc>${u?'':`<div class=nm>${esc(a.name)} <span class=tag>AI</span> <span class=tm>${rel(m.ts)}</span></div>`}<div class=bub>${rp(m.t,!u&&a.dq!==false)}</div>${m.th?`<div class=th>💭 ${esc(m.th)}</div>`:''}
+  <div class=ac>${g1?`<div class=ag>${g1}</div>`:''}<div class=ag>${g2}</div></div></div></div>`}).join('');
+ if(stream!==null)h+=`<div class=m>${pic(a,2.2)}<div class=mc><div class=nm>${esc(a.name)} <span class=tag>AI</span></div><div class=bub>${stream?rp(stream,a.dq!==false):'<span class=dots><span></span><span></span><span></span></span>'}</div></div></div>`;
  el.innerHTML=h;$('#send').textContent=stream!==null?'■':'➤';$('#err').innerHTML=err?`<p class=er>${esc(err)} <button data-a=regen>Retry</button></p>`:'';if(near||stream!==null)$('#cv').scrollTop=1e9}
 function render0(){if(v.n!=='chat'&&VC.on)voiceOff();theme();accent();document.body.classList.remove('sbo');const A=$('#pane');sb();
  if(v.n==='home'){const L=av.map(a=>({a,l:lastOf(a.id)})).filter(x=>x.l).sort((x,y)=>y.l.ts-x.l.ts)[0];
@@ -571,9 +586,11 @@ function render0(){if(v.n!=='chat'&&VC.on)voiceOff();theme();accent();document.b
   <div class=pb style="margin-bottom:1rem"><section><h4>✨ Character assistant</h4><p class=hint style="margin:0 0 .5rem">Describe who you want in a line or two and the AI fills in the form below. You can edit everything afterwards.</p><textarea id=cg rows=2 placeholder="e.g. a possessive 24-year-old billionaire with red hair who is secretly lonely"></textarea><div class=row style="margin-top:.5rem"><button class=t data-a=cgen>Write it for me</button><span id=cgs class=hint style="flex:1"></span></div></section></div>
   <div style="display:flex;gap:1rem;align-items:center"><span id=pv>${pic({img:ei,emoji:a.emoji},5)}</span><div><input type=file id=fi accept="image/*" hidden><button class=t data-a=photo>Choose photo</button> <button data-a=nophoto>Remove</button></div></div>
   <label>Emoji (used when there is no photo)</label><input id=e-emo maxlength=4 value="${esc(a.emoji||'🙂')}"><label>Name</label><input id=e-name value="${esc(a.name)}"><label>Short tagline</label><input id=e-tag value="${esc(a.tag)}">
-  <label>What they call you</label><input id=e-user value="${esc(a.user)}"><label>Personality & backstory</label><textarea id=e-pers rows=7>${esc(a.pers)}</textarea><p class=hint>Age, looks, voice, history, quirks, how they talk, how they feel about you. The more specific, the more real. Use {{user}} for your name.</p>
-  <label>First message (optional)</label><textarea id=e-greet rows=3>${esc(a.greet)}</textarea>
-  <label>Card color</label><div class=row><input type=range id=e-hue min=0 max=359 value="${hueOf(a)}" style="height:.8rem;border-radius:1rem;background:linear-gradient(90deg,hsl(0 70% 50%),hsl(60 70% 50%),hsl(120 70% 50%),hsl(180 70% 50%),hsl(240 70% 50%),hsl(300 70% 50%),hsl(359 70% 50%))"><button class=t data-a=hueauto type=button>Auto</button></div><input type=hidden id=e-hmode value="${a.hue!=null?1:0}">
+  <label>What they call you</label><input id=e-user value="${esc(a.user)}"><label>Personality & backstory</label><textarea id=e-pers rows=7>${esc(a.pers)}</textarea><p class=hint>Age, looks, voice, history, quirks, how they talk, how they feel about you. The more specific, the more real. Use {{char}} for their name and {{user}} for yours.</p>
+  <label>First message (optional)</label><textarea id=e-greet rows=4>${esc(a.greet)}</textarea>
+  <label>Example dialogue (optional)</label><textarea id=e-ex rows=9 placeholder="&lt;START&gt;&#10;{{user}}: hey&#10;{{char}}: *grins* &quot;Finally.&quot;">${esc(a.ex)}</textarea><p class=hint>Shows the AI how they talk. Begin each sample with &lt;START&gt; and use {{char}} and {{user}} for the names.</p>
+  <label>Card color</label><div class=row><input type=range id=e-hue min=0 max=359 value="${hueOf(a)}" style="height:.8rem;border-radius:1rem;background:linear-gradient(90deg,hsl(0 70% 50%),hsl(60 70% 50%),hsl(120 70% 50%),hsl(180 70% 50%),hsl(240 70% 50%),hsl(300 70% 50%),hsl(359 70% 50%))"><button class=t data-a=hueauto type=button>Auto</button></div><input type=hidden id=e-hmode value="${a.hue!=null?1:0}"><div class=bub id=dqp style="--h:${hueOf(a)};margin:.6rem 0 0;display:inline-block">${rp('*smiles* "This is how their spoken words look."',1)}</div>
+  <label style="display:flex;gap:.6rem;align-items:center;color:var(--tx);font-size:.95rem"><input type=checkbox id=e-dq style="width:auto" ${a.dq!==false?'checked':''}> Color their spoken dialogue (not actions or thoughts)</label>
   <label>AI connection for this character</label><select id=e-conn><option value="">Use my main connection</option>${st.prof.map(p=>`<option value="${esc(p.id)}" ${a.conn===p.id?'selected':''}>${esc(p.name)}</option>`).join('')}</select>
   <label style="display:flex;gap:.6rem;align-items:center;color:var(--tx);font-size:.95rem"><input type=checkbox id=e-fb style="width:auto" ${a.fb?'checked':''}> If it cannot be reached, use my main connection</label></main>`;
   $('#fi').onchange=async e=>{const f=e.target.files[0];if(f){ei=await rs(f,160,.85);$('#pv').innerHTML=pic({img:ei},5)}}}
@@ -613,7 +630,9 @@ function profDlg(p,isNew){const d=$('#dlg'),k=p.pre||'local',loc=k==='local'?' (
 const pform=id=>{const k=$('#p-pt')?.value||'local';return{id,name:$('#p-n').value||'API',url:$('#p-u').value.trim(),key:$('#p-k').value.trim(),model:$('#p-m').value.trim(),pre:k,type:PV[k].t}};
 
 /* ---------- events ---------- */
-document.addEventListener('click',async e=>{const bu=e.target.closest('#cv .bub');if(bu&&!e.target.closest('[data-a],a,button')){bu.closest('.m')?.classList.toggle('on');return}
+document.addEventListener('click',async e=>{const clo=()=>{actI=-1;document.querySelectorAll('#ml>.m.on').forEach(x=>x.classList.remove('on'))};
+if(actI>=0&&e.target.closest('#cv')&&!e.target.closest('.m'))clo();
+const bu=e.target.closest('#cv .bub');if(bu&&!e.target.closest('[data-a],a,button')){const m=bu.closest('.m');if(m?.dataset.i!=null&&!getSelection()?.toString()){const k=+m.dataset.i,was=actI===k;clo();if(!was){actI=k;m.classList.add('on')}}return}
 const t=e.target.closest('[data-a]');if(!t)return;const a=t.dataset.a,d=t.dataset,i=+d.i;
  if(a==='go'){if(abort&&v.n==='chat')abort.abort();v={n:d.v,id:d.v==='home'?null:v.id};if(d.v==='home')ei=null;render()}
  else if(a==='open')open(d.id,d.n||'chat');
@@ -632,7 +651,7 @@ const t=e.target.closest('[data-a]');if(!t)return;const a=t.dataset.a,d=t.datase
  else if(a==='del'){e.stopPropagation();if(confirm('Delete this avatar, its chat and its memory?')){av=av.filter(x=>x.id!==d.id);sv('av',av);localStorage.removeItem('c_'+d.id);localStorage.removeItem('m_'+d.id);localStorage.removeItem('l_'+d.id);v={n:'home'};render()}}
  else if(a==='photo')$('#fi').click();else if(a==='nophoto'){ei=null;$('#pv').innerHTML=pic({emoji:$('#e-emo').value},5)}
  else if(a==='save'){const n=$('#e-name').value.trim(),p=$('#e-pers').value.trim();if(!n||!p)return toast('Name and personality are required');
-  const o={id:v.id||uid(),name:n,tag:$('#e-tag').value.trim(),emoji:$('#e-emo').value.trim()||'🙂',img:ei,user:$('#e-user').value.trim(),pers:p,greet:$('#e-greet').value.trim(),conn:$('#e-conn').value,fb:$('#e-fb').checked,hue:$('#e-hmode').value==='1'?+$('#e-hue').value:undefined};
+  const o={...(av.find(x=>x.id===v.id)||{}),id:v.id||uid(),name:n,tag:$('#e-tag').value.trim(),emoji:$('#e-emo').value.trim()||'🙂',img:ei,user:$('#e-user').value.trim(),pers:p,greet:$('#e-greet').value.trim(),ex:$('#e-ex').value.trim(),dq:$('#e-dq').checked,conn:$('#e-conn').value,fb:$('#e-fb').checked,hue:$('#e-hmode').value==='1'?+$('#e-hue').value:undefined};
   av=av.some(x=>x.id===o.id)?av.map(x=>x.id===o.id?o:x):[...av,o];sv('av',av);v={n:'home'};render()}
  else if(a==='send'||t.id==='send'){stream!==null?abort&&abort.abort():send()}
  else if(a==='regen')regen();
@@ -667,15 +686,37 @@ const t=e.target.closest('[data-a]');if(!t)return;const a=t.dataset.a,d=t.datase
   catch(x){toast(x.message.slice(0,80))}busyT=0}
  else if(a==='untidy'){if(mem.fb){mem.f=mem.fb;delete mem.fb;sv('m_'+v.id,mem);render()}}
  else if(a==='cgen'){const x=$('#cg').value.trim(),s2=$('#cgs');if(!x)return toast('Describe the character first');const ap=st.prof.find(q=>q.id===$('#e-conn').value)||mainP();if(!ap||busyT)return;busyT=1;s2.textContent='Writing…';
-  try{const raw=strip(await chat(ap,[{role:'system',content:'You write roleplay character cards. Output ONLY a JSON object, nothing else.'},{role:'user',content:`Idea: ${x}\n\nReturn JSON with keys: "name", "tag" (short tagline, max 8 words), "emoji" (one emoji), "pers" (personality and backstory in plain third-person prose, 150 to 300 words: age, looks, voice, history, quirks, how they speak, how they feel about {{user}}; write {{user}} for the person talking to them), "greet" (their first message in roleplay style, actions in *asterisks*, 40 to 120 words, addressed to {{user}}).`}],.9,1200,false)),j=jparse(raw,1);
+  try{const raw=strip(await chat(ap,[{role:'system',content:'You are an expert character designer for immersive roleplay, in the style of the best SillyTavern character cards. You write vivid, specific, emotionally layered characters with a distinct voice, and you follow the requested output format exactly.'},{role:'user',content:`Idea: ${x}
+
+Write a complete character card in EXACTLY this format. Each section tag is in square brackets on its own line. No JSON, no code fences, no commentary before or after.
+
+[NAME]
+a fitting full name
+[TAGLINE]
+an intriguing line of at most 8 words
+[EMOJI]
+one emoji
+[HUE]
+one number from 0 to 359, the colour that suits their personality and mood (0 red, 30 orange, 50 gold, 120 green, 175 teal, 220 blue, 270 violet, 320 pink). It tints their chat and colours the words they speak.
+[PERSONALITY]
+300 to 450 words in third person. Open with one strong sentence on who {{char}} is. Then short labelled lines: Age, Appearance, Personality, Voice (pace, slang, verbal tics, what they never say), Backstory, Habits and quirks, Likes, Dislikes, Secret or inner conflict, and How {{char}} feels about {{user}}. Be specific and surprising, not generic. Give them flaws and contradictions.
+[FIRST MESSAGE]
+80 to 160 words. {{char}} speaks first to {{user}} in a concrete scene that shows their personality and gives {{user}} something to react to. Spoken words go in "double quotes" and actions in *asterisks*.
+[EXAMPLE DIALOGUE]
+Three samples. Each begins with a line containing only <START>, followed by 3 or 4 turns alternating {{user}}: and {{char}}: lines. Show different moods (casual, tense, tender or playful). {{char}} lines put speech in "double quotes" and actions in *asterisks*, and sound unmistakably like the Voice above.
+
+Rules: in every section except [NAME], write {{char}} wherever the character's own name would appear and {{user}} wherever the person talking to them would appear, never the literal names. Never write {{user}}'s thoughts or feelings, and keep {{user}} lines in the examples short.`}],.9,2800,false)),o=cgParse(raw);
    if(!$('#e-name')){busyT=0;return}
-   if(!j||typeof j.name!=='string'||typeof j.pers!=='string')s2.textContent='The AI did not return a usable card. Try again.';
-   else{const f=(id,t)=>{if(typeof t==='string'&&t.trim())$(id).value=t.trim()};f('#e-name',j.name);f('#e-tag',j.tag);f('#e-emo',(j.emoji||'').slice(0,4));f('#e-pers',j.pers);f('#e-greet',j.greet);s2.textContent='Done. Review it, then press Save.'}}
+   if(!o.NAME||!o.PERSONALITY)s2.textContent='The AI did not return a usable card. Try again.';
+   else{const f=(id,t)=>{if(typeof t==='string'&&t.trim())$(id).value=t.trim()},one=t=>(t||'').split('\n')[0].trim(),h=parseInt(one(o.HUE),10);
+    f('#e-name',one(o.NAME));f('#e-tag',one(o.TAGLINE));f('#e-emo',[...one(o.EMOJI)].slice(0,2).join(''));f('#e-pers',o.PERSONALITY);f('#e-greet',o['FIRST MESSAGE']);f('#e-ex',o['EXAMPLE DIALOGUE']);
+    if(Number.isFinite(h)){$('#e-hue').value=((h%360)+360)%360;$('#e-hmode').value=1;dqUp()}
+    s2.textContent='Done. Review it, then press Save.'}}
   catch(e2){if(s2.isConnected)s2.textContent=e2.message.slice(0,100)}busyT=0}
  else if(a==='ptab'){ptab=d.t;document.querySelectorAll('.tb button').forEach(b=>b.classList.toggle('on',b.dataset.t===ptab));document.querySelectorAll('.tp').forEach(q=>q.hidden=q.dataset.t!==ptab)}
  else if(a==='more'){const b=t.previousElementSibling;b.classList.toggle('open');t.textContent=b.classList.contains('open')?'Show less':'Read more'}
  else if(a==='acc'){st.acc=+d.i;save();accent();render()}
- else if(a==='hueauto'){$('#e-hmode').value=0;$('#e-hue').value=hueOf({name:$('#e-name').value})}
+ else if(a==='hueauto'){$('#e-hmode').value=0;$('#e-hue').value=hueOf({name:$('#e-name').value});dqUp()}
  else if(a==='voice')VC.on?voiceOff():voiceOn();
  else if(a==='vskip'){if(VC.q>0){VC.mute=true;speechSynthesis.cancel()}}
  else if(a==='cont'){if(stream===null)gen(true)}
@@ -684,7 +725,7 @@ const t=e.target.closest('[data-a]');if(!t)return;const a=t.dataset.a,d=t.datase
  else if(a==='exp')exportData();else if(a==='imp')$('#bkf').click();
  else if(a==='cp'){navigator.clipboard?.writeText(msgs[i].t);toast('Copied')}
  else if(a==='ed'){const x=prompt('Edit message',msgs[i].t);if(x?.trim()){msgs[i].t=x.trim();if(msgs[i].alts)msgs[i].alts[msgs[i].si]=msgs[i].t;sv('c_'+v.id,msgs);drawMsgs()}}
- else if(a==='rm'){msgs.splice(i,1);mem.su=Math.min(mem.su,msgs.length);mem.fu=Math.min(mem.fu,msgs.length);sv('c_'+v.id,msgs);sv('m_'+v.id,mem);drawMsgs()}
+ else if(a==='rm'){actI=-1;msgs.splice(i,1);mem.su=Math.min(mem.su,msgs.length);mem.fu=Math.min(mem.fu,msgs.length);sv('c_'+v.id,msgs);sv('m_'+v.id,mem);drawMsgs()}
  else if(a==='reset'){if(confirm('Erase this chat and everything they remember?')){localStorage.removeItem('c_'+v.id);localStorage.removeItem('m_'+v.id);sv('l_'+v.id,ld('l_'+v.id,[]).filter(e=>!e.auto));open(v.id)}}
  else if(a==='addfact'){const x=$('#nf').value.trim();if(x){mem.f.push({id:uid(),t:x,ts:Date.now(),p:true});sv('m_'+v.id,mem);render()}}
  else if(a==='delfact'){mem.f=mem.f.filter(f=>f.id!==d.id);sv('m_'+v.id,mem);render()}
@@ -703,7 +744,7 @@ const t=e.target.closest('[data-a]');if(!t)return;const a=t.dataset.a,d=t.datase
  else if(a==='pm')$('#p-m').value=d.m});
 document.addEventListener('input',e=>{const t=e.target,k=t.dataset.k;if(!k)return;st[k]=t.type==='checkbox'?t.checked:t.type==='range'?+t.value:t.value;save();if(k==='theme')theme();if(t.dataset.c)t.previousElementSibling.textContent=t.previousElementSibling.textContent.replace(/\(.*?\)/,`(${k==='scale'?Math.round(st.scale*100)+'%':k==='max'?st.max+' tokens':k==='ctx'?'~'+st.ctx+' tokens':k==='vr'?st.vr:st.temp})`);if(k==='scale')theme()});
 document.addEventListener('change',async e=>{if(e.target.id==='bkf'&&e.target.files[0]){await importData(e.target.files[0]);e.target.value=''}if(e.target.id==='bgf'&&e.target.files[0]){st.img=await rs(e.target.files[0],1000,.7);st.bg='image';save();render()}if(e.target.dataset.k==='dim')render()});
-document.addEventListener('input',e=>{if(e.target.id==='sq')sl();if(e.target.id==='e-hue')$('#e-hmode').value=1});
+document.addEventListener('input',e=>{if(e.target.id==='sq')sl();if(e.target.id==='e-hue'){$('#e-hmode').value=1;dqUp()}});
 document.addEventListener('change',async e=>{const t=e.target;if(t.id==='cardf'&&t.files[0]){await importCard(t.files[0]);t.value=''}if(t.id==='acc-c'){st.acc=t.value;save();accent();render()}if(t.id==='pid'){const a0=cur();a0.pid=t.value;sv('av',av);toast('Now playing as '+(unm(a0)||'the default name'))}});
 document.addEventListener('change',e=>{if(e.target.id!=='p-pt')return;const o=PV[e.target.value];$('#p-n').value=o.n;$('#p-u').value=o.u;$('#p-m').value=o.m;$('#p-h').textContent=o.h});
 matchMedia('(prefers-color-scheme:dark)').addEventListener('change',theme);
