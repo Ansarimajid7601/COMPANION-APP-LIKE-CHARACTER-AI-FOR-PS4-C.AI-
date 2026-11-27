@@ -266,10 +266,11 @@ header h1{font-size:1rem}
 .bub,.am,.ub{font-size:calc(1rem*var(--ts))}
 
 /* ---- Code Studio ---- */
-.cs{flex:1;display:flex;min-height:0}
-.cs-l,.cs-r{flex:1 1 50%;min-width:0;min-height:0;display:flex;flex-direction:column}
-.cs-r{border-left:1px solid var(--ln);background:var(--sf)}
-.cs-ml{flex:1;overflow-y:auto;padding:1rem}
+.cs{flex:1;display:flex;min-height:0;--rw:42%}
+.cs-l{flex:1 1 0;min-width:0;min-height:0;display:flex;flex-direction:column}
+.cs-r{flex:0 0 var(--rw);min-width:0;min-height:0;display:flex;flex-direction:column;background:var(--sf)}
+.cs-mw{position:relative;flex:1;min-height:0;display:flex;flex-direction:column}
+.cs-ml{flex:1;min-height:0;overflow-y:auto;overflow-anchor:none;padding:1rem}
 .cs-ml>*{max-width:46rem;margin-inline:auto}
 .cm2{margin:1rem auto}.cm2 .who{font-size:.74rem;color:var(--mu);font-weight:600;margin:0 0 .25rem}
 .ub{background:var(--pc);color:var(--pt);padding:.65rem .9rem;border-radius:1rem;white-space:pre-wrap;overflow-wrap:anywhere;width:fit-content;max-width:92%;margin-left:auto}
@@ -311,6 +312,29 @@ header h1{font-size:1rem}
 @media(max-width:760px){.hcode{display:none}}
 .sbset{display:flex;align-items:center;gap:.7rem;text-align:left;padding:.7rem .7rem;border-radius:.7rem;font-weight:500;border-top:1px solid var(--ln);border-radius:.7rem;margin-top:.2rem}.sbset.on,.sbset:hover{background:var(--sv)}
 #sb{padding-bottom:calc(.8rem + env(safe-area-inset-bottom,0px))}
+
+/* ---- Code Studio: resizable panes, hide preview, context meter, scroll helper ---- */
+.cs-gut{flex:none;width:1px;background:var(--ln);position:relative;cursor:col-resize;z-index:3;touch-action:none;outline:none;transition:background .15s}
+.cs-gut::before{content:"";position:absolute;inset:0 -6px}
+.cs-gut::after{content:"";position:absolute;top:50%;left:50%;width:4px;height:38px;margin:-19px 0 0 -2px;border-radius:2px;background:var(--mu);opacity:.4;transition:opacity .15s,background .15s}
+.cs-gut:hover,.cs-gut:focus-visible,.cs.drag .cs-gut{background:var(--pr)}
+.cs-gut:hover::after,.cs-gut:focus-visible::after,.cs.drag .cs-gut::after{background:var(--pr);opacity:1}
+.cs.drag{cursor:col-resize;user-select:none;-webkit-user-select:none}.cs.drag iframe{pointer-events:none}
+@media(min-width:761px){.cs[data-pv=off] .cs-r,.cs[data-pv=off] .cs-gut{display:none}}
+@media(max-width:760px){.cs-gut,.cs-pt,.cs-x{display:none}}
+.cs-pt{position:relative}.cs-pt.on{color:var(--pr)}
+.cs-pt.dot::after{content:"";position:absolute;top:.15rem;right:.15rem;width:.5rem;height:.5rem;border-radius:50%;background:var(--pr);box-shadow:0 0 0 2px var(--bg)}
+.cs-jump{position:absolute;right:1rem;bottom:.8rem;width:2.4rem;height:2.4rem;border-radius:50%;padding:0;display:grid;place-items:center;background:var(--pr);color:#fff;font-size:1.1rem;box-shadow:0 4px 14px #0006;z-index:2}
+.cs-cx{display:flex;align-items:center;gap:.6rem;margin-top:.5rem;font-size:.74rem;color:var(--mu)}
+.cs-cx .bar{flex:1;height:5px;border-radius:3px;background:var(--sv);overflow:hidden;display:flex}
+.cs-cx .bar i{display:block;height:100%;background:var(--pr);transition:width .25s}
+.cs-cx .bar u{display:block;height:100%;text-decoration:none;background:repeating-linear-gradient(135deg,var(--pr) 0 3px,transparent 3px 6px);opacity:.4;transition:width .25s}
+.cs-cx .lb{white-space:nowrap;font-variant-numeric:tabular-nums}
+.cs-cx.warn .bar i{background:#e8a317}.cs-cx.warn .bar u{background:repeating-linear-gradient(135deg,#e8a317 0 3px,transparent 3px 6px)}
+.cs-cx.full .bar i{background:var(--er)}.cs-cx.full .bar u{background:repeating-linear-gradient(135deg,var(--er) 0 3px,transparent 3px 6px)}
+.cs-cx.warn .lb,.cs-cx.full .lb{color:var(--tx);font-weight:600}
+.cs-cw{display:flex;align-items:center;gap:.6rem;margin-top:.45rem;padding:.45rem .5rem .45rem .75rem;border-radius:.7rem;background:color-mix(in srgb,var(--er) 15%,transparent);color:var(--er);font-size:.8rem}
+.cs-cw span{flex:1}.cs-cw button{flex:none;padding:.3rem .85rem;border-radius:2rem;background:var(--er);color:var(--bg);font-weight:600;font-size:.78rem}
 </style></head><body>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false"><defs><mask id="cm-cut" maskUnits="userSpaceOnUse" x="-37" y="-185" width="1000" height="1000"><rect x="-37" y="-185" width="1000" height="1000" fill="#fff"/><polygon points="271,-20 1100,-20 1100,700 796,700" fill="#000"/><polygon points="448,398 1100,398 1100,1000 1002,1000" fill="#000"/></mask><mask id="cm-counter" maskUnits="userSpaceOnUse" x="-37" y="-185" width="1000" height="1000"><rect x="-37" y="-185" width="1000" height="1000" fill="#fff"/><circle cx="340" cy="315" r="160" fill="#000"/></mask></defs><symbol id="cm-logo" viewBox="80 55 767 520"><circle cx="340" cy="315" r="207.5" fill="none" stroke="currentColor" stroke-width="95" mask="url(#cm-cut)"/><polygon fill="currentColor" mask="url(#cm-counter)" points="336,62 462,62 605,268 738,62 842,62 842,568 755,568 755,222 605,420 524,468 456,396 402,160"/></symbol></svg>
 <div id="app"><aside id="sb"></aside><div id="pane"></div></div><div id="bk" data-a="sb"></div><div id="toast"></div><dialog id="dlg"></dialog>
@@ -324,7 +348,7 @@ const PRE={midnight:['#0f2027','#2c5364'],dusk:['#2b1b4d','#7b4b94'],rose:['#ffc
 let st={vr:1,vv:'',theme:'dark',scale:1,bg:'default',img:'',dim:.35,act:'d',temp:.85,max:400,style:'emo',ctx:3500,mem:true,bgp:true,bgl:true,away:true,awayH:6,cw:16000,
  prof:[{id:'d',name:'Home server',url:'http://192.168.1.100:8080/v1',key:'',model:'',pre:'local',type:'openai'}],...ld('st',{})};
 let av=ld('av',[]),v={n:'home'},msgs=[],mem={f:[],s:'',su:0,fu:0},stream=null,err='',abort=null,mb=false,ei=null;
-const cur=()=>av.find(a=>a.id===v.id),mainP=()=>st.prof.find(p=>p.id===st.act)||st.prof[0],prof=a=>{a=a||cur();return(a?.conn&&st.prof.find(p=>p.id===a.conn))||mainP()},save=()=>sv('st',st);
+const cur=()=>av.find(a=>a.id===v.id),mainP=()=>st.prof.find(p=>p.id===st.act)||st.prof[0],prof=a=>{a=a||cur();return(a?.conn&&st.prof.find(p=>p.id===a.conn))||mainP()},save=()=>sv('st',st),ctxWin=p=>+p?.cw||(p?.pre==='garlic'?16000:+st.cw||16000);
 
 const lastOf=id=>ld('c_'+id,[]).at(-1);
 const rel=ts=>{const m=(Date.now()-ts)/6e4|0;return m<1?'just now':m<60?m+' min ago':m<1440?(m/60|0)+' h ago':(m/1440|0)+' d ago'};
@@ -503,7 +527,7 @@ document.addEventListener('visibilitychange',()=>{if(!document.hidden&&v.n==='ch
 function ctxHtml(){const a=cur(),sm=(x,f)=>x.reduce((t,y)=>t+f(y),0),pe=est(a.pers||'')+est((a.ex||'').slice(0,3000))+est(RULES)+80,
   me=st.mem?Math.min(2200,sm(mem.f,x=>x.t.length+3))/4+(mem.s?est(mem.s):0)+(msgs.length>8?350:0):0,
   lo=Math.min(1600,sm(lore.filter(x=>!x.off&&x.always),x=>x.text.length+10))/4,ch=Math.min(st.ctx,sm(msgs,m=>est(m.t))),rp=mxT(),
-  tot=pe+me+lo+ch+rp,cw=+st.cw||16000,pc=Math.min(100,tot/cw*100),k=n=>n>=1000?(n/1000).toFixed(1).replace('.0','')+'k':Math.round(n);
+  tot=pe+me+lo+ch+rp,cw=ctxWin(prof(a)),pc=Math.min(100,tot/cw*100),k=n=>n>=1000?(n/1000).toFixed(1).replace('.0','')+'k':Math.round(n);
  return `<div class="cm ${pc>80?'hi':''}" style="max-width:none;height:6px;margin:.2rem 0 .6rem"><i style="width:${pc}%"></i></div><p class=lm><b>${k(tot)}</b> of ${k(cw)} tokens used (${Math.round(pc)}%)</p><p class=hint style="margin:.2rem 0 0">Character ${k(pe)}, memory ${k(me)}, lorebook ${k(lo)}, recent chat ${k(ch)}, room for the reply ${k(rp)}. This is an estimate. Set your model's size in Settings.</p>`}
 const hueOf=a=>a?.hue!=null?+a.hue:[...(a?.name||'')].reduce((x,c)=>(x*31+c.charCodeAt(0))%360,7);
 const IC={code:'<path d="M8 8l-4 4 4 4M16 8l4 4-4 4M13.5 5l-3 14"/>',home:'<circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 3-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17 14.2c2.6.2 4.5 2 4.5 5"/>',chats:'<path d="M4 5h16v11H9l-5 4z"/>',pers:'<circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/>',set:'<path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/>',add:'<path d="M12 5v14M5 12h14"/>'};
@@ -627,7 +651,7 @@ function drawMsgs(){const el=$('#ml');if(!el)return;const a=cur(),near=$('#cv').
  g2=`<button data-a=tolore data-i=${i} title="Save to lorebook">📖</button><button data-a=cp data-i=${i} title=Copy>⧉</button><button data-a=br data-i=${i} title="Branch from here">⎇</button><button data-a=ed data-i=${i} title=Edit>✎</button><button data-a=rm data-i=${i} title=Delete>✕</button>`;return `${gp?`<div class=dv>${ago(m.ts-msgs[i-1].ts)} later, ${day(m.ts)}</div>`:''}<div class="m ${u?'u':''} ${i===actI?'on':''}" data-i=${i}>${u?'':pic(a,2.2)}<div class=mc>${u?'':`<div class=nm>${esc(a.name)} <span class=tag>AI</span> <span class=tm>${rel(m.ts)}</span></div>`}<div class=bub>${rp(m.t,!u&&a.dq!==false)}</div>${m.th?`<div class=th>💭 ${esc(m.th)}</div>`:''}
   <div class=ac>${g1?`<div class=ag>${g1}</div>`:''}<div class=ag>${g2}</div></div></div></div>`}).join('');
  if(stream!==null)h+=`<div class=m>${pic(a,2.2)}<div class=mc><div class=nm>${esc(a.name)} <span class=tag>AI</span></div><div class=bub>${stream?rp(stream,a.dq!==false):'<span class=dots><span></span><span></span><span></span></span>'}</div></div></div>`;
- el.innerHTML=h;$('#send').textContent=stream!==null?'■':'➤';$('#err').innerHTML=err?`<p class=er>${esc(err)} <button data-a=regen>Retry</button></p>`:'';if(near||stream!==null)$('#cv').scrollTop=1e9}
+ el.innerHTML=h;$('#send').textContent=stream!==null?'■':'➤';$('#err').innerHTML=err?`<p class=er>${esc(err)} <button data-a=regen>Retry</button></p>`:'';const cv=$('#cv');if(stream==='')SK.set(cv,{t:cv.scrollTop,s:1});if(skSt(cv)&&(near||stream!==null)){cv.scrollTop=cv.scrollHeight;SK.set(cv,{t:cv.scrollTop,s:1})}}
 function render0(){if(v.n!=='chat'&&VC.on)voiceOff();theme();accent();document.body.classList.remove('sbo');const A=$('#pane');sb();
  if(v.n==='code'){codeView(A);return}
  if(v.n==='home'){const L=av.map(a=>({a,l:lastOf(a.id)})).filter(x=>x.l).sort((x,y)=>y.l.ts-x.l.ts)[0];
@@ -708,7 +732,7 @@ function render0(){if(v.n!=='chat'&&VC.on)voiceOff();theme();accent();document.b
   <label style="display:flex;gap:.6rem;align-items:center;color:var(--tx);font-size:1rem"><input type=checkbox style="width:auto" ${st.bgl?'checked':''} data-k=bgl> Lorebook: learn new entries from chat</label>
   <h2>While you were away</h2><label style="display:flex;gap:.6rem;align-items:center;color:var(--tx);font-size:1rem"><input type=checkbox style="width:auto" ${st.away?'checked':''} data-k=away> They message you when you come back after a break</label>
   <label>Counts as a break after</label><select data-k=awayH>${[1,3,6,12,24,48].map(h=>`<option value=${h} ${+st.awayH===h?'selected':''}>${h} hour${h>1?'s':''}</option>`).join('')}</select><p class=hint>If your server is off when you open a chat, the greeting waits and is sent automatically once the server is reachable (while that chat is open).</p>
-  <h2>Context meter</h2><label>Your model's context size</label><select data-k=cw>${[4000,8000,16000,32000,64000,128000,200000].map(n=>`<option value=${n} ${+st.cw===n?'selected':''}>${n/1000}k tokens</option>`).join('')}</select><p class=hint>The bar under the chat box shows roughly how much of this the next request uses.</p>
+  <h2>Context meter</h2><label>Your model's context size</label><select data-k=cw>${[4000,8000,16000,32000,64000,128000,200000].map(n=>`<option value=${n} ${+st.cw===n?'selected':''}>${n/1000}k tokens</option>`).join('')}</select><p class=hint>The bar under the chat box shows roughly how much of this the next request uses. Garlic LLM (PS4) is always counted as 16k.</p>
   <h2>Voice chat</h2><p class=hint>Tap 🎙 in a chat to talk back and forth hands-free. It uses your browser's built-in speech tools (Chrome, Edge or Safari); some browsers send the audio to their speech service.</p><label>Voice</label><select data-k=vv><option value="">Default</option>${(window.speechSynthesis?speechSynthesis.getVoices():[]).map(x=>`<option value="${esc(x.name)}" ${st.vv===x.name?'selected':''}>${esc(x.name)} (${esc(x.lang)})</option>`).join('')}</select>
   <label>Speaking speed (${st.vr})</label><input type=range min=.7 max=1.5 step=.05 value=${st.vr} data-k=vr data-c=1>
   <h2>Personas</h2><p class=hint>Different versions of who you are. Pick one per character on that character's profile page.</p>${(st.pers||[]).map(x=>`<div class=pf><div><b>${esc(x.name)}</b><small>${esc(snip(x.bio||'',60))}</small></div><button data-a=nsed data-id=${x.id}>✎</button><button data-a=nsdel data-id=${x.id}>🗑</button></div>`).join('')}<button class=t data-a=nsnew>+ Add persona</button>
@@ -847,7 +871,7 @@ if(!st.lastBk){st.lastBk=Date.now();save()}
 const CS_SYS="You are an expert coding assistant inside a built-in Code Studio that has a live preview and a code runner. Be direct and practical; no roleplay and no persona.\nWhen asked to build a webpage, app, game, tool or UI, reply with ONE complete, self-contained HTML file in a single ```html block (inline CSS and JS, no build step; external scripts only from cdnjs.cloudflare.com or cdn.jsdelivr.net). It opens automatically in the live preview.\nFor algorithms and scripts use ```javascript (runs in the browser, console.log output shows in the Console tab) or ```python (runs in the browser through Pyodide, standard library plus packages Pyodide bundles).\nWhen changing existing code, always return the full updated file, never fragments. Keep explanations short. Ask a question only if you are truly blocked.";
 const CS_QP=['Build a todo app','Make a snake game','Landing page for a coffee shop','Python: primes under 100','Explain async/await'];
 const CS_HOOK="(function(){var P=function(t,a){try{parent.postMessage({cs:1,t:t,m:Array.prototype.map.call(a,function(x){try{if(x instanceof Error)return x.stack||(x.name+': '+x.message);if(typeof x==='object'&&x){var j=JSON.stringify(x);return j==='{}'?String(x):j}return String(x)}catch(e){return String(x)}}).join(' ')},'*')}catch(e){}};['log','info','warn','error','debug'].forEach(function(k){var o=console[k];console[k]=function(){P(k,arguments);o.apply(console,arguments)}});addEventListener('error',function(e){P('error',[e.message+(e.lineno?' (line '+e.lineno+')':'')])});addEventListener('unhandledrejection',function(e){P('error',['Unhandled:',e.reason])});try{localStorage.getItem('x')}catch(e){var mk=function(){var d={};return{getItem:function(k){return k in d?d[k]:null},setItem:function(k,v){d[k]=String(v)},removeItem:function(k){delete d[k]},clear:function(){d={}},key:function(i){return Object.keys(d)[i]||null},get length(){return Object.keys(d).length}}};try{Object.defineProperty(window,'localStorage',{value:mk()});Object.defineProperty(window,'sessionStorage',{value:mk()})}catch(e){}}})();";
-let cs={hist:ld('c_codehist',[]),id:'',m:[],code:'',lang:'html',auto:ld('cs_auto',true),tab:'pv',panel:'chat',logs:[],busy:false,stream:null,err:'',py:null,ran:false},csT=0;
+let cs={hist:ld('c_codehist',[]),id:'',m:[],code:'',lang:'html',auto:ld('cs_auto',true),tab:'pv',panel:'chat',logs:[],busy:false,stream:null,err:'',py:null,ran:false,pv:ld('cs_pv',true)!==false,rw:(r=>r>.15&&r<.85?r:.42)(+ld('cs_rw',.42)),stale:false,raf:0},csT=0;
 const csTitle=()=>{const f=cs.m.find(x=>x.r==='user');return f?f.t.replace(/\s+/g,' ').trim().slice(0,42):'Untitled code'};
 function csLoad(h){cs.id=h.id;cs.m=h.m||[];cs.code=h.code||'';cs.lang=h.lang||'html';cs.logs=[];cs.err='';cs.tab='pv';cs.ran=false}
 function csSave(){let s=cs.hist.find(x=>x.id===cs.id);if(cs.m.length||cs.code.trim()){if(!s){s={id:cs.id};cs.hist.unshift(s)}s.m=cs.m.slice(-30);s.code=cs.code;s.lang=cs.lang;s.ts=Date.now();s.title=csTitle()}else if(s)cs.hist=cs.hist.filter(x=>x!==s);cs.hist=cs.hist.slice(0,30);sv('c_codehist',cs.hist);sv('cs_id',cs.id);sv('cs_auto',cs.auto)}
@@ -871,18 +895,49 @@ function csMd(s){const L=esc(s).replace(/`([^`\n]+)`/g,'<code>$1</code>').replac
  fp();fl();return o}
 function csRender(t,mi){let o='',last=0,bi=0;const re=/```([^\n`]*)\n([\s\S]*?)(```|$)/g;let m;
  while((m=re.exec(t))){o+=csMd(t.slice(last,m.index));const lg=csNorm(m[1].trim().split(/\s/)[0],m[2]),can=['html','js','python','css'].includes(lg);
-  o+=`<div class=cb2><div class=cbh><span>${esc(m[1].trim()||'code')}</span><button data-cs=copy data-i=${mi} data-b=${bi}>Copy</button>${can?`<button class=run data-cs=blk data-i=${mi} data-b=${bi}>${lg==='html'||lg==='css'?'▶ Open':'▶ Run'}</button>`:''}</div><pre><code>${esc(m[2].replace(/\n$/,''))}</code></pre></div>`;bi++;last=re.lastIndex;if(!m[3])break}
+  o+=`<div class=cb2><div class=cbh><span>${esc(m[1].trim()||'code')}</span><button data-cs=copy data-i=${mi} data-b=${bi}>Copy</button>${can?`<button class=run data-cs=blk data-i=${mi} data-b=${bi}>${lg==='html'||lg==='css'?'▶ Open':'▶ Run'}</button>`:''}</div><pre${m[3]?'':' data-live'}><code>${esc(m[2].replace(/\n$/,''))}</code></pre></div>`;bi++;last=re.lastIndex;if(!m[3])break}
  return o+csMd(t.slice(last))}
 function csMsgs(){return cs.m.map((m,i)=>m.r==='user'?`<div class="cm2 u"><div class=ub>${esc(m.t)}</div></div>`:`<div class=cm2><div class=who>AI</div><div class=am>${csRender(m.t,i)}</div></div>`).join('')+(cs.busy?`<div class=cm2><div class=who>AI</div><div class=am id=cs-live>${cs.stream?csRender(cs.stream,-1):'<span class=dots><span></span><span></span><span></span></span>'}</div></div>`:'')}
-function csDraw(live){const el=$('#cs-ml');if(!el)return;const near=el.scrollHeight-el.scrollTop-el.clientHeight<140,lv=$('#cs-live');
- if(live&&lv){lv.innerHTML=csRender(cs.stream||'',-1)}else el.innerHTML=cs.m.length||cs.busy?csMsgs():'<div class=cs-empty style="min-height:40vh">Ask me to build a page, fix a bug or explain code.<br>Web pages open in the live preview automatically.</div>';
- if(near||cs.busy)el.scrollTop=1e9;const s=$('#cs-send');if(s)s.textContent=cs.busy?'■':'➤';const e=$('#cs-err');if(e)e.innerHTML=cs.err?`<p class=er>${esc(cs.err)}</p>`:'';const q=$('#cs-qp');if(q)q.hidden=cs.m.length>0||cs.busy}
+function csDraw(live){const el=$('#cs-ml');if(!el)return;
+ if(live&&$('#cs-live')){if(!cs.raf)cs.raf=requestAnimationFrame(csLive);return}
+ if(cs.raf){cancelAnimationFrame(cs.raf);cs.raf=0}
+ el.innerHTML=cs.m.length||cs.busy?csMsgs():'<div class=cs-empty style="min-height:40vh">Ask me to build a page, fix a bug or explain code.<br>Web pages open in the live preview automatically.</div>';
+ pin(el);jmp();const s=$('#cs-send');if(s)s.textContent=cs.busy?'■':'➤';const e=$('#cs-err');if(e)e.innerHTML=cs.err?`<p class=er>${esc(cs.err)}</p>`:'';const q=$('#cs-qp');if(q)q.hidden=cs.m.length>0||cs.busy;csMeter()}
+/* streaming update: one DOM rebuild per frame, keeps code boxes tailing the newest line, never fights the user's scrolling */
+function csLive(){cs.raf=0;const el=$('#cs-ml'),lv=$('#cs-live');if(!el||!lv||!cs.busy)return;
+ const ks=[...lv.querySelectorAll('pre')].map(p=>[p.scrollTop,p.scrollHeight-p.scrollTop-p.clientHeight<30]);
+ lv.innerHTML=csRender(cs.stream||'',-1);
+ lv.querySelectorAll('pre').forEach((p,i)=>{const k=ks[i];if(p.hasAttribute('data-live')){p.scrollTop=!k||k[1]?p.scrollHeight:k[0]}else if(k)p.scrollTop=k[0]});
+ pin(el);jmp();csMeterQ()}
+/* ---- context meter: estimates what the next request costs against the model's window ---- */
+const CS_R=4096,csTok=t=>Math.ceil((t||'').length/3.4)+4,LC=new WeakMap(),csLiteM=m=>{let r=LC.get(m);if(r==null){r=csLite(m.t);LC.set(m,r)}return r};
+function csPrompt(extra){const W=ctxWin(mainP()),cm=W>=12000?9000:W>=6000?4000:1500,
+ code=cs.code.trim()?`\n\nCurrent code in the editor (${cs.lang}):\n\`\`\`${cs.lang}\n${cs.code.slice(0,cm)}\n\`\`\``:'',sys=CS_SYS+code,
+ all=cs.m.map(m=>({role:m.r==='user'?'user':'assistant',content:csLiteM(m)}));
+ if(extra)all.push({role:'user',content:extra});
+ const bud=Math.max(W-CS_R-300,600),s0=csTok(sys),keep=[];let used=s0;
+ for(let i=all.length-1;i>=0;i--){const t=csTok(all[i].content);if(keep.length&&used+t>bud)break;keep.unshift(all[i]);used+=t}
+ while(keep.length>1&&keep[0].role==='assistant'){used-=csTok(keep[0].content);keep.shift()}
+ const bs=csTok(CS_SYS);return{hist:[{role:'system',content:sys},...keep],W,used,base:bs,code:s0-bs,chat:used-s0,dropped:all.length-keep.length}}
+let csMq=0;const csMeterQ=()=>{if(csMq)return;csMq=setTimeout(()=>{csMq=0;csMeter()},250)};
+function csMeter(){const e=$('#cs-cx');if(!e)return;const inp=$('#cs-in'),P=csPrompt(cs.busy?'':(inp?.value||'').trim()),W=P.W,rs=cs.busy?csTok(cs.stream||''):0,used=P.used+rs,rsv=Math.max(CS_R-rs,0),free=W-used-rsv,full=P.dropped>0||free<=0,warn=!full&&free<W*.12,pc=Math.min(100,used/W*100),
+ k=n=>n>=1000?(n/1000).toFixed(1).replace('.0','')+'k':String(Math.round(n));
+ e.className='cs-cx'+(full?' full':warn?' warn':'');e.querySelector('.bar i').style.width=pc+'%';e.querySelector('.bar u').style.width=Math.max(0,Math.min(100-pc,rsv/W*100))+'%';
+ e.querySelector('.lb').textContent=(full?'Context full: ':warn?'Context nearly full: ':'Context: ')+'~'+k(used)+' / '+k(W)+' tokens';
+ e.title='Instructions ~'+k(P.base)+' · code in editor ~'+k(P.code)+' · chat ~'+k(P.chat)+' · room kept for the reply ~'+k(rsv)+'. Rough estimate against a '+k(W)+' window.'+(P.dropped?' '+P.dropped+' older message'+(P.dropped>1?'s are':' is')+' left out.':'');
+ const w=$('#cs-cw');if(w){w.hidden=!full;const s=w.querySelector('span');if(s)s.textContent=P.dropped?'Context is full: '+P.dropped+' older message'+(P.dropped>1?'s are':' is')+' no longer sent to the model. Start a new chat to reset.':'Context is full: there is no room left for a full reply. Start a new chat.'}}
+/* ---- preview pane: resize + hide ---- */
+function csSetRW(r,save){const b=$('.cs');if(!b)return;const w=b.getBoundingClientRect().width||1000,mn=Math.min(.45,260/w),mx=1-Math.min(.6,300/w);r=Math.max(mn,Math.min(mx,r));cs.rw=r;b.style.setProperty('--rw',(r*100).toFixed(2)+'%');if(save)sv('cs_rw',r)}
+const csHid=()=>!cs.pv&&!matchMedia('(max-width:760px)').matches;
+function csPv(on,skip){cs.pv=on;sv('cs_pv',on);const b=$('.cs');if(b)b.dataset.pv=on?'on':'off';const t=$('.cs-pt');if(t){t.classList.toggle('on',on);if(on)t.classList.remove('dot')}
+ if(on&&cs.stale){cs.stale=false;if(!skip&&cs.code.trim())csRun(true)}}
 function codeView(A){const p=mainP();
- A.innerHTML=`<header><button class="ic mb" data-a=sb title=Menu>☰</button><button class=ic data-a=go data-v=home title=Back>←</button><h1>Code Studio<small>${esc(p?.name||'')}${p?.model?' · '+esc(p.model):''}</small></h1><div class=cs-mt><button data-cs=panel data-p=chat class="${cs.panel==='chat'?'on':''}">Chat</button><button data-cs=panel data-p=out class="${cs.panel==='out'?'on':''}">Preview</button></div><button class=ic data-cs=hist title="Chat history">🕘</button><button class=ic data-cs=new title="New chat">＋</button></header>
- <div class=cs data-p="${cs.panel}"><section class=cs-l><div class=cs-ml id=cs-ml></div><div class=cs-ft><div class=cs-qp id=cs-qp>${CS_QP.map(q=>`<button data-cs=qp data-q="${esc(q)}">${esc(q)}</button>`).join('')}</div><div id=cs-err></div><div class=row><textarea id=cs-in rows=1 placeholder="Ask anything, or describe what to build…"></textarea><button class="b cs-send" id=cs-send data-cs=send title=Send>➤</button></div></div></section>
- <section class=cs-r><div class=cs-tabs>${[['pv','Preview'],['co','Console'],['cd','Code']].map(x=>`<button data-cs=tab data-t=${x[0]} class="${cs.tab===x[0]?'on':''}">${x[1]}<span id=cs-bd-${x[0]}></span></button>`).join('')}<span class=sp></span><button class="auto ${cs.auto?'on':''}" data-cs=auto title="Run automatically when the AI sends code">Auto ${cs.auto?'on':'off'}</button><button class=ic data-cs=run title=Run>▶</button><button class=ic data-cs=newtab title="Open in new tab">⤢</button><button class=ic data-cs=dl title=Download>⬇</button></div>
+ A.innerHTML=`<header><button class="ic mb" data-a=sb title=Menu>☰</button><button class=ic data-a=go data-v=home title=Back>←</button><h1>Code Studio<small>${esc(p?.name||'')}${p?.model?' · '+esc(p.model):''}</small></h1><div class=cs-mt><button data-cs=panel data-p=chat class="${cs.panel==='chat'?'on':''}">Chat</button><button data-cs=panel data-p=out class="${cs.panel==='out'?'on':''}">Preview</button></div><button class="ic cs-pt${cs.pv?' on':''}${!cs.pv&&cs.stale?' dot':''}" data-cs=pvt title="Show / hide preview"><svg width=20 height=20 viewBox="0 0 24 24" fill=none stroke=currentColor stroke-width=2 stroke-linecap=round stroke-linejoin=round><rect x=3 y=4 width=18 height=16 rx=2></rect><path d="M14.5 4v16"></path></svg></button><button class=ic data-cs=hist title="Chat history">🕘</button><button class=ic data-cs=new title="New chat">＋</button></header>
+ <div class=cs data-p="${cs.panel}" data-pv="${cs.pv?'on':'off'}" style="--rw:${(cs.rw*100).toFixed(2)}%"><section class=cs-l><div class=cs-mw><div class=cs-ml id=cs-ml></div><button class=cs-jump id=cs-jump data-cs=jump title="Jump to latest" hidden>↓</button></div><div class=cs-ft><div class=cs-qp id=cs-qp>${CS_QP.map(q=>`<button data-cs=qp data-q="${esc(q)}">${esc(q)}</button>`).join('')}</div><div id=cs-err></div><div class=row><textarea id=cs-in rows=1 placeholder="Ask anything, or describe what to build…"></textarea><button class="b cs-send" id=cs-send data-cs=send title=Send>➤</button></div><div class=cs-cx id=cs-cx><div class=bar><i></i><u></u></div><span class=lb></span></div><div class=cs-cw id=cs-cw hidden><span></span><button data-cs=new>New chat</button></div></div></section>
+ <div class=cs-gut role=separator aria-orientation=vertical aria-label="Resize chat and preview" tabindex=0 title="Drag to resize · double-click to reset"></div>
+ <section class=cs-r><div class=cs-tabs>${[['pv','Preview'],['co','Console'],['cd','Code']].map(x=>`<button data-cs=tab data-t=${x[0]} class="${cs.tab===x[0]?'on':''}">${x[1]}<span id=cs-bd-${x[0]}></span></button>`).join('')}<span class=sp></span><button class="auto ${cs.auto?'on':''}" data-cs=auto title="Run automatically when the AI sends code">Auto ${cs.auto?'on':'off'}</button><button class=ic data-cs=run title=Run>▶</button><button class=ic data-cs=newtab title="Open in new tab">⤢</button><button class=ic data-cs=dl title=Download>⬇</button><button class="ic cs-x" data-cs=pvt title="Hide preview">✕</button></div>
  <div class=cs-pane><iframe id=cs-fr sandbox="allow-scripts allow-modals allow-forms allow-popups allow-downloads" title=Preview></iframe><div id=cs-co hidden></div><div class=cs-cd id=cs-cd hidden><div class=bar><select id=cs-lang>${[['html','HTML / CSS / JS'],['js','JavaScript'],['python','Python']].map(x=>`<option value=${x[0]} ${cs.lang===x[0]?'selected':''}>${x[1]}</option>`).join('')}</select><span class=hint>Edit, then press ▶</span></div><textarea id=cs-ed spellcheck=false wrap=off placeholder="Your code appears here. You can also paste or write code and press ▶ to run it."></textarea></div><div class=cs-empty id=cs-empty>Nothing to preview yet.<br>Ask the AI to build a page, or press ▶ Open on any code block.</div></div></section></div>`;
- $('#cs-ed').value=cs.code;csDraw();csTabs();csLogs();if(cs.code&&cs.lang!=='python')csRun(true);else csTabs()}
+ $('#cs-ed').value=cs.code;csSetRW(cs.rw);csDraw();csTabs();csLogs();if(cs.code&&cs.lang!=='python')csRun(true);else csTabs()}
 function csTabs(){const T=cs.tab,f=$('#cs-fr');if(!f)return;document.querySelectorAll('.cs-tabs [data-cs=tab]').forEach(b=>b.classList.toggle('on',b.dataset.t===T));
  $('#cs-co').hidden=T!=='co';$('#cs-cd').hidden=T!=='cd';f.hidden=T!=='pv'||!cs.code||cs.lang==='python';$('#cs-empty').hidden=!(T==='pv'&&(!cs.code||cs.lang==='python'));
  if(T==='pv'&&cs.lang==='python'&&cs.code)$('#cs-empty').innerHTML='Python has no visual output.<br>Press ▶ and see the Console tab.';else if(T==='pv'&&!cs.code)$('#cs-empty').innerHTML='Nothing to preview yet.<br>Ask the AI to build a page, or press ▶ Open on any code block.'}
@@ -893,19 +948,18 @@ const csDoc=()=>cs.lang==='html'?cs.code:'<!doctype html><meta charset=utf-8><bo
 async function csPy(code){cs.tab='co';csTabs();csLog('info','Loading Python… (the first run downloads about 10 MB)');
  try{if(!window.loadPyodide)await new Promise((res,rej)=>{const s=document.createElement('script');s.src='https://cdn.jsdelivr.net/pyodide/v0.26.4/full/pyodide.js';s.onload=res;s.onerror=()=>rej(Error('Could not load the Python runtime. Check your internet connection.'));document.head.append(s)});
   cs.py=cs.py||await loadPyodide();cs.py.setStdout({batched:s=>csLog('log',s)});cs.py.setStderr({batched:s=>csLog('error',s)});await cs.py.runPythonAsync(code);csLog('info','✓ Finished')}catch(e){csLog('error',String(e.message||e))}}
-function csRun(quiet){const f=$('#cs-fr');if(!f)return;if(!quiet)cs.code=$('#cs-ed')?.value??cs.code;cs.ran=true;cs.logs=[];csLogs();csSave();
+function csRun(quiet){const f=$('#cs-fr');if(!f)return;if(!quiet)cs.code=$('#cs-ed')?.value??cs.code;if(csHid()){cs.stale=true;csSave();return}cs.stale=false;cs.ran=true;cs.logs=[];csLogs();csSave();
  if(!cs.code.trim()){csTabs();return}
  if(cs.lang==='python'){csPy(cs.code);return}
  f.srcdoc=csHook(csDoc());csTabs()}
-function csApply(pg,go){cs.code=pg.code;cs.lang=pg.lang;const e=$('#cs-ed');if(e)e.value=pg.code;const l=$('#cs-lang');if(l)l.value=pg.lang;
+function csApply(pg,go,man){cs.code=pg.code;cs.lang=pg.lang;const e=$('#cs-ed');if(e)e.value=pg.code;const l=$('#cs-lang');if(l)l.value=pg.lang;
  cs.tab=pg.lang==='python'?'co':pg.lang==='js'&&!/document\.|canvas|innerHTML/.test(pg.code)?'co':'pv';if(go&&matchMedia('(max-width:760px)').matches){cs.panel='out';const r=$('.cs');if(r)r.dataset.p='out';document.querySelectorAll('.cs-mt button').forEach(b=>b.classList.toggle('on',b.dataset.p==='out'))}
- csRun(true)}
+ if(man&&!cs.pv)csPv(true,1);csRun(true);if(csHid()){const b=$('.cs-pt');b&&b.classList.add('dot')}csMeter()}
 const csLite=t=>t.replace(/```[^\n`]*\n[\s\S]*?```/g,m=>m.length>1500?'```\n[earlier code omitted; the current version is in the editor]\n```':m);
 async function csSend(txt){if(cs.busy)return;const inp=$('#cs-in');txt=(txt??inp?.value??'').trim();if(!txt)return;
- cs.err='';cs.m.push({r:'user',t:txt,ts:Date.now()});if(inp){inp.value='';inp.style.height='auto'}cs.busy=true;cs.stream='';csDraw();
+ cs.err='';cs.m.push({r:'user',t:txt,ts:Date.now()});if(inp){inp.value='';inp.style.height='auto'}cs.busy=true;cs.stream='';{const m=$('#cs-ml');if(m)SK.set(m,{t:m.scrollTop,s:1})}csDraw();
  const ed=$('#cs-ed')?.value??cs.code;if(ed!==cs.code)cs.code=ed;
- const sys=CS_SYS+(cs.code.trim()?`\n\nCurrent code in the editor (${cs.lang}):\n\`\`\`${cs.lang}\n${cs.code.slice(0,9000)}\n\`\`\``:''),
-  hist=[{role:'system',content:sys},...cs.m.slice(-14).map(m=>({role:m.r==='user'?'user':'assistant',content:csLite(m.t)}))];
+ const hist=csPrompt().hist;
  let out='';try{out=strip(await chat(mainP(),hist,.3,4096,true,t=>{cs.stream=strip(t);if(v.n==='code')csDraw(true)}))}catch(e){if(e.name!=='AbortError')cs.err=e.message;else out=cs.stream||''}
  out=out||cs.stream||'';cs.busy=false;cs.stream=null;if(out.trim())cs.m.push({r:'ai',t:out,ts:Date.now()});csSave();
  if(v.n==='code'){csDraw();if(cs.auto&&out){const pg=csPage(csBlocks(out));if(pg)csApply(pg,true)}}}
@@ -913,6 +967,8 @@ function csDoc2(){return'<!doctype html><title>Preview</title><style>html,body{m
 document.addEventListener('click',e=>{const t=e.target.closest('[data-cs]');if(!t)return;const a=t.dataset.cs,d=t.dataset;
  if(a==='send'){if(cs.busy){abort&&abort.abort()}else csSend()}
  else if(a==='qp')csSend(d.q);
+ else if(a==='pvt')csPv(!cs.pv);
+ else if(a==='jump'){const m=$('#cs-ml');SK.set(m,{t:m.scrollTop,s:1});m.scrollTop=m.scrollHeight;jmp()}
  else if(a==='new'||a==='new2'){$('#dlg').open&&$('#dlg').close();csNewChat()}
  else if(a==='hist')csHistDlg()
  else if(a==='open'){if(cs.busy)return toast('Wait for the reply, or press ■ to stop it');const h=cs.hist.find(x=>x.id===d.id);if(!h)return;csSave();csLoad(h);$('#dlg').close();cs.panel='chat';render()}
@@ -926,13 +982,27 @@ document.addEventListener('click',e=>{const t=e.target.closest('[data-cs]');if(!
  else if(a==='dl'){cs.code=$('#cs-ed').value;if(!cs.code.trim())return toast('Nothing to download yet');dl(cs.lang==='html'?'index.html':cs.lang==='js'?'script.js':'script.py',new Blob([cs.code],{type:'text/plain'}))}
  else if(a==='copy'||a==='blk'){const m=cs.m[+d.i];if(!m)return;const bl=csBlocks(m.t),b=bl[+d.b];if(!b)return;
   if(a==='copy'){(navigator.clipboard?.writeText(b.code)||Promise.reject()).then(()=>toast('Copied'),()=>toast('Copy failed'))}
-  else{const pg=(b.lang==='html'||b.lang==='css')?csPage(bl):{lang:b.lang,code:b.code};if(!pg)return;csApply(pg,true)}}});
-document.addEventListener('input',e=>{const t=e.target;if(t.id==='cs-in'){t.style.height='auto';t.style.height=Math.min(t.scrollHeight,128)+'px'}else if(t.id==='cs-ed'){cs.code=t.value;clearTimeout(csT);csT=setTimeout(csSave,600)}});
+  else{const pg=(b.lang==='html'||b.lang==='css')?csPage(bl):{lang:b.lang,code:b.code};if(!pg)return;csApply(pg,true,true)}}});
+document.addEventListener('input',e=>{const t=e.target;if(t.id==='cs-in'){t.style.height='auto';t.style.height=Math.min(t.scrollHeight,128)+'px';csMeterQ()}else if(t.id==='cs-ed'){cs.code=t.value;clearTimeout(csT);csT=setTimeout(csSave,600);csMeterQ()}});
 document.addEventListener('change',e=>{if(e.target.id==='cs-lang'){cs.lang=e.target.value;csSave()}});
 document.addEventListener('keydown',e=>{const t=e.target;if(t.id==='cs-in'&&e.key==='Enter'&&!e.shiftKey&&!matchMedia('(pointer:coarse)').matches){e.preventDefault();if(!cs.busy)csSend()}
+ else if(t.classList?.contains('cs-gut')&&(e.key==='ArrowLeft'||e.key==='ArrowRight'||e.key==='Home')){e.preventDefault();csSetRW(e.key==='Home'?.42:cs.rw+(e.key==='ArrowLeft'?.03:-.03),true)}
  else if(t.id==='cs-ed'&&e.key==='Tab'){e.preventDefault();const s=t.selectionStart;t.setRangeText('  ',s,t.selectionEnd,'end');cs.code=t.value}
  else if(t.id==='cs-ed'&&(e.ctrlKey||e.metaKey)&&e.key==='Enter'){e.preventDefault();csRun()}});
 addEventListener('message',e=>{const f=$('#cs-fr');if(!f||e.source!==f.contentWindow||!e.data||e.data.cs!==1)return;const k=['log','info','warn','error','debug'].includes(e.data.t)?e.data.t:'log';csLog(k==='debug'?'log':k,String(e.data.m).slice(0,2000))});
+
+/* ---- sticky autoscroll: follows new text only while you are at the bottom; scroll up to read and it lets go ---- */
+const SK=new WeakMap(),skSt=el=>SK.get(el)?.s!==0,
+ pin=el=>{if(el&&skSt(el)){el.scrollTop=el.scrollHeight;SK.set(el,{t:el.scrollTop,s:1})}},
+ jmp=()=>{const el=$('#cs-ml'),j=$('#cs-jump');if(j)j.hidden=!(el&&cs.busy&&!skSt(el))};
+addEventListener('scroll',e=>{const el=e.target;if(!el||el.id!=='cs-ml'&&el.id!=='cv')return;const o=SK.get(el)||{t:0,s:1},d=el.scrollHeight-el.scrollTop-el.clientHeight;
+ if(el.scrollTop<o.t-1&&d>=2)o.s=0;else if(d<10)o.s=1;o.t=el.scrollTop;SK.set(el,o);if(el.id==='cs-ml')jmp()},true);
+/* ---- drag the divider between chat and preview ---- */
+document.addEventListener('pointerdown',e=>{const g=e.target.closest?.('.cs-gut');if(!g||e.button>0)return;const b=g.parentElement,rc=b.getBoundingClientRect();e.preventDefault();g.setPointerCapture(e.pointerId);b.classList.add('drag');
+ const mv=ev=>csSetRW((rc.right-ev.clientX)/rc.width),up=()=>{b.classList.remove('drag');g.removeEventListener('pointermove',mv);g.removeEventListener('pointerup',up);g.removeEventListener('pointercancel',up);sv('cs_rw',cs.rw)};
+ g.addEventListener('pointermove',mv);g.addEventListener('pointerup',up);g.addEventListener('pointercancel',up)});
+document.addEventListener('dblclick',e=>{if(e.target.closest?.('.cs-gut'))csSetRW(.42,true)});
+addEventListener('resize',()=>{if(v.n==='code')csSetRW(cs.rw)});
 
 /* ---------- Back button: closes the open screen instead of leaving the site ---------- */
 let stk=[],skipPop=0,popping=0,rootAt=0;
